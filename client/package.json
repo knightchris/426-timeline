@@ -1,5 +1,5 @@
 {
-  "name": "426-timeline",
+  "name": "426-timeline-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
