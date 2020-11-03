@@ -4,6 +4,9 @@
 
 `node v12.16.0+`
 
+if you are working in vscode, these extensions are recommended:
+`Babel JavaScript by michael mcdermott`
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
