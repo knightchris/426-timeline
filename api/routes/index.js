@@ -5,7 +5,7 @@ const { Client } = require('pg');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:ilovecake@localhost:5432/timelinedb',
-  ssl: process.env.DATABASE_URL ? true : false
+  sslmode: process.env.DATABASE_URL ? "require" : "disable"
 });
 
 
