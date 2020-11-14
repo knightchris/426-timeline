@@ -1,10 +1,11 @@
 var express = require('express');
+require('dotenv').config();
 var router = express.Router();
 
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:ilovecake@localhost:5432/timelinedb',
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || process.env.DATABASE_URL_DEV,
   sslmode: process.env.DATABASE_URL ? "require" : "disable"
 });
 
@@ -15,12 +16,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/users', function(req,res, next) {
-  client.connect();
-
-  client.query('SELECT * FROM Users;', (err, results) => {
-    if (err) throw err;
-    return res.status(200).json(results.rows);
   
+  pool.query('SELECT * FROM Users;', (err, results) => {
+    if (err) throw err;
+    res.status(200).json(results.rows);
 });
 
 });
