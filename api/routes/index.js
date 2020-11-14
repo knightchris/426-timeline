@@ -10,14 +10,13 @@ const pool = new Pool({
 });
 
 
-
 router.get('/', function(req, res, next) {
   return res.status(200).json({ msg: 'Welcome to the timeline api'});
 });
 
 router.get('/users', function(req,res, next) {
   
-  pool.query('SELECT * FROM Users;', (err, results) => {
+  pool.query('SELECT * FROM public."Users";', (err, results) => {
     if (err) throw err;
     res.status(200).json(results.rows);
 });
