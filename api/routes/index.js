@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/users', function(req,res, next) {
   
-  pool.query('SELECT * FROM public."Users";', (err, results) => {
+  pool.query('SELECT * FROM Users;', (err, results) => {
     if (err) throw err;
     res.status(200).json(results.rows);
 });
