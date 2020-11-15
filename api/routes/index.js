@@ -64,27 +64,6 @@ router.post('/createuser', async function(req, res) {
     result = await pool.query(sql, values);
     res.status(200).send("User successfully created")
   }
-
-  /*
-  pool.query(sql, values, (err, result) => {
-    if (result.rows[0]) {
-      this.continueInsert = false;
-      res.status(404).send("User already exists");
-    }
-  })
-
-  console.log(continueInsert);
-
-  if (!continueInsert) {
-    sql = "INSERT INTO Users values ($1, $2, false)"
-    pool.query(sql, values, (err,result) => {
-      res.status(200).send("User successfully created")
-    })
-  }
-  */
-  
-
-  
 });
 
 
