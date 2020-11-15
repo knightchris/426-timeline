@@ -22,6 +22,7 @@ Look within each folder to find the [client readme](./client/README.md) and the 
 - Create .env file in api subdir with DATABASE_URL_DEV=postgresql://postgres:<pg-admin-pass>@localhost:5432/<local-db-name>
     - This tells PG where your local database is running
     - If using PGadmin tool the <pg-admin-pass> will be configured when first running it
+- Add SESSION_SECRET=<your-session-secret> to .env for express-session
 
 ### Local Development
 
