@@ -98,12 +98,12 @@ WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
 
 
 ### Media Card resource
- - The main RESTful resource that the froontend manipulates is the Media Card. Media Card objects have properties:
- 
+ - The main RESTful resource that the frontend manipulates is the Media Card. Media Card objects have properties:
+
 | name         | type     | example                          | description                                                                                                  |
 |--------------|----------|----------------------------------|--------------------------------------------------------------------------------------------------------------|
 | mediaid      | integer  | 42                               | Unique ID assigned to a  Media card by the database                                                          |
-| mediatype    | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"                              |
+| mediatype    | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"]                             |
 | title        | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
 | description  | string   | "This movie was  the best one"   | A description of the media                                                                                   |
 | pubdate      | date     |                                  | Date the media was published                                                                                 |
@@ -112,3 +112,16 @@ WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
 | creator      | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
 | rating       | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
 | contributors | string[] | ['Thomas', 'John']               | A list of the usernames that have  contributed to the content of this media card                             |
+
+
+### API Documentation
+
+#### 2.1 Index
+- Purpose:
+  - Retrieves a list of all approved or unapproved Media Cards as a JSON array
+- Endpoint:
+  - GET https://comp426-timeline.herokuapp.com/mediacards
+- Request Params:
+  - approved (boolean) - Required. Specifies which class of Media Cards to retrieve. True returns all approved cards, false returns all unapproved cards
+- Response:
+  - Responds with an array in JSON format containing the selected Media Cards.

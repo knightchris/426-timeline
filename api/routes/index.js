@@ -66,6 +66,35 @@ router.post('/createuser', async function(req, res) {
   }
 });
 
+router.get('/mediacards', async function(req, res) {
+  let approved = req.body.approved;
+  let values = [approved];
+
+  // Get a list of the unique media id's from the database
+  let uniqeMediaIds = [];
+  let sql = "SELECT * FROM MediaAuthor MA, Users U, Media M WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND M.approved=$1;"
+  let result = await pool.query(sql,values);
+  result.rows.forEach((row) =>  { if (uniqeMediaIds.indexOf(row.mediaid) == -1)  uniqeMediaIds.push(row.mediaid)});
+  
+  // Get a list of contributors parallel to the list of unique media id's
+  let contributors = [];
+  for (id of uniqeMediaIds) {
+    let contributorsToThisMediaId = []
+    result.rows.forEach((row) => { if (id === row.mediaid && contributorsToThisMediaId.indexOf(row.username) == -1) contributorsToThisMediaId.push(row.username)})
+    contributors.push(contributorsToThisMediaId);
+  }
+  
+  // Append the list of contributors to their respective media cards
+  sql = "SELECT * FROM Media WHERE approved=$1;"
+  result = await pool.query(sql, values);
+  for (let i = 0; i < result.rows.length; i++) {
+    result.rows[i].contributors = contributors[i]; 
+  }
+ 
+  return res.status(200).json(result.rows);
+  
+})
+
 
 
 // TODO: Remove intitial testing endpoints below
