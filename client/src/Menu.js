@@ -9,7 +9,7 @@ function Menu() {
         <header className="Menu-header">
         <div id="outer">
             <div class="inner">
-                <button className="menu-button" onClick={shoot}>Filter</button>
+                <button className="menu-button">Filter</button>
             </div>
             <div class="inner">
                 <button className="menu-button">Sort</button>
@@ -21,17 +21,5 @@ function Menu() {
   }
   
    export default Menu;
-
-
-function shoot() {
-    return <div id="outer">
-            <div class="inner">
-                <button className="menu-button" onClick={shoot}>Filter</button>
-            </div>
-            <div class="inner">
-                <button className="menu-button">Sort</button>
-            </div>
-        </div>
-}
 
 
