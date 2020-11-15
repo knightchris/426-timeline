@@ -95,3 +95,20 @@ WHERE U.username=MA.username AND MA.mediaid=M.mediaid;
 SELECT *
 FROM MediaAuthor MA, Users U, Media M
 WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
+
+
+### Media Card resource
+ - The main RESTful resource that the froontend manipulates is the Media Card. Media Card objects have properties:
+ 
+| name         | type     | example                          | description                                                                                                  |
+|--------------|----------|----------------------------------|--------------------------------------------------------------------------------------------------------------|
+| mediaid      | integer  | 42                               | Unique ID assigned to a  Media card by the database                                                          |
+| mediatype    | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"                              |
+| title        | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
+| description  | string   | "This movie was  the best one"   | A description of the media                                                                                   |
+| pubdate      | date     |                                  | Date the media was published                                                                                 |
+| unidate      | date     |                                  | Date the media occurred within the  star wars universe                                                       |
+| approved     | boolean  | true                             | Whether or not the media card  has been approved by an admin                                                 |
+| creator      | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
+| rating       | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
+| contributors | string[] | ['Thomas', 'John']               | A list of the usernames that have  contributed to the content of this media card                             |
