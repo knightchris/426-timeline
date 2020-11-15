@@ -114,9 +114,9 @@ WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
 | contributors | string[] | ['Thomas', 'John']               | A list of the usernames that have  contributed to the content of this media card                             |
 
 
-### API Documentation
+## API Documentation
 
-#### 2.1 Index
+### Endpoint 1: Index
 - Purpose:
   - Retrieves a list of all approved or unapproved Media Cards as a JSON array
 - Endpoint:
@@ -125,3 +125,50 @@ WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
   - approved (boolean) - Required. Specifies which class of Media Cards to retrieve. True returns all approved cards, false returns all unapproved cards
 - Response:
   - Responds with an array in JSON format containing the selected Media Cards.
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'get',
+  url: 'https://comp426-timeline.herokuapp.com/mediacards',
+  withCredentials: true,
+  data: {
+    "approved": true
+  },
+}); 
+``` 
+#### Example Response
+``` 
+200 OK 
+[
+    {
+        "mediaid": 1,
+        "mediatype": "movie",
+        "title": "SW: Third Movie",
+        "description": "A really good one",
+        "pubdate": "2020-02-21T05:00:00.000Z",
+        "unidate": "1999-03-22T05:00:00.000Z",
+        "approved": true,
+        "creator": "Disney",
+        "rating": 9.7,
+        "contributors": [
+            "Chris",
+            "Sally"
+        ]
+    },
+    {
+        "mediaid": 2,
+        "mediatype": "movie",
+        "title": "SW: Second Movie",
+        "description": "A really bad one",
+        "pubdate": "2020-02-25T05:00:00.000Z",
+        "unidate": "1999-03-21T05:00:00.000Z",
+        "approved": true,
+        "creator": "Disney",
+        "rating": 4.3,
+        "contributors": [
+            "Chris"
+        ]
+    }
+]
+```
