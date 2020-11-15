@@ -1,0 +1,62 @@
+#container {
+    background-image: url("./lightsabers.png");
+    background-color: black;
+    background-size: 400px 400px;
+    background-repeat: no-repeat;
+    height: 400px;
+    width: 375px;
+}
+
+.card-title {
+    color: rgb(223, 201, 80);
+    font-family: "ITC Serif Gothic", Lato;
+    font-size: 2em;
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    top: 5px;
+}
+
+.content {
+  color: rgb(223, 201, 80);
+  font-family: "ITC Serif Gothic", Lato;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  text-align: left;
+  position: relative;
+  left: 38px;
+}
+
+li {
+    max-width: 80%;
+}
+
+.description {
+    max-width: 80%;
+    text-align: center;
+}
+
+.rating-container {
+    align-content: center;
+    position: relative;
+    text-align: center;
+    top: 15px;
+    right: 48px;
+}
+
+#star-five {
+    color: white;
+}
+
+#star-four {
+    color: white;
+}
+
+#star-three {
+    color: white;
+}
+
+#star-two {
+    color: white;
+}
