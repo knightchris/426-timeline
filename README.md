@@ -113,8 +113,8 @@ WHERE username='John';
 | mediatype    | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"]                             |
 | title        | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
 | description  | string   | "This movie was  the best one"   | A description of the media                                                                                   |
-| pubdate      | date     |                                  | Date the media was published                                                                                 |
-| unidate      | date     |                                  | Date the media occurred within the  star wars universe                                                       |
+| pubdate      | string   | "2020-02-21T05:00:00.000Z"       | Date the media was published                                                                                 |
+| unidate      | string   | "2020-02-21T05:00:00.000Z"       | Date the media occurred within the  star wars universe                                                       |
 | approved     | boolean  | true                             | Whether or not the media card  has been approved by an admin                                                 |
 | creator      | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
 | rating       | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
@@ -189,8 +189,8 @@ WHERE username='John';
   - mediatype (string) - Required. Specifies media type of this card, ["movie", "television", "book", "comic"]
   - title (string) - Required. Specifies title of the media
   - description (string) - Required. Specifies description of the media
-  - pubdate (string) - Required. Specifies date media published (string formatted like 2020-02-21T05:00:00.000Z)
-  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like 2020-02-21T05:00:00.000Z)
+  - pubdate (string) - Required. Specifies date media published (string formatted like YYYY-MM-DD)
+  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like YYYY-MM-DD)
   - creator (string) - Required. Specifies the creator of the media
 - Response:
   - Responds with JSON containing created Media Card's data
@@ -205,8 +205,8 @@ WHERE username='John';
     "mediatype": "book",
     "title": "Star Wars Book",
     "description": "Greatest book of all time",
-    "pubdate": "2020-02-21T05:00:00.000Z",
-    "unidate": "2020-02-21T05:00:00.000Z",
+    "pubdate": "2020-02-21",
+    "unidate": "2020-02-21",
     "creator": "Some book author"
   },
 }); 

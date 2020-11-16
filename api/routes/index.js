@@ -96,7 +96,7 @@ router.get('/mediacards', async function(req, res) {
 })
 
 
-// Performs sanity check on all but dates, force user into specific date format or check in frontend
+
 router.post('/createcard', async function(req, res) {
   if (req.session.user == undefined) {
     return res.status(403).send("You are not logged in");
@@ -111,9 +111,12 @@ router.post('/createcard', async function(req, res) {
     let rating = null;
     let approved = false;
 
+    let dateregex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
     let validMediaTypes = ['book', 'comic', 'movie', 'television'];
+    
     if (!mediatype || !title || !description || !pubdate 
-        || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1) {
+        || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1 || !dateregex.test(pubdate) 
+        || !dateregex.test(unidate)) {
       return res.status(400).send("Problem with request parameters")
     }
     
