@@ -160,6 +160,7 @@ WHERE username='John';
         "approved": true,
         "creator": "Disney",
         "rating": 9.7,
+        "proposededitmediaid": null,
         "contributors": [
             "Chris",
             "Sally"
@@ -175,6 +176,7 @@ WHERE username='John';
         "approved": true,
         "creator": "Disney",
         "rating": 4.3,
+        "proposededitmediaid": null,
         "contributors": [
             "Chris"
         ]
@@ -268,6 +270,7 @@ WHERE username='John';
     "approved": false,
     "creator": "Some book author",
     "rating": null,
+    "proposededitmediaid": null,
     "contributors": [
         "John"
     ]
