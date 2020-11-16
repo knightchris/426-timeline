@@ -254,10 +254,77 @@ router.post('/approvenewcard', async function (req, res) {
     if (!result.rows[0]) {
       return res.status(404).send("Media with given mediaid not found");
     } else if (result.rows[0].proposededitmediaid != null) {
-      res.status(400).send("This card is a proposed edit, not new");
+      return res.status(400).send("This card is a proposed edit, not new");
     }
 
     sql = "UPDATE Media SET approved=true WHERE mediaid=$1"
+    await pool.query(sql, values);
+
+    return res.status(200).send();
+  }
+})
+
+router.post('/approveeditcard', async function (req, res) {
+  if (req.session.user == undefined) {
+    return res.status(403).send("You are not logged in");
+  } else {
+    let approverUsername = req.session.user;
+    let userWhoProposedEdit = req.body.username;
+    let mediaid = req.body.mediaid;
+    
+    let sql = "SELECT * FROM Users WHERE username=$1;";
+    let values = [approverUsername];
+    let result = await pool.query(sql, values);
+    if (!result.rows[0].admin) {
+      return res.status(403).send("You are not an admin");
+    }
+
+    let proposedEditMediaId;
+    let mediatype;
+    let title;
+    let description;
+    let pubdate;
+    let unidate;
+    let creator;
+    
+    values = [mediaid];
+    sql = "SELECT * FROM Media WHERE mediaid=$1;"
+    result = await pool.query(sql, values);
+    if (!result.rows[0]) {
+      return res.status(404).send("Media with given mediaid not found");
+    } else if (result.rows[0].proposededitmediaid == null) {
+      return res.status(400).send("This card is not a proposed edit");
+    } else {
+      proposedEditMediaId = result.rows[0].proposededitmediaid;
+      mediatype = result.rows[0].mediatype;
+      title = result.rows[0].title;
+      description = result.rows[0].description;
+      pubdate = result.rows[0].pubdate;
+      unidate = result.rows[0].unidate;
+      creator = result.rows[0].creator;
+    }
+
+    // Have all edit information including user who proposed edit - delete this proposed edit entry in Media and MediaAuthor
+    // then update the original entry with edits and associate this user with the original now as a contributor.
+    // Do not copy over approved or rating to original
+
+    // Values is still the mediaid we want to delete
+    sql = "DELETE FROM Media WHERE mediaid=$1;"
+    await pool.query(sql, values);
+
+    sql = "DELETE FROM MediaAuthor WHERE mediaid=$1;"
+    await pool.query(sql, values);
+
+    values = [proposedEditMediaId, userWhoProposedEdit];
+    sql = "INSERT INTO MediaAuthor (mediaid, username) values ($1, $2);"
+    await pool.query(sql, values);
+
+    values = [proposedEditMediaId, mediatype, title, description, pubdate, unidate, creator]
+    sql = `UPDATE Media 
+           SET mediatype=$2, title=$3, 
+           description=$4, pubdate=$5, 
+           unidate=$6, creator=$7, approved=true
+           WHERE mediaid=$1;`
     await pool.query(sql, values);
 
     return res.status(200).send();

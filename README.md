@@ -107,18 +107,20 @@ WHERE username='John';
 ### Media Card resource
  - The main RESTful resource that the frontend manipulates is the Media Card. Media Card objects have properties:
 
-| name         | type     | example                          | description                                                                                                  |
-|--------------|----------|----------------------------------|--------------------------------------------------------------------------------------------------------------|
-| mediaid      | integer  | 42                               | Unique ID assigned to a  Media card by the database                                                          |
-| mediatype    | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"]                             |
-| title        | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
-| description  | string   | "This movie was  the best one"   | A description of the media                                                                                   |
-| pubdate      | string   | "2020-02-21T05:00:00.000Z"       | Date the media was published                                                                                 |
-| unidate      | string   | "2020-02-21T05:00:00.000Z"       | Date the media occurred within the  star wars universe                                                       |
-| approved     | boolean  | true                             | Whether or not the media card  has been approved by an admin                                                 |
-| creator      | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
-| rating       | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
-| contributors | string[] | ['Thomas', 'John']               | A list of the usernames that have  contributed to the content of this media card                             |
+| name                | type     | example                          | description                                                                                                  |
+|---------------------|----------|----------------------------------|--------------------------------------------------------------------------------------------------------------|
+| mediaid             | integer  | 42                               | Unique ID assigned to a  Media card by the database                                                          |
+| mediatype           | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"]                             |
+| title               | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
+| description         | string   | "This movie was  the best one"   | A description of the media                                                                                   |
+| pubdate             | date     | "2020-02-21T05:00:00.000Z"       | Date the media was published                                                                                 |
+| unidate             | date     | "2020-02-21T05:00:00.000Z"       | Date the media occurred within the  star wars universe                                                       |
+| approved            | boolean  | true                             | Whether or not the media card  has been approved by an admin                                                 |
+| creator             | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
+| rating              | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
+| contributors        | string[] | ['Thomas', 'John']               | A list of the usernames that have  contributed to the content of this media card                             |
+| proposedmediaeditid | int      | 10                               | Field used to point a pending edit card to the original                                                      |
+
 
 
 ## API Documentation
@@ -242,7 +244,7 @@ WHERE username='John';
   - pubdate (string) - Required. Specifies date media published (string formatted like YYYY-MM-DD)
   - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like YYYY-MM-DD)
   - creator (string) - Required. Specifies the creator of the media
-  - proposededitmediaid (int) - Required. Specifies the original card proposed edits will be made on
+  - proposededitmediaid (int) - Required. Specifies the original card proposed edits will be made on. If this field is not null the card is a pending edit
 - Response:
   - Upon success, responds with empty response body
 
@@ -311,6 +313,34 @@ WHERE username='John';
   url: 'https://comp426-timeline.herokuapp.com/approvenewcard',
   withCredentials: true,
   data: {
+    "mediaid": 11,
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
+```
+
+### Endpoint 6: Approve card edit
+- Purpose:
+  - Approve a proposed Media Card edit in the database
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/approveeditcard
+- Request Params:
+  - username (string) - Required. Specifies the user who suggested the edit request
+  - mediaid (int) - Required. Specifies the edit request by mediaid to be approved in the database (this is the id of the edit request, the request itself points to the original)
+- Response:
+  - Upon success, responds with empty response body
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/approveeditcard',
+  withCredentials: true,
+  data: {
+    "username": "John",
     "mediaid": 11,
   },
 }); 
