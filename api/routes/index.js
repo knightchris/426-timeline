@@ -41,7 +41,7 @@ router.get('/checklogin', function(req, res) {
   if (req.session.user == undefined) {
     res.status(403).send("You are not logged in");
   } else {
-    res.status(200).send("You are logged in");
+    res.status(200).send({"username": req.session.user});
   }
 });
 
@@ -93,6 +93,26 @@ router.get('/mediacards', async function(req, res) {
  
   return res.status(200).json(result.rows);
   
+})
+
+router.get('/findcard', async function (req, res) {
+  let mediaid = req.body.mediaid;
+  let values = [mediaid];
+  
+  let sql = "SELECT * FROM MediaAuthor WHERE mediaid=$1;"
+  let contributors = [];
+  let result = await pool.query(sql, values);
+  if (!result.rows[0]) {
+    return res.status(404).send("Media with given mediaid not found");
+  } else {
+    result.rows.forEach((row) => { if (contributors.indexOf(row.username) == -1) contributors.push(row.username)});
+  }
+
+  sql = "SELECT * FROM Media WHERE mediaid=$1;"
+  result = await pool.query(sql, values);
+  result.rows[0].contributors = contributors;
+
+  return res.status(200).json(result.rows[0]);
 })
 
 

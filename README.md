@@ -182,7 +182,49 @@ WHERE username='John';
 ]
 ```
 
-### Endpoint 2: Create
+### Endpoint 2: Find card
+- Purpose:
+  - Find a specific card given a mediaid
+- Endpoint:
+  - GET https://comp426-timeline.herokuapp.com/findcard
+- Request Params:
+  - mediaid (string) - Required. Specifies the card by mediaid to retrieve from the database
+- Response:
+  - Upon success, responds the fields of the requested Media Card in JSON format
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'get',
+  url: 'https://comp426-timeline.herokuapp.com/findcard',
+  withCredentials: true,
+  data: {
+    "mediaid": 10
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
+{
+    "mediaid": 10,
+    "mediatype": "book",
+    "title": "Star Wars Book",
+    "description": "A million pages long, don't read",
+    "pubdate": "2020-02-21T05:00:00.000Z",
+    "unidate": "2020-02-21T05:00:00.000Z",
+    "approved": true,
+    "creator": "Some author",
+    "rating": null,
+    "proposededitmediaid": null,
+    "contributors": [
+        "John",
+        "Chris"
+    ]
+}
+```
+
+### Endpoint 3: Create
 - Purpose:
   - Create a new Media Card in the database if nonadmin, create and approve new media card if admin
 - Endpoint:
@@ -232,7 +274,7 @@ WHERE username='John';
 }
 ```
 
-### Endpoint 3: Edit
+### Endpoint 4: Edit
 - Purpose:
   - Suggest to edit a media card in the database, given it does not have an existing pending edit. Admin/non-admin behavior is the same, edit not automatically approved
 - Endpoint:
@@ -270,7 +312,7 @@ WHERE username='John';
 200 OK
 ```
 
-### Endpoint 4: Delete
+### Endpoint 5: Delete
 - Purpose:
   - Delete a Media Card in the database
 - Endpoint:
@@ -296,7 +338,7 @@ WHERE username='John';
 204 No content
 ```
 
-### Endpoint 5: Approve new card
+### Endpoint 6: Approve new card
 - Purpose:
   - Approve a Media Card in the database
 - Endpoint:
@@ -322,7 +364,7 @@ WHERE username='John';
 200 OK
 ```
 
-### Endpoint 6: Approve card edit
+### Endpoint 7: Approve card edit
 - Purpose:
   - Approve a proposed Media Card edit in the database
 - Endpoint:
@@ -349,3 +391,109 @@ WHERE username='John';
 ```
 200 OK
 ```
+
+### Endpoint 8: Login
+- Purpose:
+  - Allow a user to login to the website
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/login
+- Request Params:
+  - username (string) - Required. Specifies the username
+  - password (int) - Required. Specifies the user's password
+- Response:
+  - Upon success, responds with true value formatted as JSON
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/login',
+  withCredentials: true,
+  data: {
+    "username": "John",
+    "password": "supersecurepassword",
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
+```
+
+### Endpoint 9: Logout
+- Purpose:
+  - Allow a user to logout of the website
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/logout
+- Request Params:
+  - None
+- Response:
+  - Upon success, responds with true value formatted as JSON
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/logout',
+  withCredentials: true,
+}); 
+``` 
+#### Example Response
+```
+200 OK
+```
+
+### Endpoint 10: Check login
+- Purpose:
+  - Check if a user is logged in, return the username if true
+- Endpoint:
+  - GET https://comp426-timeline.herokuapp.com/checklogin
+- Request Params:
+  - None
+- Response:
+  - Upon success, responds with the username of the logged in user as JSON
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'get',
+  url: 'https://comp426-timeline.herokuapp.com/checklogin',
+  withCredentials: true,
+}); 
+``` 
+#### Example Response
+```
+200 OK
+{
+    "username": "Chris"
+}
+```
+
+### Endpoint 11: Create user
+- Purpose:
+  - Allow a user to register on the website
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/createuser
+- Request Params:
+  - username (string) - Required. Specifies the username
+  - password (int) - Required. Specifies the user's password
+- Response:
+  - Upon success, responds with 200 OK
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/createuser',
+  withCredentials: true,
+  data: {
+    "username": "John",
+    "password": "supersecurepassword",
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
+```
+
