@@ -97,6 +97,13 @@ FROM MediaAuthor MA, Users U, Media M
 WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
 
 
+// Update password in users (finnicky with double quotes)
+
+UPDATE Users
+SET password='pass'
+WHERE username='John';
+
+
 ### Media Card resource
  - The main RESTful resource that the frontend manipulates is the Media Card. Media Card objects have properties:
 
@@ -171,4 +178,54 @@ WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
         ]
     }
 ]
+```
+
+### Endpoint 2: Create
+- Purpose:
+  - Create a new Media Card in the database
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/createcard
+- Request Params:
+  - mediatype (string) - Required. Specifies media type of this card, ["movie", "television", "book", "comic"]
+  - title (string) - Required. Specifies title of the media
+  - description (string) - Required. Specifies description of the media
+  - pubdate (string) - Required. Specifies date media published (string formatted like 2020-02-21T05:00:00.000Z)
+  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like 2020-02-21T05:00:00.000Z)
+  - creator (string) - Required. Specifies the creator of the media
+- Response:
+  - Responds with JSON containing created Media Card's data
+
+  #### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/createcard',
+  withCredentials: true,
+  data: {
+    "mediatype": "book",
+    "title": "Star Wars Book",
+    "description": "Greatest book of all time",
+    "pubdate": "2020-02-21T05:00:00.000Z",
+    "unidate": "2020-02-21T05:00:00.000Z",
+    "creator": "Some book author"
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
+{
+    "mediaid": 10,
+    "mediatype": "book",
+    "title": "Star Wars Book",
+    "description": "Greatest book of all time",
+    "pubdate": "2020-02-21T05:00:00.000Z",
+    "unidate": "2020-02-21T05:00:00.000Z",
+    "approved": false,
+    "creator": "Some book author",
+    "rating": null,
+    "contributors": [
+        "John"
+    ]
+}
 ```

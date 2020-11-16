@@ -96,6 +96,53 @@ router.get('/mediacards', async function(req, res) {
 })
 
 
+// Performs sanity check on all but dates, force user into specific date format or check in frontend
+router.post('/createcard', async function(req, res) {
+  if (req.session.user == undefined) {
+    return res.status(403).send("You are not logged in");
+  } else {
+    let username = req.session.user;
+    let mediatype = req.body.mediatype;
+    let title = req.body.title;
+    let description = req.body.description;
+    let pubdate = req.body.pubdate;
+    let unidate = req.body.unidate;
+    let creator = req.body.creator;
+    let rating = null;
+    let approved = false;
+
+    let validMediaTypes = ['book', 'comic', 'movie', 'television'];
+    if (!mediatype || !title || !description || !pubdate 
+        || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1) {
+      return res.status(400).send("Problem with request parameters")
+    }
+    
+    // TODO: PULL IMDB rating w/ API if movie,television
+
+    let sql = "SELECT * FROM Users WHERE username=$1;";
+    let values = [username];
+    let result = await pool.query(sql, values);
+    if (result.rows[0].admin) {  // Auto approve if logged in user is admin
+      approved = true;
+    }
+
+    values = [mediatype, title, description, pubdate, unidate, approved, creator, rating]
+    sql = `INSERT INTO Media (mediatype, title, description, pubdate, unidate, approved, creator, rating) 
+           values ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`
+    result = await pool.query(sql, values);
+    
+ 
+    values = [result.rows[0].mediaid, username]
+    sql = `INSERT INTO MediaAuthor (mediaid, username) values ($1, $2);`
+    await pool.query(sql, values);
+
+    result.rows[0].contributors = [username];
+
+    return res.status(200).json(result.rows[0]);
+  }
+})  
+
+
 
 // TODO: Remove intitial testing endpoints below
 
