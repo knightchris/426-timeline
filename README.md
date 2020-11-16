@@ -229,3 +229,29 @@ WHERE username='John';
     ]
 }
 ```
+
+### Endpoint 3: Delete
+- Purpose:
+  - Delete a Media Card in the database
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/deletecard
+- Request Params:
+  - mediaid (int) - Required. Specifies the mediaid to be deleted from the database
+- Response:
+  - Upon success, responds with empty response body
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/deletecard',
+  withCredentials: true,
+  data: {
+    "mediaid": 11,
+  },
+}); 
+``` 
+#### Example Response
+```
+204 No content
+```

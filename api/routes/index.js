@@ -145,6 +145,37 @@ router.post('/createcard', async function(req, res) {
   }
 })  
 
+router.post('/deletecard', async function (req, res) {
+  if (req.session.user == undefined) {
+    return res.status(403).send("You are not logged in");
+  } else {
+    let username = req.session.user;
+    let mediaid = req.body.mediaid;
+    
+    let sql = "SELECT * FROM Users WHERE username=$1;";
+    let values = [username];
+    let result = await pool.query(sql, values);
+    if (!result.rows[0].admin) {
+      return res.status(403).send("You are not an admin");
+    }
+
+    sql = "SELECT * FROM Media WHERE mediaid=$1;"
+    values = [mediaid];
+    result = await pool.query(sql, values);
+    if (!result.rows[0]) {
+      return res.status(404).send("Media with given mediaid not found");
+    }
+
+    sql = "DELETE FROM Media WHERE mediaid=$1;"
+    await pool.query(sql, values);
+
+    sql = "DELETE FROM MediaAuthor WHERE mediaid=$1;"
+    await pool.query(sql, values);
+
+    return res.status(204).send("No content")
+  }
+})
+
 
 
 // TODO: Remove intitial testing endpoints below
