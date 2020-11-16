@@ -182,7 +182,7 @@ WHERE username='John';
 
 ### Endpoint 2: Create
 - Purpose:
-  - Create a new Media Card in the database
+  - Create a new Media Card in the database if nonadmin, create and approve new media card if admin
 - Endpoint:
   - POST https://comp426-timeline.herokuapp.com/createcard
 - Request Params:
@@ -230,7 +230,45 @@ WHERE username='John';
 }
 ```
 
-### Endpoint 3: Delete
+### Endpoint 3: Edit
+- Purpose:
+  - Suggest to edit a media card in the database, given it does not have an existing pending edit. Admin/non-admin behavior is the same, edit not automatically approved
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/editcard
+- Request Params:
+  - mediatype (string) - Required. Specifies media type of this card, ["movie", "television", "book", "comic"]
+  - title (string) - Required. Specifies title of the media
+  - description (string) - Required. Specifies description of the media
+  - pubdate (string) - Required. Specifies date media published (string formatted like YYYY-MM-DD)
+  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like YYYY-MM-DD)
+  - creator (string) - Required. Specifies the creator of the media
+  - proposededitmediaid (int) - Required. Specifies the original card proposed edits will be made on
+- Response:
+  - Upon success, responds with empty response body
+
+  #### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/editcard',
+  withCredentials: true,
+  data: {
+    "mediatype": "book",
+    "title": "Star Wars Book",
+    "description": "Greatest book of all time",
+    "pubdate": "2020-02-21",
+    "unidate": "2020-02-21",
+    "creator": "Some book author"
+    "proposededitmediaid": 10
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
+```
+
+### Endpoint 4: Delete
 - Purpose:
   - Delete a Media Card in the database
 - Endpoint:
@@ -254,4 +292,30 @@ WHERE username='John';
 #### Example Response
 ```
 204 No content
+```
+
+### Endpoint 5: Approve new card
+- Purpose:
+  - Approve a Media Card in the database
+- Endpoint:
+  - POST https://comp426-timeline.herokuapp.com/approvenewcard
+- Request Params:
+  - mediaid (int) - Required. Specifies the media by mediaid to be approved in the database
+- Response:
+  - Upon success, responds with empty response body
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'post',
+  url: 'https://comp426-timeline.herokuapp.com/approvenewcard',
+  withCredentials: true,
+  data: {
+    "mediaid": 11,
+  },
+}); 
+``` 
+#### Example Response
+```
+200 OK
 ```
