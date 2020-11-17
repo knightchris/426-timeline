@@ -5,8 +5,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
+  font-size: 38px;
   color: black;
+  position: relative;
+  z-index: 300;
+  transform-origin: 50% 100%;
+	transform: perspective(300px) rotateX(20deg);
 }
 
 .title {
