@@ -449,13 +449,13 @@ true
 
 ### Endpoint 10: Check login
 - Purpose:
-  - Check if a user is logged in, return the username if true and their contribution count
+  - Check if a user is logged in, return the username if true and their contribution count and admin status
 - Endpoint:
   - GET https://comp426-timeline.herokuapp.com/checklogin
 - Request Params:
   - None
 - Response:
-  - Upon success, responds with the username of the logged in user and their contribution count as JSON
+  - Upon success, responds with the username of the logged in user, their contribution count, admin status(boolean) as JSON
 
 #### Example Axios Request 
  ```
@@ -471,6 +471,7 @@ true
 {
     "username": "Chris",
     "contributioncount": 8
+    "admin": true
 }
 ```
 
@@ -493,7 +494,7 @@ true
   withCredentials: true,
   data: {
     "username": "John",
-    "password": "supersecurepassword",
+    "password": "supersecurepassword"
   },
 }); 
 ``` 
@@ -501,31 +502,6 @@ true
 ```
 200 OK
 ```
-
-### Endpoint 12: Check admin
-- Purpose:
-  - Check if a user is admin, true if admin, false if not
-- Endpoint:
-  - GET https://comp426-timeline.herokuapp.com/checkadmin
-- Request Params:
-  - None
-- Response:
-  - Upon success, responds with the true formatted as JSON
-
-#### Example Axios Request 
- ```
- const result = await axios({
-  method: 'get',
-  url: 'https://comp426-timeline.herokuapp.com/checkadmin',
-  withCredentials: true,
-}); 
-``` 
-#### Example Response
-```
-200 OK
-true
-```
-
 
 ### Rough description of frontend composition
 

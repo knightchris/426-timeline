@@ -50,25 +50,16 @@ router.get('/checklogin', async function(req, res) {
     let contributionCount = 0;
     let result = await pool.query(sql, values);
     result.rows.forEach((row) => contributionCount++);
-    res.status(200).send({"username": req.session.user, "contributioncount": contributionCount});
+
+    let admin = false;
+    sql = `SELECT * FROM Users WHERE username=$1;`
+    result = await pool.query(sql, values);
+    if (result.rows[0].admin) {
+      admin = true;
+    } 
+    res.status(200).send({"username": req.session.user, "contributioncount": contributionCount, "admin": admin});
   }
 });
-
-router.get('/checkadmin', async function(req, res) {
-  if (req.session.user == undefined) {
-    return res.status(200).send("You are not logged in")
-  } else {
-    let user = req.session.user;
-    let values = [user];
-    let sql = `SELECT * FROM Users WHERE username=$1;`
-    let result = await pool.query(sql, values);
-    if (result.rows[0].admin) {
-      res.status(200).json(true);
-    } else {
-      res.status(200).json(false);
-    }
-  }
-})
 
 router.post('/createuser', async function(req, res) {
   let user = req.body.username;
