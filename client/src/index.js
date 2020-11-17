@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Menu from './Menu';
+import {Background, Midground,} from './Background'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Menu />
+  <Background />
+  <Midground />
+  <Menu />
     {/* <App /> */}
   </React.StrictMode>,
   document.getElementById('root')
