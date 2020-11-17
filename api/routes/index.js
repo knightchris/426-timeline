@@ -375,42 +375,4 @@ router.post('/approveeditcard', async function (req, res) {
   }
 })
 
-
-
-// TODO: Remove intitial testing endpoints below
-
-router.get('/', function(req, res, next) {
-  return res.status(200).json({ msg: 'Welcome to the timeline api'});
-});
-
-router.get('/users', function(req,res, next) {
-  
-  pool.query('SELECT * FROM Users;', (err, result) => {
-    if (err) throw err;
-    res.status(200).json(result.rows);
-});
-
-});
-
-router.get('/media', function(req,res, next) {
-  
-  pool.query('SELECT * FROM Media;', (err, result) => {
-    if (err) throw err;
-    res.status(200).json(result.rows);
-});
-
-});
-
-router.get('/mediaauthor', function(req,res, next) {
-  
-  pool.query('SELECT * FROM MediaAuthor;', (err, result) => {
-    if (err) throw err;
-    res.status(200).json(result.rows);
-});
-
-});
-
-// End initial testing endpoints
-
-
 module.exports = router;
