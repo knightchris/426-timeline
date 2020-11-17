@@ -19,14 +19,14 @@ router.post('/login', function(req, res) {
 
   pool.query(sql, values, (err, result) => {
     if (!result.rows[0]) {
-      return res.status(404).send("User not found");
+      return res.status(200).send("User not found");
     }
   
     if (result.rows[0].password == givenPassword) {
       req.session.user = user;
       res.status(200).json(true);
     } else {
-      res.status(403).send("Incorrect password");
+      res.status(200).send("Incorrect password");
     }
   })
 
@@ -39,7 +39,7 @@ router.post('/logout', function(req, res) {
 
 router.get('/checklogin', function(req, res) {
   if (req.session.user == undefined) {
-    res.status(403).send("You are not logged in");
+    res.status(200).send("You are not logged in");
   } else {
     res.status(200).send({"username": req.session.user});
   }
@@ -50,14 +50,14 @@ router.post('/createuser', async function(req, res) {
   let password = req.body.password;
 
   if (password.length < 5 || user.length < 2) {
-    return res.status(406).send("Password must be at least 5 characters, user must be at least 2 characters")
+    return res.status(200).send("Password must be at least 5 characters, user must be at least 2 characters")
   }
   
   let sql = 'SELECT username FROM Users WHERE username=$1;';
   let values = [user];
   let result = await pool.query(sql, values);
   if (result.rows[0]) {
-    return res.status(404).send("User already exists");
+    return res.status(200).send("User already exists");
   } else {
     sql = "INSERT INTO Users values ($1, $2, false)";
     values.push(password);
@@ -103,7 +103,7 @@ router.get('/findcard', async function (req, res) {
   let contributors = [];
   let result = await pool.query(sql, values);
   if (!result.rows[0]) {
-    return res.status(404).send("Media with given mediaid not found");
+    return res.status(200).send("Media with given mediaid not found");
   } else {
     result.rows.forEach((row) => { if (contributors.indexOf(row.username) == -1) contributors.push(row.username)});
   }
@@ -119,7 +119,7 @@ router.get('/findcard', async function (req, res) {
 
 router.post('/createcard', async function(req, res) {
   if (req.session.user == undefined) {
-    return res.status(403).send("You are not logged in");
+    return res.status(200).send("You are not logged in");
   } else {
     let username = req.session.user;
     let mediatype = req.body.mediatype;
@@ -136,8 +136,8 @@ router.post('/createcard', async function(req, res) {
     
     if (!mediatype || !title || !description || !pubdate 
         || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1 || !dateregex.test(pubdate) 
-        || !dateregex.test(unidate)) {
-      return res.status(400).send("Problem with request parameters")
+        ) {
+      return res.status(200).send("Problem with request parameters")
     }
     
     // TODO: PULL IMDB rating w/ API if movie,television
@@ -167,7 +167,7 @@ router.post('/createcard', async function(req, res) {
 
 router.post('/editcard', async function(req, res) {
   if (req.session.user == undefined) {
-    return res.status(403).send("You are not logged in");
+    return res.status(200).send("You are not logged in");
   } else {
     let username = req.session.user;
     let mediatype = req.body.mediatype;
@@ -185,8 +185,8 @@ router.post('/editcard', async function(req, res) {
     
     if (!mediatype || !title || !description || !pubdate 
         || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1 || !dateregex.test(pubdate) 
-        || !dateregex.test(unidate)) {
-      return res.status(400).send("Problem with request parameters")
+        ) {
+      return res.status(200).send("Problem with request parameters")
     }
     
     // TODO: PULL IMDB rating w/ API if movie,television (may not do this for edits, probably only new cards up above)
@@ -198,13 +198,13 @@ router.post('/editcard', async function(req, res) {
     let values = [proposededitmediaid];
     let result = await pool.query(sql, values);
     if (!result.rows[0]) {  
-      return res.status(404).send("Proposed media to edit not found with given mediaid");
+      return res.status(200).send("Proposed media to edit not found with given mediaid");
     }
 
     sql = "SELECT * FROM Media WHERE proposededitmediaid=$1;"
     result = await pool.query(sql, values);
     if (result.rows[0]) {
-      return res.status(403).send("Only one pending edit can exist for a card at a time");
+      return res.status(200).send("Only one pending edit can exist for a card at a time");
     }
 
     values = [mediatype, title, description, pubdate, unidate, approved, creator, rating, proposededitmediaid]
@@ -225,7 +225,7 @@ router.post('/editcard', async function(req, res) {
 
 router.post('/deletecard', async function (req, res) {
   if (req.session.user == undefined) {
-    return res.status(403).send("You are not logged in");
+    return res.status(200).send("You are not logged in");
   } else {
     let username = req.session.user;
     let mediaid = req.body.mediaid;
@@ -234,14 +234,14 @@ router.post('/deletecard', async function (req, res) {
     let values = [username];
     let result = await pool.query(sql, values);
     if (!result.rows[0].admin) {
-      return res.status(403).send("You are not an admin");
+      return res.status(200).send("You are not an admin");
     }
 
     sql = "SELECT * FROM Media WHERE mediaid=$1;"
     values = [mediaid];
     result = await pool.query(sql, values);
     if (!result.rows[0]) {
-      return res.status(404).send("Media with given mediaid not found");
+      return res.status(200).send("Media with given mediaid not found");
     }
 
     sql = "DELETE FROM Media WHERE mediaid=$1;"
@@ -256,7 +256,7 @@ router.post('/deletecard', async function (req, res) {
 
 router.post('/approvenewcard', async function (req, res) {
   if (req.session.user == undefined) {
-    return res.status(403).send("You are not logged in");
+    return res.status(200).send("You are not logged in");
   } else {
     let username = req.session.user;
     let mediaid = req.body.mediaid;
@@ -265,16 +265,16 @@ router.post('/approvenewcard', async function (req, res) {
     let values = [username];
     let result = await pool.query(sql, values);
     if (!result.rows[0].admin) {
-      return res.status(403).send("You are not an admin");
+      return res.status(200).send("You are not an admin");
     }
 
     values = [mediaid];
     sql = "SELECT * FROM Media WHERE mediaid=$1;"
     result = await pool.query(sql, values);
     if (!result.rows[0]) {
-      return res.status(404).send("Media with given mediaid not found");
+      return res.status(200).send("Media with given mediaid not found");
     } else if (result.rows[0].proposededitmediaid != null) {
-      return res.status(400).send("This card is a proposed edit, not new");
+      return res.status(200).send("This card is a proposed edit, not new");
     }
 
     sql = "UPDATE Media SET approved=true WHERE mediaid=$1"
@@ -286,7 +286,7 @@ router.post('/approvenewcard', async function (req, res) {
 
 router.post('/approveeditcard', async function (req, res) {
   if (req.session.user == undefined) {
-    return res.status(403).send("You are not logged in");
+    return res.status(200).send("You are not logged in");
   } else {
     let approverUsername = req.session.user;
     let userWhoProposedEdit = req.body.username;
@@ -296,7 +296,7 @@ router.post('/approveeditcard', async function (req, res) {
     let values = [approverUsername];
     let result = await pool.query(sql, values);
     if (!result.rows[0].admin) {
-      return res.status(403).send("You are not an admin");
+      return res.status(200).send("You are not an admin");
     }
 
     let proposedEditMediaId;
@@ -311,9 +311,9 @@ router.post('/approveeditcard', async function (req, res) {
     sql = "SELECT * FROM Media WHERE mediaid=$1;"
     result = await pool.query(sql, values);
     if (!result.rows[0]) {
-      return res.status(404).send("Media with given mediaid not found");
+      return res.status(200).send("Media with given mediaid not found");
     } else if (result.rows[0].proposededitmediaid == null) {
-      return res.status(400).send("This card is not a proposed edit");
+      return res.status(200).send("This card is not a proposed edit");
     } else {
       proposedEditMediaId = result.rows[0].proposededitmediaid;
       mediatype = result.rows[0].mediatype;
