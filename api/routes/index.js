@@ -1,3 +1,4 @@
+const axios = require('axios');
 var express = require('express');
 require('dotenv').config();
 var router = express.Router();
@@ -140,8 +141,19 @@ router.post('/createcard', async function(req, res) {
       return res.status(200).send("Problem with request parameters")
     }
     
-    // TODO: PULL IMDB rating w/ API if movie,television
-
+    if (mediatype == "movie" || mediatype == "television") {
+      let uriEncodedTitle = encodeURIComponent(title);
+      let requestUrl = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${uriEncodedTitle}`
+      const response = await axios({
+        method: 'get',
+        url: requestUrl,
+        withCredentials: true,
+       }); 
+       if (response.data.imdbRating != undefined) {
+         rating = response.data.imdbRating;
+       }
+    }
+    
     let sql = "SELECT * FROM Users WHERE username=$1;";
     let values = [username];
     let result = await pool.query(sql, values);
@@ -188,9 +200,6 @@ router.post('/editcard', async function(req, res) {
         ) {
       return res.status(200).send("Problem with request parameters")
     }
-    
-    // TODO: PULL IMDB rating w/ API if movie,television (may not do this for edits, probably only new cards up above)
-
     
     // Don't auto approve edits even if user is an admin
 
