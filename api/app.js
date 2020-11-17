@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const cors = require('cors');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -11,6 +12,12 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+const corsOptions = {
+  origin: 'http://localhost',
+  credentials: true,
+}
+
+app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use(logger('dev'));
 app.use(express.json());
