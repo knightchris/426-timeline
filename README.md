@@ -448,13 +448,13 @@ WHERE username='John';
 
 ### Endpoint 10: Check login
 - Purpose:
-  - Check if a user is logged in, return the username if true
+  - Check if a user is logged in, return the username if true and their contribution count
 - Endpoint:
   - GET https://comp426-timeline.herokuapp.com/checklogin
 - Request Params:
   - None
 - Response:
-  - Upon success, responds with the username of the logged in user as JSON
+  - Upon success, responds with the username of the logged in user and their contribution count as JSON
 
 #### Example Axios Request 
  ```
@@ -468,7 +468,8 @@ WHERE username='John';
 ```
 200 OK
 {
-    "username": "Chris"
+    "username": "Chris",
+    "contributioncount": 8
 }
 ```
 

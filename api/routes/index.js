@@ -38,11 +38,19 @@ router.post('/logout', function(req, res) {
   res.status(200).json(true);
 });
 
-router.get('/checklogin', function(req, res) {
+router.get('/checklogin', async function(req, res) {
   if (req.session.user == undefined) {
     res.status(200).send("You are not logged in");
   } else {
-    res.status(200).send({"username": req.session.user});
+    let user = req.session.user;
+    let values = [user];
+    let sql = `SELECT *
+    FROM MediaAuthor MA, Users U, Media M
+    WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username=$1;`
+    let contributionCount = 0;
+    let result = await pool.query(sql, values);
+    result.rows.forEach((row) => contributionCount++);
+    res.status(200).send({"username": req.session.user, "contributioncount": contributionCount});
   }
 });
 
