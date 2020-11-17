@@ -421,6 +421,7 @@ WHERE username='John';
 #### Example Response
 ```
 200 OK
+true
 ```
 
 ### Endpoint 9: Logout
@@ -499,6 +500,30 @@ WHERE username='John';
 #### Example Response
 ```
 200 OK
+```
+
+### Endpoint 12: Check admin
+- Purpose:
+  - Check if a user is admin, true if admin, false if not
+- Endpoint:
+  - GET https://comp426-timeline.herokuapp.com/checkadmin
+- Request Params:
+  - None
+- Response:
+  - Upon success, responds with the true formatted as JSON
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'get',
+  url: 'https://comp426-timeline.herokuapp.com/checkadmin',
+  withCredentials: true,
+}); 
+``` 
+#### Example Response
+```
+200 OK
+true
 ```
 
 
