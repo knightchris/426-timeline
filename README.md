@@ -65,7 +65,7 @@ SELECT * FROM Users;
 // Insert a movie into Media and select all rows from Media.
 
 INSERT INTO Media (mediatype, title, description, pubdate, unidate, approved, creator, rating)
-values ('movie', 'SW: Third Movie', 'A really good one', '2020-02-21', '1999-03-22', true, 'Disney', 9.7);
+values ('movie', 'SW: Third Movie', 'A really good one', '2020-02-21', '3653 BBY', true, 'Disney', 9.7);
 SELECT * FROM Media;
 
 
@@ -114,7 +114,7 @@ WHERE username='John';
 | title               | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
 | description         | string   | "This movie was  the best one"   | A description of the media                                                                                   |
 | pubdate             | date     | "2020-02-21T05:00:00.000Z"       | Date the media was published                                                                                 |
-| unidate             | date     | "2020-02-21T05:00:00.000Z"       | Date the media occurred within the  star wars universe                                                       |
+| unidate             | date     | "3653 BBY"                       | Date the media occurred within the  star wars universe                                                       |
 | approved            | boolean  | true                             | Whether or not the media card  has been approved by an admin                                                 |
 | creator             | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
 | rating              | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
@@ -156,7 +156,7 @@ WHERE username='John';
         "title": "SW: Third Movie",
         "description": "A really good one",
         "pubdate": "2020-02-21T05:00:00.000Z",
-        "unidate": "1999-03-22T05:00:00.000Z",
+        "unidate": "3653 BBY",
         "approved": true,
         "creator": "Disney",
         "rating": 9.7,
@@ -172,7 +172,7 @@ WHERE username='John';
         "title": "SW: Second Movie",
         "description": "A really bad one",
         "pubdate": "2020-02-25T05:00:00.000Z",
-        "unidate": "1999-03-21T05:00:00.000Z",
+        "unidate": "3653 BBY",
         "approved": true,
         "creator": "Disney",
         "rating": 4.3,
@@ -214,7 +214,7 @@ WHERE username='John';
     "title": "Star Wars Book",
     "description": "A million pages long, don't read",
     "pubdate": "2020-02-21T05:00:00.000Z",
-    "unidate": "2020-02-21T05:00:00.000Z",
+    "unidate": "3653 BBY",
     "approved": true,
     "creator": "Some author",
     "rating": null,
@@ -236,7 +236,7 @@ WHERE username='John';
   - title (string) - Required. Specifies title of the media
   - description (string) - Required. Specifies description of the media
   - pubdate (string) - Required. Specifies date media published (string formatted like YYYY-MM-DD)
-  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like YYYY-MM-DD)
+  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like 3653 BBY)
   - creator (string) - Required. Specifies the creator of the media
 - Response:
   - Responds with JSON containing created Media Card's data
@@ -252,7 +252,7 @@ WHERE username='John';
     "title": "Star Wars Book",
     "description": "Greatest book of all time",
     "pubdate": "2020-02-21",
-    "unidate": "2020-02-21",
+    "unidate": "3653 BBY",
     "creator": "Some book author"
   },
 }); 
@@ -266,7 +266,7 @@ WHERE username='John';
     "title": "Star Wars Book",
     "description": "Greatest book of all time",
     "pubdate": "2020-02-21T05:00:00.000Z",
-    "unidate": "2020-02-21T05:00:00.000Z",
+    "unidate": "3653 BBY",
     "approved": false,
     "creator": "Some book author",
     "rating": null,
@@ -287,7 +287,7 @@ WHERE username='John';
   - title (string) - Required. Specifies title of the media
   - description (string) - Required. Specifies description of the media
   - pubdate (string) - Required. Specifies date media published (string formatted like YYYY-MM-DD)
-  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like YYYY-MM-DD)
+  - unidate (string) - Required. Specifies date media occured in star wars universe (string formatted like 3653 BBY)
   - creator (string) - Required. Specifies the creator of the media
   - proposededitmediaid (int) - Required. Specifies the original card proposed edits will be made on. If this field is not null the card is a pending edit
 - Response:
@@ -304,7 +304,7 @@ WHERE username='John';
     "title": "Star Wars Book",
     "description": "Greatest book of all time",
     "pubdate": "2020-02-21",
-    "unidate": "2020-02-21",
+    "unidate": "3653 BBY",
     "creator": "Some book author"
     "proposededitmediaid": 10
   },
@@ -499,4 +499,19 @@ WHERE username='John';
 ```
 200 OK
 ```
+
+
+### Rough description of frontend composition
+
+- MainTimeline consists of (RegularCard(s), Header, Sidebar)
+- Header consists of (Login, Logout, CreateUser, AdminPageLink)
+- Sidebar(Filter, Sort, Search, CreateNewCardButton)
+- CreateNewCardButton(EditFormWithNoId, SubmitCreateButton)
+<br><br>
+- RegularCard(ModalViewOfCard)
+- ModalViewOfCard(Information, EditButton[if logged in], DeleteButton[if admin])
+- EditButton(EditForm, SubmitEditButton)
+<br><br>
+- AdminTimeline consists of (ComparisonCard[which is a regular card at heart], ToBeApprovedCard, Header, UpdateRatingsButton)
+- ToBeApprovedCard(Information, ApproveEditButton/ApproveNewCardButton, DeleteButton[decline])
 
