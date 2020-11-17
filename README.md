@@ -503,6 +503,29 @@ true
 200 OK
 ```
 
+### Endpoint 12: Update ratings
+- Purpose:
+  - Allows an admin to update the cached iMDB ratings of movies
+- Endpoint:
+  - GET https://comp426-timeline.herokuapp.com/updateratings
+- Request Params:
+  - None
+- Response:
+  - Upon success, responds with 200 OK
+
+#### Example Axios Request 
+ ```
+ const result = await axios({
+  method: 'get',
+  url: 'https://comp426-timeline.herokuapp.com/updateratings',
+  withCredentials: true,
+}); 
+``` 
+#### Example Response
+```
+200 OK
+```
+
 ### Rough description of frontend composition
 
 - MainTimeline consists of (RegularCard(s), Header, Sidebar)

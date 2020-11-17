@@ -192,6 +192,41 @@ router.post('/createcard', async function(req, res) {
   }
 })  
 
+router.get('/updateratings', async function(req, res) {
+  if (req.session.user == undefined) {
+    return res.status(200).send("You are not logged in");
+  } else {
+    let user = req.session.user;
+    let values = [user];
+    let sql = `SELECT * FROM Users WHERE username=$1;`
+    let result = await pool.query(sql, values);
+    if (!result.rows[0].admin) {
+      return res.status(200).send("You are not an admin");
+    } 
+
+    result = await pool.query("SELECT * FROM Media;");
+    for (row of result.rows) {
+      if (row.rating != null) {
+        let title = encodeURIComponent(row.title);
+        let mediaid = row.mediaid;
+        let requestUrl = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${title}`
+        const response = await axios({
+          method: 'get',
+          url: requestUrl,
+          withCredentials: true,
+         }); 
+         if (response.data.imdbRating != undefined) {
+           let values = [response.data.imdbRating, mediaid];
+           let sql = `UPDATE Media SET rating=$1 WHERE mediaid=$2`
+           await pool.query(sql, values);
+         }
+      }
+    }
+    return res.status(200).send("Ratings updated");
+  }
+    
+})
+
 router.post('/editcard', async function(req, res) {
   if (req.session.user == undefined) {
     return res.status(200).send("You are not logged in");
