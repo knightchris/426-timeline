@@ -3,6 +3,15 @@
 
 html { overflow-y: scroll; }
 
+@keyframes STAR-MOVE {
+	from {
+		background-position: 5% 5%
+	}
+	to { 
+		background-position: 1300% 600%
+	}
+}
+
 .clear {
 	clear: both;
 }
