@@ -1,3 +1,7 @@
 node_modules
 ./node_modules
 .env
+
+
+## Keep in gitignore unless pushing to heroku
+/public
