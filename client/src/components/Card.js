@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 import React from 'react';
-import './Card.css'
+import '../css/Card.css'
 
 
 

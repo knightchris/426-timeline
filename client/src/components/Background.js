@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import './Background.css';
+import '../css/Background.css';
 
 function Background() {
     return (

@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import './Menu.css';
+import '../css/Menu.css';
 import axios from 'axios'
 
 function Menu() {

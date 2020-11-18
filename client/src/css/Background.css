@@ -30,7 +30,7 @@ body {
 }
 
 #background {
-	background: black url(background.png) repeat 5% 5%;
+	background: black url(../img/background.png) repeat 5% 5%;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: 100;
@@ -42,7 +42,7 @@ body {
 }
 
 #midground {
-	background: url(midground.png) repeat 20% 20%;
+	background: url(../img/midground.png) repeat 20% 20%;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 	z-index: 200;

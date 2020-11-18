@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import Menu from './Menu';
-import {Background, Midground,} from './Background'
+import './css/index.css';
+import App from './components/App';
+import Menu from './components/Menu';
+import {Background, Midground,} from './components/Background'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
