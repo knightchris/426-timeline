@@ -5,12 +5,14 @@ import App from './App';
 import Menu from './Menu';
 import {Background, Midground,} from './Background'
 import reportWebVitals from './reportWebVitals';
+import Timeline from './Timeline';
 
 ReactDOM.render(
   <React.StrictMode>
   <Background />
   <Midground />
   <Menu />
+  <Timeline />
     {/* <App /> */}
   </React.StrictMode>,
   document.getElementById('root')
