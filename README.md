@@ -482,7 +482,7 @@ true
   - POST https://comp426-timeline.herokuapp.com/createuser
 - Request Params:
   - username (string) - Required. Specifies the username
-  - password (int) - Required. Specifies the user's password
+  - password (string) - Required. Specifies the user's password
 - Response:
   - Upon success, responds with 200 OK
 

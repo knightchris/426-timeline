@@ -5,18 +5,41 @@ import AdminTimelinePage from './pages/AdminTimelinePage.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
-function App() {
-  return (
-  <Router>
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route path="/" exact component={TimelinePage}/>
-        <Route path="/admin" component={AdminTimelinePage}/>
-      </Switch>
-    </div>
-  </Router>
-  );
+
+export default class App extends React.Component {
+  
+  constructor() {
+    super();
+
+    this.state = {
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: ""
+    }
+
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin(username) {
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+      user: username
+    })
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header loggedInStatus={this.state.loggedInStatus} handleLogin={this.handleLogin}/>
+          <Switch>
+            <Route exact path="/"  render={props => (<TimelinePage {...props} loggedInStatus={this.state.loggedInStatus} /> )} />
+            <Route exact path="/admin"  render={props => (<AdminTimelinePage {...props} loggedInStatus={this.state.loggedInStatus} /> )} />
+          </Switch>
+        </div>
+      </Router>
+      );
+  }
+  
 }
 
-export default App;
+
