@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import './Menu.css';
+import '../css/Menu.css';
 import axios from 'axios'
 
 function Menu() {
@@ -20,10 +20,13 @@ function Menu() {
         <header className="Menu-header">
         <div id="outer">
             <div class="inner">
-                <button className="menu-button" onClick={handleClick}>Filter</button>
+                <button className="menu-button" onClick={handleClick}>Login/Logout</button>
             </div>
             <div class="inner">
-                <button className="menu-button">Sort</button>
+                <button className="menu-button">Create User</button>
+            </div>
+            <div class="inner">
+                <button className="menu-button">Admin page</button>
             </div>
         </div>
         </header>

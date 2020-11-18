@@ -49,7 +49,7 @@
 
 
 .menu-button:hover {
-    background-color: black; 
+    background-color: transparent; 
     color: white; 
     border: 2.5px solid gold;
 }

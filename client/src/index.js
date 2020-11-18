@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import Menu from './Menu';
-import {Background, Midground,} from './Background'
+import './css/index.css';
+import App from './components/App';
+import Menu from './components/Menu';
+import {Background, Midground,} from './components/Background'
 import reportWebVitals from './reportWebVitals';
 import Timeline from './Timeline';
 
 ReactDOM.render(
   <React.StrictMode>
+<<<<<<< HEAD
   <Background />
   <Midground />
   <Menu />
   <Timeline />
     {/* <App /> */}
+=======
+  <App /> 
+>>>>>>> 4e5450f017e472e628c9627ec3f48784c02d2155
   </React.StrictMode>,
   document.getElementById('root')
 );

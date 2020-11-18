@@ -38,11 +38,26 @@ router.post('/logout', function(req, res) {
   res.status(200).json(true);
 });
 
-router.get('/checklogin', function(req, res) {
+router.get('/checklogin', async function(req, res) {
   if (req.session.user == undefined) {
-    res.status(200).send("You are not logged in");
+     return res.status(200).send("You are not logged in");
   } else {
-    res.status(200).send({"username": req.session.user});
+    let user = req.session.user;
+    let values = [user];
+    let sql = `SELECT *
+    FROM MediaAuthor MA, Users U, Media M
+    WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username=$1;`
+    let contributionCount = 0;
+    let result = await pool.query(sql, values);
+    result.rows.forEach((row) => contributionCount++);
+
+    let admin = false;
+    sql = `SELECT * FROM Users WHERE username=$1;`
+    result = await pool.query(sql, values);
+    if (result.rows[0].admin) {
+      admin = true;
+    } 
+    res.status(200).send({"username": req.session.user, "contributioncount": contributionCount, "admin": admin});
   }
 });
 
@@ -176,6 +191,41 @@ router.post('/createcard', async function(req, res) {
     return res.status(200).json(result.rows[0]);
   }
 })  
+
+router.get('/updateratings', async function(req, res) {
+  if (req.session.user == undefined) {
+    return res.status(200).send("You are not logged in");
+  } else {
+    let user = req.session.user;
+    let values = [user];
+    let sql = `SELECT * FROM Users WHERE username=$1;`
+    let result = await pool.query(sql, values);
+    if (!result.rows[0].admin) {
+      return res.status(200).send("You are not an admin");
+    } 
+
+    result = await pool.query("SELECT * FROM Media;");
+    for (row of result.rows) {
+      if (row.rating != null) {
+        let title = encodeURIComponent(row.title);
+        let mediaid = row.mediaid;
+        let requestUrl = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${title}`
+        const response = await axios({
+          method: 'get',
+          url: requestUrl,
+          withCredentials: true,
+         }); 
+         if (response.data.imdbRating != undefined) {
+           let values = [response.data.imdbRating, mediaid];
+           let sql = `UPDATE Media SET rating=$1 WHERE mediaid=$2`
+           await pool.query(sql, values);
+         }
+      }
+    }
+    return res.status(200).send("Ratings updated");
+  }
+    
+})
 
 router.post('/editcard', async function(req, res) {
   if (req.session.user == undefined) {
@@ -359,43 +409,5 @@ router.post('/approveeditcard', async function (req, res) {
     return res.status(200).send();
   }
 })
-
-
-
-// TODO: Remove intitial testing endpoints below
-
-router.get('/', function(req, res, next) {
-  return res.status(200).json({ msg: 'Welcome to the timeline api'});
-});
-
-router.get('/users', function(req,res, next) {
-  
-  pool.query('SELECT * FROM Users;', (err, result) => {
-    if (err) throw err;
-    res.status(200).json(result.rows);
-});
-
-});
-
-router.get('/media', function(req,res, next) {
-  
-  pool.query('SELECT * FROM Media;', (err, result) => {
-    if (err) throw err;
-    res.status(200).json(result.rows);
-});
-
-});
-
-router.get('/mediaauthor', function(req,res, next) {
-  
-  pool.query('SELECT * FROM MediaAuthor;', (err, result) => {
-    if (err) throw err;
-    res.status(200).json(result.rows);
-});
-
-});
-
-// End initial testing endpoints
-
 
 module.exports = router;
