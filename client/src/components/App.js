@@ -1,7 +1,7 @@
 import React from 'react';
-import Timeline from './pages/Timeline.js';
 import Header from './Header.js';
-import AdminTimeline from './pages/AdminTimeline.js'
+import TimelinePage from './pages/TimelinePage.js';
+import AdminTimelinePage from './pages/AdminTimelinePage.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/" exact component={Timeline}/>
-        <Route path="/admin" component={AdminTimeline}/>
+        <Route path="/" exact component={TimelinePage}/>
+        <Route path="/admin" component={AdminTimelinePage}/>
       </Switch>
     </div>
   </Router>

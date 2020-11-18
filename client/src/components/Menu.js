@@ -28,7 +28,7 @@ function Menu() {
               </div>
 
         <div id="outer">
-            <div class="inner">
+            <div className="inner">
                 <button className="menu-button" onClick={handleClick}>Login/Logout</button>
             </div>
             <div className="inner">

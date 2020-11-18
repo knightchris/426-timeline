@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import './Timeline.css';
+import '../css/Timeline.css';
 
 function Timeline() {
     return (

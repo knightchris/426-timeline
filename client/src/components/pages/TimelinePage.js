@@ -1,9 +1,9 @@
 import React from 'react';
 import Menu from '../Menu.js';
 import {Background, Midground,} from '../Background.js';
-import TL from '../TL.js';
+import Timeline from '../Timeline.js';
 
-function Timeline() {
+function TimelinePage() {
   return (
     <div className="Timeline">
         <Background />
@@ -14,4 +14,4 @@ function Timeline() {
   );
 }
 
-export default Timeline;
+export default TimelinePage;
