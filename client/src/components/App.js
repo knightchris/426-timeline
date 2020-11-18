@@ -1,24 +1,21 @@
-import logo from '../img/logo.svg';
-import '../css/App.css';
+import React from 'react';
+import Timeline from './pages/Timeline.js';
+import Header from './Header.js';
+import AdminTimeline from './pages/AdminTimeline.js'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 
 function App() {
   return (
+  <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Timeline}/>
+        <Route path="/admin" component={AdminTimeline}/>
+      </Switch>
     </div>
+  </Router>
   );
 }
 
