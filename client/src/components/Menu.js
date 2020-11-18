@@ -29,13 +29,13 @@ function Menu() {
 
         <div id="outer">
             <div class="inner">
-                <button class="menu-button" onClick={handleClick}>Login/Logout</button>
+                <button className="menu-button" onClick={handleClick}>Login/Logout</button>
             </div>
             <div className="inner">
-                <button class="menu-button">Create User</button>
+                <button className="menu-button">Create User</button>
             </div>
             <div className="inner">
-                <button class="menu-button">Admin page</button>
+                <button className="menu-button">Admin page</button>
             </div>
         </div>
         </header>
