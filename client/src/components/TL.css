@@ -1,0 +1,19 @@
+.timeline {
+    position: relative;
+    max-height: 1200px;
+    margin: 0 auto;
+    height: 100px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    height: 6px;
+    width: 900px;
+    background-color: white;
+    top: 180px;
+    bottom: 0;
+    right: 160px;
+    margin-left: -3px;
+    z-index: 1000;
+}

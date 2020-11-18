@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from '../Menu.js';
 import {Background, Midground,} from '../Background.js';
+import TL from '../TL.js';
 
 function Timeline() {
   return (
@@ -8,6 +9,7 @@ function Timeline() {
         <Background />
         <Midground />
         <Menu />
+        <Timeline />
     </div>
   );
 }
