@@ -15,18 +15,27 @@ function Menu() {
   }
 
     return (
+
       <div className="Menu">
       <h1 className="title">Star Wars Timeline</h1>
+
         <header className="Menu-header">
+        <div className="sidenav">
+                <button>Search</button>
+                <button>Filter</button>
+                <button>Sort</button>
+                <button>Create</button>
+              </div>
+
         <div id="outer">
             <div class="inner">
-                <button className="menu-button" onClick={handleClick}>Login/Logout</button>
+                <button class="menu-button" onClick={handleClick}>Login/Logout</button>
             </div>
-            <div class="inner">
-                <button className="menu-button">Create User</button>
+            <div className="inner">
+                <button class="menu-button">Create User</button>
             </div>
-            <div class="inner">
-                <button className="menu-button">Admin page</button>
+            <div className="inner">
+                <button class="menu-button">Admin page</button>
             </div>
         </div>
         </header>
