@@ -1,10 +1,10 @@
 import { render } from 'react-dom';
 import React from 'react';
-import '../css/Card.css'
+import '../css/TimelineItem.css'
 
 
 
-class Card extends React.Component {
+class TimelineItem extends React.Component {
     render() {
         return (
             <div id="container" class="card">
@@ -29,4 +29,4 @@ class Card extends React.Component {
 };
 
 
-export default Card;
+export default TimelineItem;
