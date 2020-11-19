@@ -111,7 +111,7 @@ router.post('/mediacards', async function(req, res) {
   
 })
 
-router.get('/findcard', async function (req, res) {
+router.post('/findcard', async function (req, res) {
   let mediaid = req.body.mediaid;
   let values = [mediaid];
   

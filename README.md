@@ -188,7 +188,7 @@ WHERE username='John';
 - Purpose:
   - Find a specific card given a mediaid
 - Endpoint:
-  - GET https://comp426-timeline.herokuapp.com/findcard
+  - POST https://comp426-timeline.herokuapp.com/findcard
 - Request Params:
   - mediaid (string) - Required. Specifies the card by mediaid to retrieve from the database
 - Response:
@@ -197,7 +197,7 @@ WHERE username='John';
 #### Example Axios Request 
  ```
  const result = await axios({
-  method: 'get',
+  method: 'post',
   url: 'https://comp426-timeline.herokuapp.com/findcard',
   withCredentials: true,
   data: {
