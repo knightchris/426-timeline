@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 import React from 'react';
-import '../css/Card.css'
+import '../css/TimelineItem.css'
 
 
 
@@ -29,4 +29,4 @@ class TimelineItem extends React.Component {
 };
 
 
-export default Card;
+export default TimelineItem;
