@@ -82,7 +82,7 @@ router.post('/createuser', async function(req, res) {
   }
 });
 
-router.get('/mediacards', async function(req, res) {
+router.post('/mediacards', async function(req, res) {
   let approved = req.body.approved;
   let values = [approved];
 
