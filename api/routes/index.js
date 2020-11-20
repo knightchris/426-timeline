@@ -11,27 +11,42 @@ const pool = new Pool({
 });
 
 
-router.post('/login', function(req, res) {
+router.post('/login', async function(req, res) {
   let user = req.body.username;
   let givenPassword = req.body.password;
   
   let sql = 'SELECT username, password FROM Users WHERE username=$1';
   let values = [user];
 
-  pool.query(sql, values, (err, result) => {
+  pool.query(sql, values, async (err, result) => {
     if (!result.rows[0]) {
       return res.status(200).send("User not found");
     }
   
     if (result.rows[0].password == givenPassword) {
       req.session.user = user;
-      res.status(200).json(true);
+      let values = [user];
+      let sql = `SELECT *
+      FROM MediaAuthor MA, Users U, Media M
+      WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username=$1;`
+      let contributionCount = 0;
+      let result = await pool.query(sql, values);
+      result.rows.forEach((row) => contributionCount++);
+
+      let admin = false;
+      sql = `SELECT * FROM Users WHERE username=$1;`
+      result = await pool.query(sql, values);
+      if (result.rows[0].admin) {
+      admin = true;
+      } 
+      res.status(200).send({"username": req.session.user, "contributioncount": contributionCount, "admin": admin});
     } else {
       res.status(200).send("Incorrect password");
     }
   })
 
 });
+
 
 router.post('/logout', function(req, res) {
   delete req.session.user;

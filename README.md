@@ -397,14 +397,14 @@ WHERE username='John';
 
 ### Endpoint 8: Login
 - Purpose:
-  - Allow a user to login to the website
+  - Allow a user to login to the website, get info on user
 - Endpoint:
   - POST https://comp426-timeline.herokuapp.com/login
 - Request Params:
   - username (string) - Required. Specifies the username
   - password (int) - Required. Specifies the user's password
 - Response:
-  - Upon success, responds with true value formatted as JSON
+  - Upon success, responds with the username of the logged in user, their contribution count, admin status(boolean) as JSON
 
 #### Example Axios Request 
  ```
@@ -421,7 +421,11 @@ WHERE username='John';
 #### Example Response
 ```
 200 OK
-true
+{
+    "username": "John",
+    "contributioncount": 8
+    "admin": true
+}
 ```
 
 ### Endpoint 9: Logout

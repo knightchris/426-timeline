@@ -4,7 +4,7 @@ import axios from 'axios';
 import {store} from "react-notifications-component"
 
 
-export default class Registration extends React.Component {
+export default class Login extends React.Component {
     
     constructor(props) {
         super(props);
@@ -28,17 +28,18 @@ export default class Registration extends React.Component {
         event.preventDefault();
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/createuser',
+            url: 'http://localhost:3000/login',
             withCredentials: true,
             data: {
               username: this.state.username,
               password: this.state.password
             },
            }); 
-        if (result.data == "User successfully created") {
+        if (result.data.username != undefined) {
+            this.props.handleSuccessfulAuth(result.data.username, result.data.contributioncount, result.data.admin)
             store.addNotification({
                 title: "Success!",
-                message: "You are now registered",
+                message: "You are now logged in",
                 type: "success",
                 container: "top-right",
                 insert: "top",
@@ -50,25 +51,10 @@ export default class Registration extends React.Component {
                 },
                 width:270
             })
-        } else if (result.data == "User already exists") {
+        } else if (result.data == "User not found" || result.data == "Incorrect password") {
             store.addNotification({
                 title: "Failure",
-                message: "User already exists",
-                type: "danger",
-                container: "top-right",
-                insert: "top",
-                animationIn: ["animate__animated animate__fadeIn"],
-                animationOut: ["animate__animated animate__fadeOut"],
-                dismiss: {
-                    duration: 5000,
-                    showIcon: true
-                },
-                width:270
-            })
-        } else if (result.data == "Password must be at least 5 characters, user must be at least 2 characters") {
-            store.addNotification({
-                title: "Failure",
-                message: "Password must be 5 characters, username must be 2 characters",
+                message: "Incorrect username or password",
                 type: "danger",
                 container: "top-right",
                 insert: "top",
@@ -90,7 +76,7 @@ export default class Registration extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
                     <input type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
-                    <button type="submit">Register</button>
+                    <button type="submit">Login</button>
                 </form>
             </div>
         )

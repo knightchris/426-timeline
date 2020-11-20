@@ -7,9 +7,13 @@ function Menu() {
   async function handleClick(e) {
     e.preventDefault();
     const result = await axios({
-        method: 'get',
-        url: 'http://localhost:3000/checklogin',
+        method: 'post',
+        url: 'http://localhost:3000/login',
         withCredentials: true,
+        data: {
+          "username": "Chris",
+          "password": "pass"
+        }
        }); 
       console.log(result); 
   }
