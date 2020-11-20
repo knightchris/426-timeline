@@ -6,19 +6,22 @@
     height: 400px;
     width: 375px;
     border-radius: 10px;
+    margin-bottom: 10px;;
 }
 
 .card-title {
     color: rgb(223, 201, 80);
     font-family: "ITC Serif Gothic", Lato;
-    font-size: 2em;
+    font-size: 2.6em;
     letter-spacing: 0.2em;
     text-align: center;
     text-transform: uppercase;
     position: relative;
-    top: 5px;
     overflow-wrap: break-word;
     hyphens: auto;
+    bottom: 30px;
+    left: 30px;
+    max-width: 301px;
 }
 
 .content {
@@ -48,18 +51,10 @@ li {
     right: 48px;
 }
 
-#star-five {
-    color: white;
-}
-
-#star-four {
-    color: white;
-}
-
-#star-three {
-    color: white;
-}
-
-#star-two {
-    color: white;
+.glyphicon {
+    left: 343px;
+    top: 18px;
+    font-size: 1.8em;
+    color: rgb(223, 201, 80);
+    z-index: 1000;
 }

@@ -3,13 +3,14 @@ import React from 'react';
 import '../css/TimelineModal.css'
 
 
-
+const classes = `flex-container card`;
 class TimelineItem extends React.Component {
 
     render() {
         return (
-            <div className="container" className="card">
-                <h1 className="card-title">{this.props.data.title}</h1>            
+            <div className={classes}>
+                <i class="glyphicon glyphicon-remove"></i>  
+                <h1 className="card-title">{this.props.data.title}</h1>        
                 <div className="content">
                     <ul>
                         <li>Released: {this.props.data.pubdate.substring(0,10)}</li>
