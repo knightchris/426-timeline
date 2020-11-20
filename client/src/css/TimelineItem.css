@@ -8,3 +8,9 @@
     padding-bottom: 20px;
     max-width: 301px;
 }
+
+.card-header:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
