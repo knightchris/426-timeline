@@ -54,7 +54,7 @@ class Header extends React.Component {
                         <li>Timeline</li>
                     </Link>
                     {this.props.admin ? <Link to='/admin'><li>Admin</li></Link> : null}
-                    <button onClick={this.handleLogoutClick}>Logout</button>
+                    <button onClick={this.handleLogoutClick} className="menu-button">Logout</button>
                     <li>Hello, {this.props.user}!</li>
                     <li>Lifetime total contributions: {this.props.contributioncount}</li>
                 </ul>

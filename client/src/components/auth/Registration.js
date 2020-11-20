@@ -90,7 +90,7 @@ export default class Registration extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <input type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
                     <input type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
-                    <button type="submit">Register</button>
+                    <button type="submit" className="menu-button">Register</button>
                 </form>
             </div>
         )
