@@ -116,11 +116,4 @@ export class Autocomplete extends Component {
 }
 
 
-
-
-
-
-
-
-
 export default Autocomplete;
