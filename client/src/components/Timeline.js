@@ -1,6 +1,7 @@
 import { render } from 'react-dom';
 import '../css/Timeline.css';
 
+
 function Timeline() {
     return (
         <div className="timeline"></div>
@@ -8,5 +9,6 @@ function Timeline() {
 }
 
 export default Timeline;
+
 
 
