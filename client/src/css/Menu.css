@@ -25,7 +25,8 @@
 .title {
     color: black;
     text-shadow: -2.5px 0 gold, 0 2.5px gold, 2.5px 0 gold, 0 -2.5px gold;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Star Jedi', arial;
+    font-size: 2em;
 }
 
 .Menu-header {
