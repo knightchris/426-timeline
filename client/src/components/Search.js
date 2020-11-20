@@ -42,7 +42,7 @@ export class Autocomplete extends Component {
       } else {
         optionList = (
           <div className="no-options">
-            <em>No Option!</em>
+            <em>None</em>
           </div>
         );
       }
