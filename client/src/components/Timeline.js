@@ -43,7 +43,9 @@ class Timeline extends React.Component {
             console.log(cards);
             return (
             <div className="timeline">
+                <div className="timeline-content">
                 {timelineItems}
+                </div>
             </div>
             );
         }

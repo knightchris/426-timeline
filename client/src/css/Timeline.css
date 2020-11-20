@@ -1,8 +1,14 @@
 .timeline {
     position: relative;
-    max-height: 1200px;
     margin: 0 auto;
     height: 100px;
+    bottom: 70px;
+}
+
+.timeline-content {
+    position: relative;
+    top: 146px;
+    left: 130px;
 }
 
 .timeline::after {

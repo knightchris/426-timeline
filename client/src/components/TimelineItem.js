@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import $ from 'jquery';
 import TimelineModal from './TimelineModal.js';
+import '../css/TimelineItem.css'
 
 class TimelineItem extends React.Component {
     constructor(props) {
@@ -12,20 +13,14 @@ class TimelineItem extends React.Component {
     }
 
     handleClick(e) {
-        this.setState({displayModal: true})
-        console.log(this.state.displayModal);
-        //let card = this.props.data;
-        //let timelineModal = <TimelineModal key={card.mediaid} data={card}></TimelineModal>;
-        //console.log(this.getDOMNode())
-        //unmountComponentAtNode(document.getElementById(`${this.props.data.mediaid}`));
-        //$(`#${this.props.data.mediaid}`).replaceWith(timelineModal);
+        this.setState({displayModal: true});
     }
 
     render() {
         if(!(this.state.displayModal)) {
             return (
                 <div id={this.props.data.mediaid}>
-                <h1 className="card-title" onClick={this.handleClick}>{this.props.data.title}</h1>            
+                <h1 className="card-header" onClick={this.handleClick}>{this.props.data.title}</h1>            
                 </div>
             )
         } else {
