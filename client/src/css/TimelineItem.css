@@ -5,6 +5,7 @@
     background-repeat: no-repeat;
     height: 400px;
     width: 375px;
+    border-radius: 10px;
 }
 
 .card-title {
