@@ -14,6 +14,20 @@ function Menu() {
       console.log(result); 
   }
 
+  async function handleCard(e) {
+    e.preventDefault();
+    const result = await axios({
+        method: 'post',
+        url: 'http://localhost:3000/mediacards',
+        withCredentials: true,
+        data: {
+          "approved": true
+        }
+       }); 
+      console.log(result.data); 
+  }
+
+
     return (
 
       <div className="Menu">
@@ -35,7 +49,7 @@ function Menu() {
                 <button className="menu-button">Create User</button>
             </div>
             <div className="inner">
-                <button className="menu-button">Admin page</button>
+                <button className="menu-button" onClick={handleCard}>Admin page</button>
             </div>
         </div>
         </header>

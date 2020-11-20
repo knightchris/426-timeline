@@ -8,20 +8,12 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
-            loggedInStatus: "NOT_LOGGED_IN",
-            user: ""
-        };
-
         this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
     }
 
     handleSuccessfulAuth(username) {
         this.props.handleLogin(username)
-        this.setState({
-            loggedInStatus: "LOGGED_IN",
-            user: username
-          })
+
     }
         
 

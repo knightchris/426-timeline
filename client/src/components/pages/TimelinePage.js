@@ -16,7 +16,6 @@ class TimelinePage extends React.Component {
           <Midground /> */}
           <Menu />
           <Timeline />
-          
       </div>
     );
   }

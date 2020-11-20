@@ -5,6 +5,12 @@ import AdminTimelinePage from './pages/AdminTimelinePage.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 
+// Notifications (https://www.npmjs.com/package/react-notifications-component)
+import ReactNotification from 'react-notifications-component'
+import "animate.css"
+import 'react-notifications-component/dist/theme.css'
+
+
 
 export default class App extends React.Component {
   
@@ -30,6 +36,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <div className="App">
+        <ReactNotification />
           <Header loggedInStatus={this.state.loggedInStatus} handleLogin={this.handleLogin}/>
           <Switch>
             <Route exact path="/"  render={props => (<TimelinePage {...props} loggedInStatus={this.state.loggedInStatus} /> )} />
