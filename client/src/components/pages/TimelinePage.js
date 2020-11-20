@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from '../Menu.js';
-// import {Background, Midground,} from '../Background.js';
+import {Background, Midground,} from '../Background.js';
 import Timeline from '../Timeline.js';
 
 class TimelinePage extends React.Component {
@@ -12,7 +12,7 @@ class TimelinePage extends React.Component {
   render() {
     return (
       <div className="Timeline">
-          {/*<Background />
+          {/* <Background />
           <Midground /> */}
           <Menu />
           <Timeline />

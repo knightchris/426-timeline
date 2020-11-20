@@ -66,7 +66,7 @@ class Header extends React.Component {
             <nav>
                 <ul className="nav-links">
                     <Link to='/'>
-                        <li>Timeline</li>
+                        <li className="timeline-link">Timeline</li>
                     </Link>
                     <Registration />
                     <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>

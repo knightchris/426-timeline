@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import '../../css/Header.css';
 
 import {store} from "react-notifications-component"
 
@@ -74,9 +75,9 @@ export default class Login extends React.Component {
         return (
             <div id="registration">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
-                    <input type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
-                    <button type="submit">Login</button>
+                    <input className="username" type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
+                    <input className="password" type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
+                    <button className="login"type="submit">Login</button>
                 </form>
             </div>
         )
