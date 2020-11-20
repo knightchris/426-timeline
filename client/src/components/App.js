@@ -16,7 +16,7 @@ import 'react-notifications-component/dist/theme.css'
 
 export default class App extends React.Component {
   
-  constructor() {
+    constructor() {
     super();
 
     this.state = {

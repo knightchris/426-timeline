@@ -32,6 +32,23 @@ function Menu() {
       console.log(result.data); 
   }
 
+  async function getCardTitles(e) {
+    e.preventDefault();
+    const result = await axios({
+        method: 'post',
+        url: 'http://localhost:3000/mediacards',
+        withCredentials: true,
+        data: {
+          "approved": true
+        }
+    });
+    let titlearr = [];
+    for(let i = 0; i < result.data.length; i++) {
+      titlearr.push(result[i].title);
+    }
+    //titlearr = result.data.map(tup => tup.title);
+    return titlearr;
+  }
 
     return (
 
