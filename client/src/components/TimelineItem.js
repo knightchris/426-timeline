@@ -1,32 +1,39 @@
-import { render } from 'react-dom';
+import { unmountComponentAtNode, render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import React from 'react';
-import '../css/TimelineItem.css'
-
-
+import $ from 'jquery';
+import TimelineModal from './TimelineModal.js';
 
 class TimelineItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {id: this.key, displayModal: false};
+    }
+
+    handleClick(e) {
+        this.setState({displayModal: true})
+        console.log(this.state.displayModal);
+        //let card = this.props.data;
+        //let timelineModal = <TimelineModal key={card.mediaid} data={card}></TimelineModal>;
+        //console.log(this.getDOMNode())
+        //unmountComponentAtNode(document.getElementById(`${this.props.data.mediaid}`));
+        //$(`#${this.props.data.mediaid}`).replaceWith(timelineModal);
+    }
 
     render() {
-        return (
-            <div id="container" className="card">
-                <h1 className="card-title">{this.props.data.title}</h1>            
-                <div className="content">
-                    <ul>
-                        <li>Released: {this.props.data.pubdate.substring(0,10)}</li>
-                    </ul>
-                    <p className="description">{this.props.data.description}</p>
-                    <div className="rating-container">
-                        <i className="fas fa-star" id="star-one"></i>
-                        <i className="fas fa-star" id="star-two"></i>
-                        <i className="fas fa-star" id="star-three"></i>
-                        <i className="fas fa-star" id="star-four"></i>
-                        <i className="fas fa-star" id="star-five"></i>
-                    </div>
+        if(!(this.state.displayModal)) {
+            return (
+                <div id={this.props.data.mediaid}>
+                <h1 className="card-title" onClick={this.handleClick}>{this.props.data.title}</h1>            
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <TimelineModal key={this.props.data.mediaid} data={this.props.data}></TimelineModal>
+            )
+        }
     }
-};
-
+}
 
 export default TimelineItem;
