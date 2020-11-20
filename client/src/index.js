@@ -3,8 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './components/App';
-import Menu from './components/Menu';
-import {Background, Midground,} from './components/Background'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
