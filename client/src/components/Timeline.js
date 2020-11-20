@@ -24,31 +24,28 @@ class Timeline extends React.Component {
                 "approved": true
             }
         });
-        console.log(result);
         this.setState({
             isLoaded: true,
-            cards: result.data
+            cards: await result.data
         });
     }
 
 
-    // handle sorting
-
-    // handle filtering
-
-
-
     render() {
         const { error, isLoaded, cards } = this.state;
-        const timelineItems = cards.map(card => <TimelineItem key={card.id} data={card}></TimelineItem>)
+        
         if (error) {
             return <div className="timeline">Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div className="timeline">Loading...</div>;
         } else {
+            const timelineItems = cards.map(card => <TimelineItem key={card.mediaid} data={card}></TimelineItem>);
+            console.log(cards);
+            return (
             <div className="timeline">
                 {timelineItems}
             </div>
+            );
         }
     }
 
