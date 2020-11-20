@@ -43,12 +43,12 @@ export default class Login extends React.Component {
                 title: "Success!",
                 message: "You are now logged in",
                 type: "success",
-                container: "top-right",
+                container: "top-center",
                 insert: "top",
                 animationIn: ["animate__animated animate__fadeIn"],
                 animationOut: ["animate__animated animate__fadeOut"],
                 dismiss: {
-                    duration: 5000,
+                    duration: 2000,
                     showIcon: true
                 },
                 width:270
@@ -58,12 +58,12 @@ export default class Login extends React.Component {
                 title: "Failure",
                 message: "Incorrect username or password",
                 type: "danger",
-                container: "top-right",
+                container: "top-center",
                 insert: "top",
                 animationIn: ["animate__animated animate__fadeIn"],
                 animationOut: ["animate__animated animate__fadeOut"],
                 dismiss: {
-                    duration: 5000,
+                    duration: 2000,
                     showIcon: true
                 },
                 width:270
@@ -88,12 +88,12 @@ export default class Login extends React.Component {
                 title: "Success!",
                 message: "You are now registered",
                 type: "success",
-                container: "top-right",
+                container: "top-center",
                 insert: "top",
                 animationIn: ["animate__animated animate__fadeIn"],
                 animationOut: ["animate__animated animate__fadeOut"],
                 dismiss: {
-                    duration: 5000,
+                    duration: 2000,
                     showIcon: true
                 },
                 width:270
@@ -103,12 +103,12 @@ export default class Login extends React.Component {
                 title: "Failure",
                 message: "User already exists",
                 type: "danger",
-                container: "top-right",
+                container: "top-center",
                 insert: "top",
                 animationIn: ["animate__animated animate__fadeIn"],
                 animationOut: ["animate__animated animate__fadeOut"],
                 dismiss: {
-                    duration: 5000,
+                    duration: 2000,
                     showIcon: true
                 },
                 width:270
@@ -118,12 +118,12 @@ export default class Login extends React.Component {
                 title: "Failure",
                 message: "Password must be 5 characters, username must be 2 characters",
                 type: "danger",
-                container: "top-right",
+                container: "top-center",
                 insert: "top",
                 animationIn: ["animate__animated animate__fadeIn"],
                 animationOut: ["animate__animated animate__fadeOut"],
                 dismiss: {
-                    duration: 5000,
+                    duration: 2000,
                     showIcon: true
                 },
                 width:270
@@ -138,8 +138,8 @@ export default class Login extends React.Component {
                 <form>
                     <input className="username" type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
                     <input className="password" type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
-                    <button className="login"type="submit" onClick={this.handleLoginSubmit}>Login</button>
-                    <button className="registration" type="submit" onClick={this.handleRegisterSubmit}>Register</button>
+                    <button className="header-link"type="submit" onClick={this.handleLoginSubmit}>Login</button>
+                    <button className="header-link" type="submit" onClick={this.handleRegisterSubmit}>Register</button>
                 </form>
             </div>
         )

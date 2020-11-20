@@ -29,12 +29,12 @@ class Header extends React.Component {
             title: "Success!",
             message: "You are now logged out",
             type: "success",
-            container: "top-right",
+            container: "top-center",
             insert: "top",
             animationIn: ["animate__animated animate__fadeIn"],
             animationOut: ["animate__animated animate__fadeOut"],
             dismiss: {
-                duration: 5000,
+                duration: 2000,
                 showIcon: true
             },
             width:270
@@ -48,27 +48,35 @@ class Header extends React.Component {
        if (this.props.loggedInStatus == "LOGGED_IN") {
         return (
             <nav>
-                <ul className="nav-links">
+                <div id="nav-left">
                     <Link to='/'>
                         <li className="header-link">Timeline</li>
                     </Link>
                     {this.props.admin ? <Link to='/admin'><li className="header-link">Admin</li></Link> : null}
-                    <button onClick={this.handleLogoutClick} className="menu-button">Logout</button>
-                    <li>Hello, {this.props.user}!</li>
-                    <li>Lifetime total contributions: {this.props.contributioncount}</li>
-                </ul>
+                </div>
+                <div id="nav-right">
+                    <div id="nav-right-name">
+                        <li>Hello, {this.props.user}!</li>
+                    </div>
+                    <div id="nav-right-contributions">
+                        <li>Lifetime total contributions: {this.props.contributioncount}</li>
+                    </div>
+                    <button onClick={this.handleLogoutClick} className="header-link">Logout</button>
+                </div>
             </nav>
         );
        }
        
         return (
             <nav>
-                <ul className="nav-links">
+                <div id="nav-left">
                     <Link style={{ textDecoration: 'none'}} to='/'>
                         <li className="header-link">Timeline</li>
                     </Link>
+                </div>
+                <div id="nav-right">
                     <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
-                </ul>
+                </div>
             </nav>
         );
     }
