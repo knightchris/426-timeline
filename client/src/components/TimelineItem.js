@@ -5,22 +5,22 @@ import '../css/TimelineItem.css'
 
 
 class TimelineItem extends React.Component {
+
     render() {
         return (
-            <div id="container" class="card">
-                <h1 class="card-title">The Phantom Menace</h1>            
-                <div class="content">
+            <div id="container" className="card">
+                <h1 className="card-title">{this.props.data.title}</h1>            
+                <div className="content">
                     <ul>
-                        <li>Released: 1999</li>
-                        <li> Main characters: Anakin Skywalker, Obi-Wan Kenobe, Darth Maul</li>
+                        <li>Released: {this.props.data.pubdate.substring(0,10)}</li>
                     </ul>
-                    <p class="description">Arguably the worst Star Wars movie.</p>
-                    <div class="rating-container">
-                        <i class="fas fa-star" id="star-one"></i>
-                        <i class="fas fa-star" id="star-two"></i>
-                        <i class="fas fa-star" id="star-three"></i>
-                        <i class="fas fa-star" id="star-four"></i>
-                        <i class="fas fa-star" id="star-five"></i>
+                    <p className="description">{this.props.data.description}</p>
+                    <div className="rating-container">
+                        <i className="fas fa-star" id="star-one"></i>
+                        <i className="fas fa-star" id="star-two"></i>
+                        <i className="fas fa-star" id="star-three"></i>
+                        <i className="fas fa-star" id="star-four"></i>
+                        <i className="fas fa-star" id="star-five"></i>
                     </div>
                 </div>
             </div>

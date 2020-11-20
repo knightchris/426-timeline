@@ -1,6 +1,7 @@
 import { render } from 'react-dom';
 import '../css/Menu.css';
 import axios from 'axios'
+import Autocomplete from './Search';
 
 function Menu() {
 
@@ -39,7 +40,17 @@ function Menu() {
 
         <header className="Menu-header">
         <div className="sidenav">
-                <button>Search</button>
+                <Autocomplete
+                options={[
+                  "Star Wars 1",
+                  "Star Wars 2",
+                  "Star Wars 3",
+                  "Luke",
+                  "Darth Vader",
+                  "Jedi",
+                  "Yoda"
+                ]}
+              />
                 <button>Filter</button>
                 <button>Sort</button>
                 <button>Create</button>
