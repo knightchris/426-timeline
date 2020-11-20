@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/Header.css';
 import { Link } from 'react-router-dom';
-import Registration from './Registration.js'
-import Login from './Login.js'
+import Registration from './auth/Registration.js'
+import Login from './auth/Login.js'
 import axios from 'axios';
 import {store} from "react-notifications-component"
 
@@ -45,19 +45,31 @@ class Header extends React.Component {
         
 
     render() {
+       
+       if (this.props.loggedInStatus == "LOGGED_IN") {
         return (
             <nav>
                 <ul className="nav-links">
                     <Link to='/'>
                         <li>Timeline</li>
                     </Link>
-                    <Link to='/admin'>
-                        <li>Admin</li>
-                    </Link>
+                    {this.props.admin ? <Link to='/admin'><li>Admin</li></Link> : null}
                     <button onClick={this.handleLogoutClick}>Logout</button>
+                    <li>Hello, {this.props.user}!</li>
+                    <li>Lifetime total contributions: {this.props.contributioncount}</li>
+                </ul>
+            </nav>
+        );
+       }
+       
+        return (
+            <nav>
+                <ul className="nav-links">
+                    <Link to='/'>
+                        <li>Timeline</li>
+                    </Link>
                     <Registration />
                     <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
-                    <li>Status: {this.props.loggedInStatus}</li>
                 </ul>
             </nav>
         );

@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './Header.js';
 import TimelinePage from './pages/TimelinePage.js';
 import AdminTimelinePage from './pages/AdminTimelinePage.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
+import ProtectedRoute from './auth/ProtectedRoute.js'
+
 
 
 // Notifications (https://www.npmjs.com/package/react-notifications-component)
 import ReactNotification from 'react-notifications-component'
 import "animate.css"
 import 'react-notifications-component/dist/theme.css'
-
 
 
 export default class App extends React.Component {
@@ -74,15 +75,20 @@ export default class App extends React.Component {
     })
   }
 
+  
+
+  
+
   render() {
     return (
       <Router>
         <div className="App">
         <ReactNotification />
-          <Header loggedInStatus={this.state.loggedInStatus} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
+          <Header loggedInStatus={this.state.loggedInStatus} user={this.state.user} contributioncount={this.state.contributioncount} 
+                                  admin={this.state.admin} handleLogin={this.handleLogin} handleLogout={this.handleLogout}/>
           <Switch>
             <Route exact path="/"  render={props => (<TimelinePage {...props} loggedInStatus={this.state.loggedInStatus} /> )} />
-            <Route exact path="/admin"  render={props => (<AdminTimelinePage {...props} loggedInStatus={this.state.loggedInStatus} /> )} />
+            <ProtectedRoute exact path="/admin" admin={this.state.admin} component={AdminTimelinePage} />
           </Switch>
         </div>
       </Router>
