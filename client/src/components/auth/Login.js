@@ -15,7 +15,8 @@ export default class Login extends React.Component {
             password: "",
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+        this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -25,7 +26,7 @@ export default class Login extends React.Component {
         })
     }
 
-    async handleSubmit(event) {
+    async handleLoginSubmit(event) {
         event.preventDefault();
         const result = await axios({
             method: 'post',
@@ -71,13 +72,74 @@ export default class Login extends React.Component {
     
     }
 
+    async handleRegisterSubmit(event) {
+        event.preventDefault();
+        const result = await axios({
+            method: 'post',
+            url: 'http://localhost:3000/createuser',
+            withCredentials: true,
+            data: {
+              username: this.state.username,
+              password: this.state.password
+            },
+           }); 
+        if (result.data == "User successfully created") {
+            store.addNotification({
+                title: "Success!",
+                message: "You are now registered",
+                type: "success",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                },
+                width:270
+            })
+        } else if (result.data == "User already exists") {
+            store.addNotification({
+                title: "Failure",
+                message: "User already exists",
+                type: "danger",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                },
+                width:270
+            })
+        } else if (result.data == "Password must be at least 5 characters, user must be at least 2 characters") {
+            store.addNotification({
+                title: "Failure",
+                message: "Password must be 5 characters, username must be 2 characters",
+                type: "danger",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                },
+                width:270
+            })
+        }
+    
+    }
+
     render() {
         return (
             <div id="registration">
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <input className="username" type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
                     <input className="password" type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
-                    <button className="login"type="submit">Login</button>
+                    <button className="login"type="submit" onClick={this.handleLoginSubmit}>Login</button>
+                    <button className="registration" type="submit" onClick={this.handleRegisterSubmit}>Register</button>
                 </form>
             </div>
         )
