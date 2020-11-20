@@ -23,6 +23,7 @@
   .search-box {
       background-color: transparent;
       border-style: solid;
+      width: 90px;
   }
 
   .search-button {

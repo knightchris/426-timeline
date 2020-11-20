@@ -51,40 +51,39 @@ function Menu() {
   }
 
     return (
-
-      <div className="Menu">
-      <h1 className="title">Star Wars Timeline</h1>
-
-        <header className="Menu-header">
-        <div className="sidenav">
-                <Autocomplete
-                options={[
-                  "Star Wars 1",
-                  "Star Wars 2",
-                  "Star Wars 3",
-                  "Luke",
-                  "Darth Vader",
-                  "Jedi",
-                  "Yoda"
-                ]}
-              />
-                <button>Filter</button>
-                <button>Sort</button>
-                <button>Create</button>
-              </div>
-
-        <div id="outer">
-            <div className="inner">
-                <button className="menu-button" onClick={handleClick}>Login/Logout</button>
+      <div className="first">
+        <div className="Menu">
+          <h1 className="title">Star Wars Timeline</h1>
+          <header className="Menu-header">
+            <div id="outer">
+                <div className="inner">
+                    <button className="menu-button" onClick={handleClick}>Login/Logout</button>
+                </div>
+                <div className="inner">
+                    <button className="menu-button">Create User</button>
+                </div>
+                <div className="inner">
+                    <button className="menu-button" onClick={handleCard}>Admin page</button>
+                </div>
             </div>
-            <div className="inner">
-                <button className="menu-button">Create User</button>
-            </div>
-            <div className="inner">
-                <button className="menu-button" onClick={handleCard}>Admin page</button>
-            </div>
+          </header>
         </div>
-        </header>
+        <div className="sidenav">
+            <Autocomplete
+            options={[
+              "Star Wars 1",
+              "Star Wars 2",
+              "Star Wars 3",
+              "Luke",
+              "Darth Vader",
+              "Jedi",
+              "Yoda"
+            ]}
+          />
+            <button className="sidenav-button" onClick={console.log("hey")}>Filter</button>
+            <button className="sidenav-button">Sort</button>
+            <button className="sidenav-button">Create</button>
+        </div>
       </div>
     );
   }
