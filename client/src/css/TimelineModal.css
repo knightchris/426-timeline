@@ -58,3 +58,7 @@ li {
     color: rgb(223, 201, 80);
     z-index: 1000;
 }
+
+.glyphicon:hover {
+    cursor: pointer;
+}
