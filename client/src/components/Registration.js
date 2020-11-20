@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+import {store} from "react-notifications-component"
+
+
 export default class Registration extends React.Component {
     
     constructor(props) {
@@ -36,10 +39,50 @@ export default class Registration extends React.Component {
         console.log(result);
         if (result.data == "User successfully created") {
             this.props.handleSuccessfulAuth(this.state.username);
+            store.addNotification({
+                title: "Success!",
+                message: "You are now registered",
+                type: "success",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                },
+                width:270
+            })
         } else if (result.data == "User already exists") {
-            // TODO
+            store.addNotification({
+                title: "Failure",
+                message: "User already exists",
+                type: "danger",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                },
+                width:270
+            })
         } else if (result.data == "Password must be at least 5 characters, user must be at least 2 characters") {
-            // TODO
+            store.addNotification({
+                title: "Failure",
+                message: "Password must be 5 characters, username must be 2 characters",
+                type: "danger",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animate__animated animate__fadeIn"],
+                animationOut: ["animate__animated animate__fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                },
+                width:270
+            })
         }
     
     }
