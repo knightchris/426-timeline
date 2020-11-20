@@ -80,7 +80,7 @@ function Menu() {
               "Yoda"
             ]}
           />
-            <button className="sidenav-button" onClick={console.log("hey")}>Filter</button>
+            <button className="sidenav-button">Filter</button>
             <button className="sidenav-button">Sort</button>
             <button className="sidenav-button">Create</button>
         </div>
