@@ -11,7 +11,6 @@ let uppercase = function(word) {
     return word;
 }
 
-let classes = `timelineItem`;
 class TimelineItem extends React.Component {
     constructor(props) {
         super(props);
@@ -27,11 +26,12 @@ class TimelineItem extends React.Component {
     render() {
         if(!(this.state.displayModal)) {
             return (
-                <div className="timelineItem" id={this.props.data.mediaid} onClick={this.handleClick}>
-                    <div className="content">
+                <div className="timelineItem" id={this.props.data.mediaid} >
+                    <div className="content" onClick={this.handleClick}>
                         <h1 className="card-header">{this.props.data.title}</h1>   
                         <div className="mediadiv">Media Type: {uppercase(this.props.data.mediatype)}</div>         
-                        <div className="unidiv">Universe date: {this.props.data.unidate}</div>      
+                        <div className="unidiv">Universe date: {this.props.data.unidate}</div>
+                        <div className="unidiv">Released: {this.props.data.pubdate.substring(0,10)}</div>      
                     </div>   
                 </div>
             )

@@ -1,4 +1,4 @@
-.card {
+/* .card {
     background-image: url(../img/lightsabers.png);
     background-color: black;
     background-size: 400px 400px;
@@ -8,7 +8,7 @@
     border-radius: 10px;
     margin-bottom: 20px;
 }
-
+/
 .card-title {
     color: rgb(223, 201, 80);
     font-family: "ITC Serif Gothic", Lato;
@@ -22,17 +22,7 @@
     bottom: 30px;
     left: 30px;
     max-width: 301px;
-}
-
-.content {
-  color: rgb(223, 201, 80);
-  font-family: "ITC Serif Gothic", Lato;
-  font-size: 1.8em;
-  letter-spacing: 0.1em;
-  text-align: left;
-  position: relative;
-  left: 38px;
-}
+} 
 
 li {
     max-width: 80%;
@@ -62,4 +52,4 @@ li {
 .glyphicon:hover {
     cursor: pointer;
 }
-
+ */

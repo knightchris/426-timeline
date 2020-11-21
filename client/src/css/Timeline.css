@@ -1,8 +1,8 @@
 .timeline-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 1.5em;
+    position: relative;
 }
 
 .timeline-content::after {
@@ -16,11 +16,15 @@
 
 .timelineItem {
     display: flex;
-    align-self: flex-start;
     justify-content: flex-end;
     width: 50%;
+    position: relative;
+    padding-right: 5%;
 }
 .timelineItem:nth-child(odd) {
+    padding-left: 5%;
+    padding-right: 0;
     align-self: flex-end;
     justify-content: flex-start;
+
 } 
