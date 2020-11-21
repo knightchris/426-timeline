@@ -1,4 +1,3 @@
-import { render } from 'react-dom';
 import '../css/Background.css';
 
 function Background() {

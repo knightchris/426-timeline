@@ -1,4 +1,3 @@
-import react, { useState } from 'react';
 import ReactDom from 'react-dom';
 import Background from '../img/lightsabers667x575.png'
 import '../css/CreateCardModal.css'
@@ -36,6 +35,8 @@ export default function CreateCardModal({children, open, onClose}) {
         return null;
     }
 
+
+
     async function handleSubmit (event) {
         event.preventDefault();
         const result = await axios({
@@ -51,7 +52,7 @@ export default function CreateCardModal({children, open, onClose}) {
               "creator": event.target[3].value
             },
            }); 
-        if (result.data == "You are not logged in") {
+        if (result.data === "You are not logged in") {
             store.addNotification({
                 title: "Failure",
                 message: "You are not logged in",
@@ -66,7 +67,7 @@ export default function CreateCardModal({children, open, onClose}) {
                 },
                 width:270
             })
-        } else if (result.data == "Problem with request parameters") {
+        } else if (result.data === "Problem with request parameters") {
             store.addNotification({
                 title: "Failure",
                 message: "Check field formatting",

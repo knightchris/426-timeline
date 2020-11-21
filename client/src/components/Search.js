@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Search.css';
 import axios from 'axios'
-import TimelineItem from './TimelineItem.js'
 
 export class Autocomplete extends Component {
 

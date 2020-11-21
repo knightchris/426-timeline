@@ -38,14 +38,15 @@ class Header extends React.Component {
                 showIcon: true
             },
             width:270
-        })
+        });
+        if (!result.data) {console.log("error")};
         this.props.handleLogout();
     }
         
 
     render() {
        
-       if (this.props.loggedInStatus == "LOGGED_IN") {
+       if (this.props.loggedInStatus === "LOGGED_IN") {
         return (
             <nav>
                 <div id="nav-left">

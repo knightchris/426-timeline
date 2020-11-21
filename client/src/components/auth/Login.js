@@ -37,7 +37,7 @@ export default class Login extends React.Component {
               password: this.state.password
             },
            }); 
-        if (result.data.username != undefined) {
+        if (result.data.username !== undefined) {
             this.props.handleSuccessfulAuth(result.data.username, result.data.contributioncount, result.data.admin)
             store.addNotification({
                 title: "Success!",
@@ -53,7 +53,7 @@ export default class Login extends React.Component {
                 },
                 width:270
             })
-        } else if (result.data == "User not found" || result.data == "Incorrect password") {
+        } else if (result.data === "User not found" || result.data === "Incorrect password") {
             store.addNotification({
                 title: "Failure",
                 message: "Incorrect username or password",
@@ -83,7 +83,7 @@ export default class Login extends React.Component {
               password: this.state.password
             },
            }); 
-        if (result.data == "User successfully created") {
+        if (result.data === "User successfully created") {
             store.addNotification({
                 title: "Success!",
                 message: "You are now registered",
@@ -98,7 +98,7 @@ export default class Login extends React.Component {
                 },
                 width:270
             })
-        } else if (result.data == "User already exists") {
+        } else if (result.data === "User already exists") {
             store.addNotification({
                 title: "Failure",
                 message: "User already exists",
@@ -113,7 +113,7 @@ export default class Login extends React.Component {
                 },
                 width:270
             })
-        } else if (result.data == "Password must be at least 5 characters, user must be at least 2 characters") {
+        } else if (result.data === "Password must be at least 5 characters, user must be at least 2 characters") {
             store.addNotification({
                 title: "Failure",
                 message: "Password must be 5 characters, username must be 2 characters",
