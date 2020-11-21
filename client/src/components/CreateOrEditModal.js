@@ -196,7 +196,7 @@ export default function CreateOrEditModal({children, open, onClose, data}) {
         }
     }
 
-    if (data == null) { // New card modal
+    if (data === null) { // New card modal
         return ReactDom.createPortal (
             <>
             <div style={OVERLAY_STYLE}>
@@ -251,10 +251,10 @@ export default function CreateOrEditModal({children, open, onClose, data}) {
                             <br></br>
                             <h2 className="create-card-header">Media Type</h2>
                             <select name="mediatype" id="mediatype" required>
-                                {data.mediatype == "movie" ? <option value="movie" selected>Movie</option> : <option value="movie">Movie</option>}
-                                {data.mediatype == "television" ? <option value="television" selected>Television</option> : <option value="Television">Television</option>}
-                                {data.mediatype == "book" ? <option value="book" selected>Book</option> : <option value="book">Book</option>}
-                                {data.mediatype == "comic" ? <option value="comic" selected>Comic</option> : <option value="comic">Comic</option>}
+                                {data.mediatype === "movie" ? <option value="movie" selected>Movie</option> : <option value="movie">Movie</option>}
+                                {data.mediatype === "television" ? <option value="television" selected>Television</option> : <option value="Television">Television</option>}
+                                {data.mediatype === "book" ? <option value="book" selected>Book</option> : <option value="book">Book</option>}
+                                {data.mediatype === "comic" ? <option value="comic" selected>Comic</option> : <option value="comic">Comic</option>}
                             </select>
                             <br></br>
                             <h2 id="create-card-desc">Description</h2>

@@ -44,18 +44,18 @@ function TimelineModal (props) {
     
     if(!(isDisplay)) {
             return (
-                <div className="card flex-container">
-                    <i className="glyphicon glyphicon-remove" onClick={handleClick}></i>  
-                    <h1 className="card-title">{props.data.title}</h1>        
+                <div className="timelineItem" id={props.data.mediaid}>   
                     <div className="content">
-                        <ul>
-                            <li>Released: {props.data.pubdate.substring(0,10)}</li>
-                        </ul>
-                        <p className="description">{props.data.description}</p>
+                        <i className="glyphicon glyphicon-remove" onClick={handleClick}></i> 
                         {isLoggedin === "LOGGED_IN"
-                        ? <button className="Sidebar-button" onClick={() => setIsOpen(true)}>Suggest Edit</button>
-                        : <button className="Sidebar-button" onClick={alertNotLoggedIn}>Suggest Edit</button>
+                        ? <i className="glyphicon glyphicon-edit"  onClick={() => setIsOpen(true)}></i>
+                        : <i className="glyphicon glyphicon-edit" onClick={alertNotLoggedIn}></i>
                         }
+                        <h1 className="card-header">{props.data.title}</h1> 
+                        <div className="mediadiv">Media Type: {props.data.mediatype}</div>  
+                        <div className="unidiv">Universe date: {props.data.unidate}</div>
+                        <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
+                        <p className="description">{props.data.description}</p>
                         <CreateOrEditModal data={props.data} open={isOpen} onClose={() => setIsOpen(false)} />
                     </div>
                 </div>
