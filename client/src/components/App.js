@@ -5,6 +5,7 @@ import AdminTimelinePage from './pages/AdminTimelinePage.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 import ProtectedRoute from './auth/ProtectedRoute.js'
+import '../css/App.css'
 
 
 

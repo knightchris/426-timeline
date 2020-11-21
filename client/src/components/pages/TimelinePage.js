@@ -1,5 +1,4 @@
 import React from 'react';
-import {Background, Midground,} from '../Background.js';
 import Timeline from '../Timeline.js';
 
 class TimelinePage extends React.Component {
@@ -11,8 +10,6 @@ class TimelinePage extends React.Component {
   render() {
     return (
         <div>
-          <Background />
-          <Midground />
           <Timeline />
         </div>
     );
