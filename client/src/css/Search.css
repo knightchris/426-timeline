@@ -50,6 +50,10 @@
     font-size: 12.5px;
     color: white;
   }
+  .option-item {
+    font-size: 12.5px;
+    color: gold;
+  }
 
   .no-options {
     font-size: 15px;

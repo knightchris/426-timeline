@@ -1,17 +1,16 @@
 .timeline {
-    position: relative;
-    margin: 0 auto;
-    height: 100px;
-    bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.timeline-content {
+/* .timeline-content {
     position: relative;
     top: 146px;
     left: 130px;
-}
+} */
 
-.timeline::after {
+/* .timeline::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -24,7 +23,7 @@
     right: 160px;
     margin-left: -3px;
     z-index: 1000;
-}
+} */
 
 /* 
 .timeline-items {
