@@ -1,27 +1,10 @@
 import '../css/Sidebar.css';
-import axios from 'axios'
-import Autocomplete from './Search';
+import Autocomplete from './Autocomplete';
 import CreateOrEditModal from './CreateOrEditModal.js'
 import React, {useState, useEffect} from 'react';
 import {store} from "react-notifications-component"
 
 function Sidebar(props) {
-
-  /* async function getCardTitles(e) {
-    //e.preventDefault();
-    const result = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/mediacards',
-        withCredentials: true,
-        data: {
-          "approved": true
-        }
-    });
-    let titlearr = [];
-    titlearr = result.data.map(tup => tup.title);
-    //console.log(titlearr);
-    return titlearr;
-  } */
 
   async function alertNotLoggedIn() {
     store.addNotification({
@@ -64,21 +47,9 @@ function Sidebar(props) {
           </header>
         </div>
         <div className="sidenav">
-            <Autocomplete
-            options={[
-              "SW: Third Movie",
-              "SW: Second Movie",
-              "Star Wars 3",
-              "That one book",
-              "Luke",
-              "Darth Vader",
-              "Jedi",
-              "Yoda"
-            ]}
-          />
-          {/* <Autocomplete
-            options={getCardTitles()}
-          /> */}
+         <Autocomplete
+            options={props.titles}
+          /> 
             <button className="sidenav-button">Filter</button>
             <button className="sidenav-button">Sort</button>
         </div>

@@ -41,10 +41,9 @@ class Timeline extends React.Component {
             return <div className="timeline">Loading...</div>;
         } else {
             const timelineItems = cards.map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
-            console.log(cards);
             return (
             <div className="timeline">
-                <Sidebar loggedInStatus={this.props.loggedInStatus}></Sidebar>
+                <Sidebar titles={cards.map(card => card.title)} loggedInStatus={this.props.loggedInStatus}></Sidebar>
                 <div className="timeline-content">
                 {timelineItems}
                 </div>
