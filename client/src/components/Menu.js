@@ -35,7 +35,7 @@ function Menu() {
   }
 
   async function getCardTitles(e) {
-    e.preventDefault();
+    //e.preventDefault();
     const result = await axios({
         method: 'post',
         url: 'http://localhost:3000/mediacards',
@@ -84,6 +84,9 @@ function Menu() {
               "Yoda"
             ]}
           />
+          {/* <Autocomplete
+            options={getCardTitles()}
+          /> */}
             <button className="sidenav-button">Filter</button>
             <button className="sidenav-button">Sort</button>
         </div>
