@@ -19,7 +19,7 @@ class TimelineItem extends React.Component {
     }
 
     render() {
-        if(!(this.state.displayModal)) {
+        if(!    (this.state.displayModal)) {
             return (
                 <div className="timelineItem" id={this.props.data.mediaid} >
                     <div className="content" onClick={this.handleClick}>

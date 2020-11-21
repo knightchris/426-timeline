@@ -2,6 +2,8 @@
     color: rgb(223, 201, 80);
     font-family: "ITC Serif Gothic", Lato;
     font-size: 2.6em;
+    padding:.5em;
+    margin-top: 0;
     letter-spacing: 0.2em;
     text-align: center;
     text-transform: uppercase;

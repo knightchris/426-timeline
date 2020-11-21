@@ -24,8 +24,8 @@ class TimelineModal extends React.Component {
                 return (
                     <div className="timelineItem" id={this.props.data.mediaid} >
                         <div className="content">
-                            <i class="glyphicon glyphicon-remove" onClick={this.handleClose}></i>
-                            <i class="glyphicon glyphicon-edit" onClick={this.handleEdit}></i>  
+                            <i className="glyphicon glyphicon-remove" onClick={this.handleClose}></i>
+                            <i className="glyphicon glyphicon-edit" onClick={this.handleEdit}></i>  
                             <h1 className="card-header">{this.props.data.title}</h1>   
                             <div className="mediadiv">Media Type: {this.props.data.mediatype}</div>         
                             <div className="unidiv">Universe date: {this.props.data.unidate}</div>

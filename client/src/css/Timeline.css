@@ -7,10 +7,10 @@
 
 .timeline-content::after {
     content: '';
-    background-color: #cecccc;
+    background-color: #fcfcfc;
     position: absolute;
     left: calc(50% - 2px);
-    width: 4px;
+    width: 3px;
     height: 100%;
 } 
 
@@ -21,6 +21,7 @@
     position: relative;
     padding-right: 5%;
 }
+
 .timelineItem:nth-child(odd) {
     padding-left: 5%;
     padding-right: 0;
