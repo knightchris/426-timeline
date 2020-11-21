@@ -1,0 +1,21 @@
+#create-card-submit {
+    position: fixed;
+    left: 60%;
+    top: 90%;
+    color: #000;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+#create-card-close {
+    position: fixed;
+    left: 40%;
+    top: 90%;
+    color: #000;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+#create-card-form-description {
+    resize:none;
+}

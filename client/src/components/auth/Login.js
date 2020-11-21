@@ -138,7 +138,7 @@ export default class Login extends React.Component {
                 <form>
                     <input className="username" type="username" name="username" placeholder="Username" defaultValue={this.state.username} onChange={this.handleChange} required />
                     <input className="password" type="password" name="password" placeholder="Password" defaultValue={this.state.password} onChange={this.handleChange} required />
-                    <button className="header-link"type="submit" onClick={this.handleLoginSubmit}>Login</button>
+                    <button className="header-link" type="submit" onClick={this.handleLoginSubmit}>Login</button>
                     <button className="header-link" type="submit" onClick={this.handleRegisterSubmit}>Register</button>
                 </form>
             </div>
