@@ -5,6 +5,11 @@ import {store} from "react-notifications-component"
 import CreateOrEditModal from "./CreateOrEditModal.js"
 
 
+function Rating(props) {
+    if (props.data.mediatype === "movie" || props.data.mediatype === "television") {
+        return <h1 className="card-header">{props.data.title}</h1> 
+    }
+}
 
 
 function TimelineModal (props) {
@@ -51,11 +56,14 @@ function TimelineModal (props) {
                         ? <i className="glyphicon glyphicon-edit"  onClick={() => setIsOpen(true)}></i>
                         : <i className="glyphicon glyphicon-edit" onClick={alertNotLoggedIn}></i>
                         }
-                        <h1 className="card-header">{props.data.title}</h1> 
-                        <div className="mediadiv">Media Type: {props.data.mediatype}</div>  
+                        {Rating(props)}
+                        <div className="mediadiv">IMDB Rating: {props.data.rating}</div>  
+                    <div className="mediadiv">A {props.data.mediatype} by {props.data.creator}</div>  
                         <div className="unidiv">Universe date: {props.data.unidate}</div>
                         <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
-                        <p className="description">{props.data.description}</p>
+                        <p className="unidiv">{props.data.description}</p>
+                    <p>Contributed by: {props.data.contributors.join(', ')}</p>
+                        {console.log(props.data)}
                         <CreateOrEditModal data={props.data} open={isOpen} onClose={() => setIsOpen(false)} />
                     </div>
                 </div>
