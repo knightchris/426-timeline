@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Search.css';
 import axios from 'axios'
+import TimelineItem from './TimelineItem.js'
 
 export class Autocomplete extends Component {
 
@@ -128,11 +129,18 @@ export class Autocomplete extends Component {
         url: 'http://localhost:3000/mediacards',
         withCredentials: true,
         data: {
-          "approved": true,
+          "approved": true
         }
        }); 
-      console.log(this.userInput); 
+      console.log(this.state.userInput); 
       console.log(result.data); 
+      for(let i = 0; i < result.data.length; i++) {
+        if(result.data[i].title === this.state.userInput) {
+          // window.scrollTo(0,1000);
+          document.getElementById(result.data[i].mediaid).scrollIntoView();
+      }
+      }
+      
     //const timelineitem = <TimelineItem key={card.mediaid} data={card}></TimelineItem>;
   }
 

@@ -76,8 +76,8 @@ function Menu() {
         <div className="sidenav">
             <Autocomplete
             options={[
-              "Star Wars 1",
-              "Star Wars 2",
+              "SW: Third Movie",
+              "SW: Second Movie",
               "Star Wars 3",
               "Luke",
               "Darth Vader",
