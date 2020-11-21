@@ -63,7 +63,6 @@ function TimelineModal (props) {
                         <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
                         <p className="unidiv">{props.data.description}</p>
                     <p>Contributed by: {props.data.contributors.join(', ')}</p>
-                        {console.log(props.data)}
                         <CreateOrEditModal data={props.data} open={isOpen} onClose={() => setIsOpen(false)} />
                     </div>
                 </div>
