@@ -31,7 +31,7 @@ class TimelineItem extends React.Component {
                         <h1 className="card-header">{this.props.data.title}</h1>   
                         <div className="mediadiv">Media Type: {uppercase(this.props.data.mediatype)}</div>         
                         <div className="unidiv">Universe date: {this.props.data.unidate}</div>
-                        <div className="unidiv">Published date: {this.props.data.pubdate.substring(0,10)}</div>      
+                        <div className="unidiv">Released: {this.props.data.pubdate.substring(0,10)}</div>      
                     </div>   
                 </div>
             )
