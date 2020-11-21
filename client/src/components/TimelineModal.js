@@ -18,16 +18,17 @@ class TimelineModal extends React.Component {
     render() {
         if(!(this.state.displayItem)) {
                 return (
-                    <div className="card flex-container">
-                        <i class="glyphicon glyphicon-remove" onClick={this.handleClick}></i>  
-                        <h1 className="card-title">{this.props.data.title}</h1>        
+                    <div className="timelineItem" id={this.props.data.mediaid} >
                         <div className="content">
-                            <ul>
-                                <li>Released: {this.props.data.pubdate.substring(0,10)}</li>
-                            </ul>
-                            <p className="description">{this.props.data.description}</p>
-                        </div>
+                            <i class="glyphicon glyphicon-remove" onClick={this.handleClick}></i>  
+                            <h1 className="card-header">{this.props.data.title}</h1>   
+                            <div className="mediadiv">Media Type: {this.props.data.mediatype}</div>         
+                            <div className="unidiv">Universe date: {this.props.data.unidate}</div>
+                            <div className="unidiv">Released: {this.props.data.pubdate.substring(0,10)}</div>
+                            <p className="description">{this.props.data.description}</p>   
+                        </div>   
                     </div>
+
                 );
         } else {
             return (
