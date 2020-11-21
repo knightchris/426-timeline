@@ -17,10 +17,8 @@ class TimelineModal extends React.Component {
 
     render() {
         if(!(this.state.displayItem)) {
-            if(this.props.even) {
-                classes = `flex-container card even`;
                 return (
-                    <div className={classes}>
+                    <div className="card flex-container">
                         <i class="glyphicon glyphicon-remove" onClick={this.handleClick}></i>  
                         <h1 className="card-title">{this.props.data.title}</h1>        
                         <div className="content">
@@ -30,22 +28,7 @@ class TimelineModal extends React.Component {
                             <p className="description">{this.props.data.description}</p>
                         </div>
                     </div>
-                )
-            } else {
-                classes = `flex-container card even`;
-                return (
-                    <div className={classes}>
-                            <i class="glyphicon glyphicon-remove" onClick={this.handleClick}></i>  
-                            <h1 className="card-title">{this.props.data.title}</h1>        
-                            <div className="content">
-                                <ul>
-                                    <li>Released: {this.props.data.pubdate.substring(0,10)}</li>
-                                </ul>
-                                <p className="description">{this.props.data.description}</p>
-                            </div>
-                    </div>
-                )
-            }
+                );
         } else {
             return (
                 <TimelineItem key={this.props.data.mediaid} data={this.props.data}></TimelineItem>
