@@ -1,37 +1,24 @@
 .card-header {
-    color: rgb(223, 201, 80);
+     color: rgb(223, 201, 80);
     font-family: "ITC Serif Gothic", Lato;
     position: relative;
-    font-size: 2.6em;
+    font-size: 2em;
     letter-spacing: 0.2em;
     text-align: center;
     text-transform: uppercase;
-    max-width: 400px;
     align-content: center;
-    left: 25px;
     overflow-wrap: break-word;
     hyphens: auto;
-    border-style: solid;
+    border-style: solid; 
     
 }
 
-.timelineItem {
-    width: 450px;
-    height: 200px;
+.timelineItem .content {
     border: 1px solid #dcdcdc;
     background: black;
-    box-shadow: 5px 5px 5px white;
-    margin-bottom: 100px;
+    /* box-shadow: 5px 5px 5px white; */
 }
 
-/* .odd {
-    position: relative;
-    left: 640px;
-}
-.even {
-    position: relative;
-    left: 90px;
-} */
 
 .unidiv {
     font-family: "ITC Serif Gothic", Lato;
