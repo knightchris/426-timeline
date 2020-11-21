@@ -11,7 +11,7 @@ let uppercase = function(word) {
     return word;
 }
 
-let classes = `timelineItem`;
+
 class TimelineItem extends React.Component {
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class TimelineItem extends React.Component {
             )
         } else {
             return (
-                <TimelineModal key={this.props.data.mediaid} data={this.props.data}></TimelineModal>
+                <TimelineModal loggedInStatus={this.props.loggedInStatus} key={this.props.data.mediaid} data={this.props.data}></TimelineModal>
             )
         }
     }
