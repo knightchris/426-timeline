@@ -21,18 +21,34 @@
   }
 
   .search-box {
-      background-color: transparent;
+      background-color: #cecccc;
       border-style: solid;
+      border-radius: 10px;
       width: 90px;
+      height: 30px;
+      font-size: 13px;
   }
 
   .search-button {
     outline: none;
+    border: none;
+    border-radius: 10px;
     opacity: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    padding: 2.5px 2.5px 2.5px 2.5px;
+  }
+
+  .search-button:hover {
+      background-color: transparent; 
+      color: white; 
+      border: 1px solid gold;
   }
 
   .options {
-    font-size: 15px;
+    font-size: 12.5px;
+    color: white;
   }
 
   .no-options {

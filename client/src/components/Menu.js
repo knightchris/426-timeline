@@ -44,10 +44,8 @@ function Menu() {
         }
     });
     let titlearr = [];
-    for(let i = 0; i < result.data.length; i++) {
-      titlearr.push(result[i].title);
-    }
-    //titlearr = result.data.map(tup => tup.title);
+    titlearr = result.data.map(tup => tup.title);
+    //console.log(titlearr);
     return titlearr;
   }
 
@@ -60,7 +58,7 @@ function Menu() {
           <header className="Menu-header">
             <div id="outer">
                 <div className="inner">
-                    <button className="menu-button" onClick={handleClick}>Login/Logout</button>
+                    {/* <button className="menu-button" onClick={handleClick}>Login/Logout</button> */}
                 </div>
                 <div className="inner">
                   <button className="menu-button" onClick={() => setIsOpen(true)}>Suggest New Card</button>
