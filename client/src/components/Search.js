@@ -97,6 +97,7 @@ export class Autocomplete extends Component {
     });
   };
 
+
   onClick = (e) => {
     this.setState({
       activeOption: 0,
@@ -127,6 +128,28 @@ export class Autocomplete extends Component {
       this.setState({ activeOption: activeOption + 1 });
     }
   };
+
+
+  debounce = (func, wait, immediate) => {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+  }
+
+  // handleChange = (e) => {
+  //   debounce(onChange(e), 1000);
+  // }
+
+
 
    handleClick = async(e) => {
     e.preventDefault();
