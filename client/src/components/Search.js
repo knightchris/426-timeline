@@ -97,30 +97,6 @@ export class Autocomplete extends Component {
     });
   };
 
-  // onChange = debounce(async(e) => {
-  //   //console.log('it is changing');
-
-  //   let { options } = this.props;
-  //   // options = await this.getCardTitles();
-  //   //console.log(options);
-    
-  //   //console.log(e.currentTarget.value);
-
-  //   const userInput = e.currentTarget.value;
-    
-
-  //   const filteredOptions = options.filter(
-  //     (optionName) =>
-  //       optionName.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-  //   );
-
-  //   this.setState({
-  //     activeOption: 0,
-  //     filteredOptions,
-  //     showOptions: true,
-  //     userInput: e.currentTarget.value
-  //   });
-  // }, 300);
 
   onClick = (e) => {
     this.setState({
@@ -168,6 +144,11 @@ export class Autocomplete extends Component {
         if (callNow) func.apply(context, args);
     };
   }
+
+  // handleChange = (e) => {
+  //   debounce(onChange(e), 1000);
+  // }
+
 
 
    handleClick = async(e) => {
