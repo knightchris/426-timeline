@@ -7,12 +7,16 @@ let classes = `flex-container card`;
 class TimelineModal extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.handleClose = this.handleClose.bind(this);
         this.state = {id: this.key, displayItem: false};
     }
 
-    handleClick(e) {
+    handleClose(e) {
         this.setState({displayItem: true})
+    }
+
+    handleEdit(e) {
+        console.log("Edit here!");
     }
 
     render() {
@@ -20,7 +24,8 @@ class TimelineModal extends React.Component {
                 return (
                     <div className="timelineItem" id={this.props.data.mediaid} >
                         <div className="content">
-                            <i class="glyphicon glyphicon-remove" onClick={this.handleClick}></i>  
+                            <i class="glyphicon glyphicon-remove" onClick={this.handleClose}></i>
+                            <i class="glyphicon glyphicon-edit" onClick={this.handleEdit}></i>  
                             <h1 className="card-header">{this.props.data.title}</h1>   
                             <div className="mediadiv">Media Type: {this.props.data.mediatype}</div>         
                             <div className="unidiv">Universe date: {this.props.data.unidate}</div>
