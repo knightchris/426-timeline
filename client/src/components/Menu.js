@@ -2,6 +2,8 @@ import { render } from 'react-dom';
 import '../css/Menu.css';
 import axios from 'axios'
 import Autocomplete from './Search';
+import CreateCardModal from './CreateCardModal.js'
+import React, {useState} from 'react';
 
 function Menu() {
 
@@ -50,6 +52,8 @@ function Menu() {
     return titlearr;
   }
 
+  const [isOpen, setIsOpen] = useState(false);
+
     return (
       <div className="first">
         <div className="Menu">
@@ -60,7 +64,8 @@ function Menu() {
                     <button className="menu-button" onClick={handleClick}>Login/Logout</button>
                 </div>
                 <div className="inner">
-                    <button className="menu-button">Create User</button>
+                  <button className="menu-button" onClick={() => setIsOpen(true)}>Suggest New Card</button>
+                  <CreateCardModal open={isOpen} onClose={() => setIsOpen(false)} />
                 </div>
                 <div className="inner">
                     <button className="menu-button" onClick={handleCard}>Admin page</button>
