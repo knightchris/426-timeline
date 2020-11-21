@@ -2,38 +2,12 @@ import '../css/Sidebar.css';
 import axios from 'axios'
 import Autocomplete from './Search';
 import CreateCardModal from './CreateCardModal.js'
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {store} from "react-notifications-component"
 
-function Sidebar() {
+function Sidebar(props) {
 
-  async function handleClick(e) {
-    e.preventDefault();
-    const result = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/login',
-        withCredentials: true,
-        data: {
-          "username": "Chris",
-          "password": "pass"
-        }
-       }); 
-      console.log(result); 
-  }
-
-  async function handleCard(e) {
-    e.preventDefault();
-    const result = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/mediacards',
-        withCredentials: true,
-        data: {
-          "approved": true
-        }
-       }); 
-      console.log(result.data); 
-  }
-
-  async function getCardTitles(e) {
+  /* async function getCardTitles(e) {
     //e.preventDefault();
     const result = await axios({
         method: 'post',
@@ -47,9 +21,31 @@ function Sidebar() {
     titlearr = result.data.map(tup => tup.title);
     //console.log(titlearr);
     return titlearr;
-  }
+  } */
 
+  async function alertNotLoggedIn() {
+    store.addNotification({
+      title: "You are not logged in",
+      message: "Login to suggest a new card!",
+      type: "danger",
+      container: "top-center",
+      insert: "top",
+      animationIn: ["animate__animated animate__fadeIn"],
+      animationOut: ["animate__animated animate__fadeOut"],
+      dismiss: {
+          duration: 4000,
+          showIcon: true
+      },
+      width:270
+  })
+  }
+  
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(props.loggedInStatus);
+
+  useEffect(() => {
+    setIsLoggedin(props.loggedInStatus);
+  })
 
     return (
       <div className="first">
@@ -58,14 +54,11 @@ function Sidebar() {
           <header className="Sidebar-header">
             <div id="outer">
                 <div className="inner">
-                    {/* <button className="Sidebar-button" onClick={handleClick}>Login/Logout</button> */}
-                </div>
-                <div className="inner">
-                  <button className="Sidebar-button" onClick={() => setIsOpen(true)}>Suggest New Card</button>
+                  {isLoggedin == "LOGGED_IN"
+                  ? <button className="Sidebar-button" onClick={() => setIsOpen(true)}>Suggest New Card</button>
+                  : <button className="Sidebar-button" onClick={alertNotLoggedIn}>Suggest New Card</button>
+                  }
                   <CreateCardModal open={isOpen} onClose={() => setIsOpen(false)} />
-                </div>
-                <div className="inner">
-                    <button className="Sidebar-button" onClick={handleCard}>Admin page</button>
                 </div>
             </div>
           </header>

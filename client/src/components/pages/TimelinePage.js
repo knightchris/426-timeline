@@ -3,14 +3,14 @@ import Timeline from '../Timeline.js';
 
 class TimelinePage extends React.Component {
   
-  // constructor(props) {
-  //   super(props);
-  // }
+   constructor(props) {
+     super(props);
+   }
   
   render() {
     return (
         <div>
-          <Timeline />
+          <Timeline loggedInStatus={this.props.loggedInStatus}/>
         </div>
     );
   }

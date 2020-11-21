@@ -44,7 +44,7 @@ class Timeline extends React.Component {
             console.log(cards);
             return (
             <div className="timeline">
-                <Sidebar></Sidebar>
+                <Sidebar loggedInStatus={this.props.loggedInStatus}></Sidebar>
                 <div className="timeline-content">
                 {timelineItems}
                 </div>
