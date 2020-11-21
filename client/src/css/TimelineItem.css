@@ -44,3 +44,13 @@
     text-align: center;
     font-size: 2em;
 }
+
+.mediadiv {
+    font-family: "ITC Serif Gothic", Lato;
+    text-align: center;
+    font-size: 2em;
+}
+
+.mediadiv::first-letter {
+    text-transform: uppercase;
+}

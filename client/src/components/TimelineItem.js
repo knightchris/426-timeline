@@ -5,6 +5,11 @@ import $ from 'jquery';
 import TimelineModal from './TimelineModal.js';
 import '../css/TimelineItem.css'
 
+let uppercase = function(word) {
+    word = word[0].toUpperCase() + word.slice(1);
+    console.log(word);
+    return word;
+}
 let classes = `timelineItem`;
 class TimelineItem extends React.Component {
     constructor(props) {
@@ -33,6 +38,7 @@ class TimelineItem extends React.Component {
             return (
                 <div id={this.props.data.mediaid} className={classes}>
                     <h1 className="card-header" onClick={this.handleClick}>{this.props.data.title}</h1>   
+                    <div className="mediadiv">Media Type: {uppercase(this.props.data.mediatype)}</div>         
                     <div className="unidiv">Universe date: {this.props.data.unidate}</div>         
                 </div>
             )
