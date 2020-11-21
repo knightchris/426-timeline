@@ -79,6 +79,7 @@ function Menu() {
               "SW: Third Movie",
               "SW: Second Movie",
               "Star Wars 3",
+              "That one book",
               "Luke",
               "Darth Vader",
               "Jedi",
