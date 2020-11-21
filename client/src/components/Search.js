@@ -59,6 +59,7 @@ export class Autocomplete extends Component {
         <div className="search">
         <input type="submit" value="Find Item" className="search-button" onClick={this.handleClick}/>
           <input
+            placeholder="Title name..."
             type="text"
             className="search-box"
             onChange={onChange}
