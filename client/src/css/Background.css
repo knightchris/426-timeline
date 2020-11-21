@@ -33,7 +33,7 @@ body {
 	background: black url(../img/background.png) repeat 5% 5%;
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
-	z-index: 100;
+	z-index: -100;
 	
 	animation-name: STAR-MOVE;
 	animation-duration: 200s;
