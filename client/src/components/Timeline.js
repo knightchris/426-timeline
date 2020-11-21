@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import '../css/Timeline.css';
+import Sidebar from './Sidebar.js'
 import TimelineItem from './TimelineItem.js'
 
 class Timeline extends React.Component {
@@ -43,6 +44,7 @@ class Timeline extends React.Component {
             console.log(cards);
             return (
             <div className="timeline">
+                <Sidebar></Sidebar>
                 <div className="timeline-content">
                 {timelineItems}
                 </div>
