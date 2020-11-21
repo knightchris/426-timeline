@@ -77,7 +77,7 @@
 }
 
 .sidenav-button {
-  padding: 6px 8px 6px 16px;
+  padding: 6px;
   margin-top: 10px;
   margin-bottom: 10px;
   text-decoration: none;
@@ -86,8 +86,10 @@
   background-color: #cecccc; 
   display: block;
   border: none;
-  transition-duration: 0.4s;
-  transform: none;
+  width: 120px;
+  text-align: center;
+  left: 5px;
+  position: relative;
 }
 
 .sidenav-button:hover {
