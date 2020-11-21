@@ -71,11 +71,17 @@ export class Autocomplete extends Component {
     );
   }
 
-  onChange = (e) => {
+  onChange = async(e) => {
     //console.log('it is changing');
 
-    const { options } = this.props;
+    let { options } = this.props;
+    // options = await this.getCardTitles();
+    //console.log(options);
+    
+    //console.log(e.currentTarget.value);
+
     const userInput = e.currentTarget.value;
+    
 
     const filteredOptions = options.filter(
       (optionName) =>
@@ -140,6 +146,22 @@ export class Autocomplete extends Component {
       }
       
     //const timelineitem = <TimelineItem key={card.mediaid} data={card}></TimelineItem>;
+  }
+
+  getCardTitles = async(e) => {
+    //e.preventDefault();
+    const result = await axios({
+        method: 'post',
+        url: 'http://localhost:3000/mediacards',
+        withCredentials: true,
+        data: {
+          "approved": true
+        }
+    });
+    let titlearr = [];
+    titlearr = result.data.map(tup => tup.title);
+    //console.log(titlearr);
+    return titlearr;
   }
 
 
