@@ -15,12 +15,6 @@
     
 }
 
-.card-header:hover {
-    cursor: pointer;
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
 .timelineItem {
     width: 450px;
     height: 200px;
@@ -43,4 +37,16 @@
     font-family: "ITC Serif Gothic", Lato;
     text-align: center;
     font-size: 2em;
+}
+
+.mediadiv {
+    font-family: "ITC Serif Gothic", Lato;
+    text-align: center;
+    font-size: 2em;
+}
+
+.timelineItem:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
