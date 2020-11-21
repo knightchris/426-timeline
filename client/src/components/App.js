@@ -83,6 +83,8 @@ export default class App extends React.Component {
   render() {
     return (
       <Router>
+        <div id="background"></div>
+        <div id="midground"></div>
         <div className="App">
         <ReactNotification />
           <Header loggedInStatus={this.state.loggedInStatus} user={this.state.user} contributioncount={this.state.contributioncount} 

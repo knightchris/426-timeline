@@ -9,9 +9,7 @@ class TimelinePage extends React.Component {
   
   render() {
     return (
-        <div>
-          <Timeline />
-        </div>
+      <Timeline />
     );
   }
   
