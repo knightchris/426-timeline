@@ -15,12 +15,6 @@
     
 }
 
-.card-header:hover {
-    cursor: pointer;
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
 .timelineItem {
     width: 450px;
     height: 200px;
@@ -51,6 +45,8 @@
     font-size: 2em;
 }
 
-.mediadiv::first-letter {
-    text-transform: uppercase;
+.timelineItem:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }

@@ -10,6 +10,7 @@ let uppercase = function(word) {
     console.log(word);
     return word;
 }
+
 let classes = `timelineItem`;
 class TimelineItem extends React.Component {
     constructor(props) {
