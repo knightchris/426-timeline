@@ -110,9 +110,9 @@ export default function CreateCardModal({children, open, onClose}) {
                         <input type="title" name="title" placeholder="Title" required />
                         <br></br>
                         <h2 className="create-card-header">Publish Date</h2>
-                        <input  name="pubdate" placeholder="Publish Date (YYYY-MM-DD)" required />
+                        <input  name="pubdate" placeholder="YYYY-MM-DD" required />
                         <h2 className="create-card-header">Universe Date</h2>
-                        <input  name="unidate" placeholder="Universe Date (YYYY BBY/ABY)" required />
+                        <input  name="unidate" placeholder="YYYY BBY/ABY" required />
                         <h2 className="create-card-header">Creator</h2>
                         <input  name="creator" placeholder="Creator" required />
                         <br></br>
@@ -124,8 +124,8 @@ export default function CreateCardModal({children, open, onClose}) {
                             <option value="comic">Comic</option>
                         </select>
                         <br></br>
-                        <h2 className="create-card-header">Description</h2>
-                        <textarea id="create-card-form-description" name="description" rows="5" cols="50" maxLength="250" placeholder="Description (250 char max)" required />
+                        <h2 id="create-card-desc">Description</h2>
+                        <textarea id="create-card-form-description" name="description" rows="5" cols="50" maxLength="250" placeholder="250 chararacters max" required />
                     </div>
                     <button type="submit" id="create-card-submit">Submit</button>
                 </form>

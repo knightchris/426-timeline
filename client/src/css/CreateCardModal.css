@@ -44,6 +44,12 @@
     display: inline-block
 }
 
+#create-card-desc {
+    display: inline-block;
+    position: fixed;
+    left: 36.5%
+}
+
 #create-card-form-fields {
     height: 500px;
     width: 400px;
@@ -71,7 +77,8 @@
     font-size: 12px;
     position: fixed;
     left: 22%;
-    top: 66%;
+    top: 65.5%;
+    padding: 5px;
 }
 
 
