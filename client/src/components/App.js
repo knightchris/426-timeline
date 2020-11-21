@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header.js';
 import TimelinePage from './pages/TimelinePage.js';
 import AdminTimelinePage from './pages/AdminTimelinePage.js'
@@ -36,14 +36,14 @@ export default class App extends React.Component {
       url: 'http://localhost:3000/checklogin',
       withCredentials: true,
      }); 
-     if (result.data.username != undefined && this.state.loggedInStatus == "NOT_LOGGED_IN") {
+     if (result.data.username !== undefined && this.state.loggedInStatus === "NOT_LOGGED_IN") {
        this.setState({
         loggedInStatus: "LOGGED_IN",
         user: result.data.username,
         contributioncount: result.data.contributioncount,
         admin: result.data.admin
        })
-     } else if (result.data == "You are not logged in" && this.state.loggedInStatus == "LOGGED_IN") {
+     } else if (result.data === "You are not logged in" && this.state.loggedInStatus === "LOGGED_IN") {
         this.setState({
           loggedInStatus: "NOT_LOGGED_IN",
           user: "",

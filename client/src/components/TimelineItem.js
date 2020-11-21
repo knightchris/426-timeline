@@ -1,7 +1,7 @@
-import { unmountComponentAtNode, render } from 'react-dom';
-import ReactDOM from 'react-dom';
+// import { unmountComponentAtNode, render } from 'react-dom';
+// import ReactDOM from 'react-dom';
 import React from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import TimelineModal from './TimelineModal.js';
 import '../css/TimelineItem.css'
 
@@ -17,7 +17,7 @@ class TimelineItem extends React.Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         let isEven;
-        if ((this.props.data.mediaid % 2) == 0) {
+        if ((this.props.data.mediaid % 2) === 0) {
             isEven = true;
         } else {
             isEven = false;

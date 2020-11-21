@@ -1,4 +1,3 @@
-import { render } from 'react-dom';
 import '../css/Menu.css';
 import axios from 'axios'
 import Autocomplete from './Search';
