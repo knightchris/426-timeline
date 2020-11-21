@@ -13,7 +13,7 @@ const CREATE_CARD_MODAL_STYLE = {
     backgroundImage: `url(${Background})`,
     width: '667px',
     height: '575px',
-    padding: '20px',
+    padding: '5px',
     zIndex: 1000,
     borderRadius: '15px 50px'
 }
@@ -106,17 +106,25 @@ export default function CreateCardModal({children, open, onClose}) {
             <div style={CREATE_CARD_MODAL_STYLE}>
                 <form onSubmit={handleSubmit}>
                     <div id="create-card-form-fields">
+                        <h2 className="create-card-header">Title</h2>
                         <input type="title" name="title" placeholder="Title" required />
+                        <br></br>
+                        <h2 className="create-card-header">Publish Date</h2>
                         <input  name="pubdate" placeholder="Publish Date (YYYY-MM-DD)" required />
+                        <h2 className="create-card-header">Universe Date</h2>
                         <input  name="unidate" placeholder="Universe Date (YYYY BBY/ABY)" required />
+                        <h2 className="create-card-header">Creator</h2>
                         <input  name="creator" placeholder="Creator" required />
-                        <label htmlFor="medaiatype">Media Type</label>
+                        <br></br>
+                        <h2 className="create-card-header">Media Type</h2>
                         <select name="mediatype" id="mediatype" required>
                             <option value="movie">Movie</option>
                             <option value="television">Television</option>
                             <option value="book">Book</option>
                             <option value="comic">Comic</option>
                         </select>
+                        <br></br>
+                        <h2 className="create-card-header">Description</h2>
                         <textarea id="create-card-form-description" name="description" rows="5" cols="50" maxLength="250" placeholder="Description (250 char max)" required />
                     </div>
                     <button type="submit" id="create-card-submit">Submit</button>
