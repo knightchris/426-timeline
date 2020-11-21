@@ -1,12 +1,18 @@
 .card-header {
     color: rgb(223, 201, 80);
     font-family: "ITC Serif Gothic", Lato;
+    position: relative;
     font-size: 2.6em;
     letter-spacing: 0.2em;
     text-align: center;
     text-transform: uppercase;
-    padding-bottom: 20px;
-    max-width: 301px;
+    max-width: 400px;
+    align-content: center;
+    left: 25px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    border-style: solid;
+    
 }
 
 .card-header:hover {
@@ -16,7 +22,7 @@
 }
 
 .timelineItem {
-    width: 500px;
+    width: 450px;
     height: 200px;
     border: 1px solid #dcdcdc;
     background: black;
@@ -30,5 +36,11 @@
 }
 .even {
     position: relative;
-    left: 30px;
+    left: 90px;
+}
+
+.unidiv {
+    font-family: "ITC Serif Gothic", Lato;
+    text-align: center;
+    font-size: 2em;
 }

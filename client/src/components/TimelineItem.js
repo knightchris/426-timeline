@@ -32,7 +32,8 @@ class TimelineItem extends React.Component {
         if(!(this.state.displayModal)) {
             return (
                 <div id={this.props.data.mediaid} className={classes}>
-                <h1 className="card-header" onClick={this.handleClick}>{this.props.data.title}</h1>            
+                    <h1 className="card-header" onClick={this.handleClick}>{this.props.data.title}</h1>   
+                    <div className="unidiv">Universe date: {this.props.data.unidate}</div>         
                 </div>
             )
         } else {
