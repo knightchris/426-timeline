@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../css/Search.css';
+import '../css/Autocomplete.css';
 import axios from 'axios'
 
 export class Autocomplete extends Component {

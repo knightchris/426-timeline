@@ -1,6 +1,5 @@
 import '../css/Sidebar.css';
-import axios from 'axios'
-import Autocomplete from './Search';
+import Autocomplete from './Autocomplete';
 import CreateOrEditModal from './CreateOrEditModal.js'
 import React, {useState, useEffect} from 'react';
 import {store} from "react-notifications-component"
