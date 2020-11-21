@@ -58,6 +58,7 @@ export class Autocomplete extends Component {
     return (
       <React.Fragment>
         <div className="search">
+        <input type="submit" value="Find Item" className="search-button" onClick={this.handleClick}/>
           <input
             type="text"
             className="search-box"
@@ -65,7 +66,6 @@ export class Autocomplete extends Component {
             onKeyDown={onKeyDown}
             value={userInput}
           />
-          <input type="submit" value="search" className="search-button" onClick={this.handleClick}/>
         </div>
         {optionList}
       </React.Fragment>
@@ -132,11 +132,10 @@ export class Autocomplete extends Component {
           "approved": true
         }
        }); 
-      console.log(this.state.userInput); 
-      console.log(result.data); 
+      // console.log(this.state.userInput); 
+      // console.log(result.data); 
       for(let i = 0; i < result.data.length; i++) {
         if(result.data[i].title === this.state.userInput) {
-          // window.scrollTo(0,1000);
           document.getElementById(result.data[i].mediaid).scrollIntoView();
       }
       }
