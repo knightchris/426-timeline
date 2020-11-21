@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Search.css';
+import axios from 'axios'
 
 export class Autocomplete extends Component {
+
+  constructor(props){
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   static propTypes = {
     options: PropTypes.instanceOf(Array).isRequired
   };
@@ -50,7 +57,6 @@ export class Autocomplete extends Component {
     return (
       <React.Fragment>
         <div className="search">
-          <input type="submit" value="search" className="search-button" />
           <input
             type="text"
             className="search-box"
@@ -58,6 +64,7 @@ export class Autocomplete extends Component {
             onKeyDown={onKeyDown}
             value={userInput}
           />
+          <input type="submit" value="search" className="search-button" onClick={this.handleClick}/>
         </div>
         {optionList}
       </React.Fragment>
@@ -113,6 +120,23 @@ export class Autocomplete extends Component {
       this.setState({ activeOption: activeOption + 1 });
     }
   };
+
+   handleClick = async(e) => {
+    e.preventDefault();
+    const result = await axios({
+        method: 'post',
+        url: 'http://localhost:3000/mediacards',
+        withCredentials: true,
+        data: {
+          "approved": true,
+        }
+       }); 
+      console.log(this.userInput); 
+      console.log(result.data); 
+    //const timelineitem = <TimelineItem key={card.mediaid} data={card}></TimelineItem>;
+  }
+
+
 }
 
 

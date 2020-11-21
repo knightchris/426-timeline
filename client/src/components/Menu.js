@@ -87,7 +87,6 @@ function Menu() {
           />
             <button className="sidenav-button">Filter</button>
             <button className="sidenav-button">Sort</button>
-            <button className="sidenav-button">Create</button>
         </div>
       </div>
     );
