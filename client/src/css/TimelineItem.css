@@ -14,3 +14,21 @@
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+.timelineItem {
+    width: 500px;
+    height: 200px;
+    border: 1px solid #dcdcdc;
+    background: black;
+    box-shadow: 5px 5px 5px white;
+    margin-bottom: 100px;
+}
+
+.odd {
+    position: relative;
+    left: 640px;
+}
+.even {
+    position: relative;
+    left: 30px;
+}
