@@ -1,46 +1,71 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../css/TimelineModal.css'
 import TimelineItem from './TimelineItem.js';
+import {store} from "react-notifications-component"
+import CreateOrEditModal from "./CreateOrEditModal.js"
 
 
-let classes = `flex-container card`;
-class TimelineModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleClose = this.handleClose.bind(this);
-        this.state = {id: this.key, displayItem: false};
+
+
+function TimelineModal (props) {
+   
+
+    async function handleClick(e) {
+        setIsDisplay(true);
     }
 
-    handleClose(e) {
-        this.setState({displayItem: true})
-    }
 
-    handleEdit(e) {
-        console.log("Edit here!");
-    }
+    async function alertNotLoggedIn() {
+        store.addNotification({
+          title: "You are not logged in",
+          message: "Login to suggest a new card!",
+          type: "danger",
+          container: "top-center",
+          insert: "top",
+          animationIn: ["animate__animated animate__fadeIn"],
+          animationOut: ["animate__animated animate__fadeOut"],
+          dismiss: {
+              duration: 4000,
+              showIcon: true
+          },
+          width:270
+      })
+      }
 
-    render() {
-        if(!(this.state.displayItem)) {
-                return (
-                    <div className="timelineItem" id={this.props.data.mediaid} >
-                        <div className="content">
-                            <i className="glyphicon glyphicon-remove" onClick={this.handleClose}></i>
-                            <i className="glyphicon glyphicon-edit" onClick={this.handleEdit}></i>  
-                            <h1 className="card-header">{this.props.data.title}</h1>   
-                            <div className="mediadiv">Media Type: {this.props.data.mediatype}</div>         
-                            <div className="unidiv">Universe date: {this.props.data.unidate}</div>
-                            <div className="unidiv">Released: {this.props.data.pubdate.substring(0,10)}</div>
-                            <p className="description">{this.props.data.description}</p>   
-                        </div>   
-                    </div>
+   const [isDisplay, setIsDisplay] = useState(false);
+   const [key, setKey] = useState(props.key)
+   const [isOpen, setIsOpen] = useState(false);
+   const [isLoggedin, setIsLoggedin] = useState(props.loggedInStatus);
 
-                );
-        } else {
+   useEffect(() => {
+    setIsLoggedin(props.loggedInStatus);
+   }, [props.loggedInStatus])
+
+    
+    if(!(isDisplay)) {
             return (
-                <TimelineItem key={this.props.data.mediaid} data={this.props.data}></TimelineItem>
-            )
-        }
+                <div className="timelineItem" id={props.data.mediaid}>   
+                    <div className="content">
+                        <i className="glyphicon glyphicon-remove" onClick={handleClick}></i> 
+                        {isLoggedin === "LOGGED_IN"
+                        ? <i className="glyphicon glyphicon-edit"  onClick={() => setIsOpen(true)}></i>
+                        : <i className="glyphicon glyphicon-edit" onClick={alertNotLoggedIn}></i>
+                        }
+                        <h1 className="card-header">{props.data.title}</h1> 
+                        <div className="mediadiv">Media Type: {props.data.mediatype}</div>  
+                        <div className="unidiv">Universe date: {props.data.unidate}</div>
+                        <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
+                        <p className="description">{props.data.description}</p>
+                        <CreateOrEditModal data={props.data} open={isOpen} onClose={() => setIsOpen(false)} />
+                    </div>
+                </div>
+            );
+    } else {
+        return (
+            <TimelineItem key={props.data.mediaid} data={props.data} loggedInStatus={isLoggedin}></TimelineItem>
+        );
     }
+    
 };
 
 

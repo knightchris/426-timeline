@@ -1,7 +1,7 @@
 import '../css/Sidebar.css';
 import axios from 'axios'
 import Autocomplete from './Search';
-import CreateCardModal from './CreateCardModal.js'
+import CreateOrEditModal from './CreateOrEditModal.js'
 import React, {useState, useEffect} from 'react';
 import {store} from "react-notifications-component"
 
@@ -45,7 +45,7 @@ function Sidebar(props) {
 
   useEffect(() => {
     setIsLoggedin(props.loggedInStatus);
-  })
+  }, [props.loggedInStatus])
 
     return (
       <div className="first">
@@ -54,11 +54,11 @@ function Sidebar(props) {
           <header className="Sidebar-header">
             <div id="outer">
                 <div className="inner">
-                  {isLoggedin == "LOGGED_IN"
+                  {isLoggedin === "LOGGED_IN"
                   ? <button className="Sidebar-button" onClick={() => setIsOpen(true)}>Suggest New Card</button>
                   : <button className="Sidebar-button" onClick={alertNotLoggedIn}>Suggest New Card</button>
                   }
-                  <CreateCardModal open={isOpen} onClose={() => setIsOpen(false)} />
+                  <CreateOrEditModal data={null} open={isOpen} onClose={() => setIsOpen(false)} />
                 </div>
             </div>
           </header>

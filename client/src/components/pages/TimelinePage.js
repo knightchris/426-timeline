@@ -3,9 +3,9 @@ import Timeline from '../Timeline.js';
 
 class TimelinePage extends React.Component {
   
-   constructor(props) {
+  /*  constructor(props) {
      super(props);
-   }
+   } */
   
   render() {
     return (
