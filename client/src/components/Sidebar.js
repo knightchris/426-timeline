@@ -66,7 +66,7 @@ function Sidebar(props) {
         </div>
         <div className="sidenav">
          <Autocomplete
-            options={props.titles}
+            options={props.cards}
           /> 
             <button className="sidenav-button">Filter</button>
             <button className={sortClasses} onClick={handleSortClick}>Sort</button>

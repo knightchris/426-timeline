@@ -43,7 +43,7 @@ class Timeline extends React.Component {
             if(!sort) {
                 return (
                 <div className="timeline">
-                    <Sidebar titles={cards.map(card => card.title)} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
+                    <Sidebar cards={cards} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
                     <div className="timeline-content">
                     {timelineItems}
                     </div>
@@ -54,7 +54,7 @@ class Timeline extends React.Component {
                 sortedArray = sortedArray.sort(function(a, b) {return new Date(a.unidate) - new Date(b.unidate)}).map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
                 return (
                     <div className="timeline">
-                        <Sidebar titles={cards.map(card => card.title)} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
+                        <Sidebar cards={cards} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
                         <div className="timeline-content">
                         {sortedArray}
                         </div>
