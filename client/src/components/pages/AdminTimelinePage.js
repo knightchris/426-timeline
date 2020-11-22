@@ -1,4 +1,5 @@
 import React from 'react';
+import AdminTimeline from '../AdminTimeline.js'
 
 class AdminTimelinePage extends React.Component {
   
@@ -11,7 +12,7 @@ class AdminTimelinePage extends React.Component {
     return (
       <div className="AdminTimeline">
           <h1>Admin page</h1>
-          <h1>Status: {this.props.loggedInStatus}</h1>
+          <AdminTimeline />
       </div>
     );
   }
