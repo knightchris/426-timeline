@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Autocomplete.css';
-import axios from 'axios'
-//import debounce from 'lodash.debounce'
 
 export class Autocomplete extends Component {
 
@@ -102,7 +100,7 @@ export class Autocomplete extends Component {
 
   onClick = (e) => {
     const searchId = e.currentTarget.getAttribute("data-mediaid");
-    let userInputObject = this.props.options.filter(t => t.mediaid == searchId)[0];
+    let userInputObject = this.props.options.filter(t => t.mediaid === searchId)[0];
 
     let searchText = e.currentTarget.innerText;
     this.setState({
