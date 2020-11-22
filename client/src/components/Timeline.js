@@ -12,11 +12,11 @@ class Timeline extends React.Component {
             error: null,
             isLoaded: false,
             cards: [],
-            sort: false
+            sort: ['pubdate', 'dsc']
         };
     }
 
-
+    
     async componentDidMount() {
         const result = await axios({
             method: 'post',
@@ -40,7 +40,6 @@ class Timeline extends React.Component {
         } else if (!isLoaded) {
             return <div className="timeline">Loading...</div>;
         } else {
-            if(!sort) {
                 return (
                 <div className="timeline">
                     <Sidebar cards={cards} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
@@ -49,18 +48,6 @@ class Timeline extends React.Component {
                     </div>
                 </div>
                 );
-            } else {
-                let sortedArray = [...cards];
-                sortedArray = sortedArray.sort(function(a, b) {return new Date(a.unidate) - new Date(b.unidate)}).map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
-                return (
-                    <div className="timeline">
-                        <Sidebar cards={cards} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
-                        <div className="timeline-content">
-                        {sortedArray}
-                        </div>
-                    </div>
-                    );
-            }
         }
     }
 

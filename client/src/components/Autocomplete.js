@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Autocomplete.css';
-import axios from 'axios'
-//import debounce from 'lodash.debounce'
 
 export class Autocomplete extends Component {
 
   constructor(props){
     super(props);
-    //this.handleClick = this.handleClick.bind(this);
-    
+    this.onChange = this.onChange.bind(this); 
   }
 
   static propTypes = {
@@ -60,7 +57,6 @@ export class Autocomplete extends Component {
     return (
       <React.Fragment>
         <div className="search">
-        <input type="submit" value="Find Item" className="search-button" onClick={this.handleClick}/>
           <input
             placeholder="Title name..."
             type="text"
@@ -69,6 +65,7 @@ export class Autocomplete extends Component {
             onKeyDown={onKeyDown}
             value={searchText}
           />
+          <input type="submit" value="Find Item" className="search-button" onClick={this.handleClick}/>
         </div>
         {optionList}
       </React.Fragment>
@@ -76,27 +73,35 @@ export class Autocomplete extends Component {
   }
 
   onChange = async(e) => {
-    
-    
-    let searchText = e.currentTarget.value;
+
+    let searchText = e.target.value;
     const filteredOptions = this.props.options.filter(
       (option) =>
         option.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1
     );
+    if(!searchText) {
+      this.setState({
+        activeOption: 0,
+        filteredOptions: [],
+        showOptions: false,
+        searchText: searchText
+      });
+      return;
+    }
     this.setState({
-      activeOption: 0,
-      filteredOptions,
-      showOptions: true,
-      userInputObject: filteredOptions[0],
-      searchText: searchText
+    activeOption: 0,
+    filteredOptions,
+    showOptions: true,
+    userInputObject: filteredOptions[0],
+    searchText: searchText
     });
   };
 
 
   onClick = (e) => {
     const searchId = e.currentTarget.getAttribute("data-mediaid");
+    // eslint-disable-next-line
     let userInputObject = this.props.options.filter(t => t.mediaid == searchId)[0];
-    console.log(userInputObject);
 
     let searchText = e.currentTarget.innerText;
     this.setState({
@@ -115,7 +120,7 @@ export class Autocomplete extends Component {
         activeOption: 0,
         showOptions: false,
         userInputObject: filteredOptions[activeOption],
-        searchText: filteredOptions[activeOption].title
+        searchText: filteredOptions[activeOption]?.title
       });
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
@@ -136,32 +141,11 @@ export class Autocomplete extends Component {
     }
   };
 
-
-  debounce = (func, wait, immediate) => {
-    let timeout;
-    return function() {
-        let context = this, args = arguments;
-        let later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        let callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-  }
-
-  // handleChange = (e) => {
-  //   debounce(onChange(e), 1000);
-  // }
-
-
-
    handleClick = async(e) => {
-    document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
+    if (this.state.userInputObject != null) {
+      document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
+    }
   }
-    
 
 }
 
