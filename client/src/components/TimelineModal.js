@@ -38,7 +38,6 @@ function TimelineModal (props) {
       }
 
    const [isDisplay, setIsDisplay] = useState(false);
-   const [key, setKey] = useState(props.key)
    const [isOpen, setIsOpen] = useState(false);
    const [isLoggedin, setIsLoggedin] = useState(props.loggedInStatus);
 
@@ -69,7 +68,7 @@ function TimelineModal (props) {
             );
     } else {
         return (
-            <TimelineItem key={props.data.mediaid} data={props.data} loggedInStatus={isLoggedin}></TimelineItem>
+            <TimelineItem data={props.data} loggedInStatus={isLoggedin}></TimelineItem>
         );
     }
     

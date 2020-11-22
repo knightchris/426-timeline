@@ -1,7 +1,6 @@
 // import { unmountComponentAtNode, render } from 'react-dom';
 // import ReactDOM from 'react-dom';
 import React from 'react';
-import $ from 'jquery';
 import TimelineModal from './TimelineModal.js';
 import '../css/TimelineItem.css'
 
@@ -32,7 +31,7 @@ class TimelineItem extends React.Component {
             )
         } else {
             return (
-                <TimelineModal loggedInStatus={this.props.loggedInStatus} key={this.props.data.mediaid} data={this.props.data}></TimelineModal>
+                <TimelineModal loggedInStatus={this.props.loggedInStatus} data={this.props.data}></TimelineModal>
             )
         }
     }
