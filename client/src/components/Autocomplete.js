@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Autocomplete.css';
 import axios from 'axios'
+//import {debounce} from "throttle-debounce"
 
 export class Autocomplete extends Component {
 
@@ -73,16 +74,10 @@ export class Autocomplete extends Component {
   }
 
   onChange = async(e) => {
-    //console.log('it is changing');
 
     let { options } = this.props;
-    // options = await this.getCardTitles();
-    //console.log(options);
-    
-    //console.log(e.currentTarget.value);
 
     const userInput = e.currentTarget.value;
-    
 
     const filteredOptions = options.filter(
       (optionName) =>
@@ -161,33 +156,12 @@ export class Autocomplete extends Component {
           "approved": true
         }
        }); 
-      // console.log(this.state.userInput); 
-      // console.log(result.data); 
       for(let i = 0; i < result.data.length; i++) {
         if(result.data[i].title === this.state.userInput) {
           document.getElementById(result.data[i].mediaid).scrollIntoView();
       }
       }
-      
-    //const timelineitem = <TimelineItem key={card.mediaid} data={card}></TimelineItem>;
   }
-
-  getCardTitles = async(e) => {
-    //e.preventDefault();
-    const result = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/mediacards',
-        withCredentials: true,
-        data: {
-          "approved": true
-        }
-    });
-    let titlearr = [];
-    titlearr = result.data.map(tup => tup.title);
-    //console.log(titlearr);
-    return titlearr;
-  }
-
 
 }
 
