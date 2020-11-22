@@ -3,6 +3,7 @@ import Background from '../img/lightsabers667x575.png'
 import '../css/CreateCardModal.css'
 import axios from 'axios'
 import {store} from "react-notifications-component"
+require('dotenv').config();
 
 const CREATE_CARD_MODAL_STYLE = {
     position: 'fixed',
@@ -41,7 +42,7 @@ export default function CreateOrEditModal({children, open, onClose, data}) {
         event.preventDefault();
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/createcard',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/createcard`,
             withCredentials: true,
             data: {
               "mediatype": event.target[4].value,
@@ -105,7 +106,7 @@ export default function CreateOrEditModal({children, open, onClose, data}) {
         event.preventDefault();
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/editcard',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/editcard`,
             withCredentials: true,
             data: {
               "mediatype": event.target[4].value,
@@ -240,25 +241,25 @@ export default function CreateOrEditModal({children, open, onClose, data}) {
                     <form onSubmit={handleEditSubmit}>
                         <div id="create-card-form-fields">
                             <h2 className="create-card-header">Title</h2>
-                            <input type="title" name="title" defaultValue={data.title} required />
+                            <input type="title" name="title" defaultValue={data.title} placeholder="Title" required />
                             <br></br>
                             <h2 className="create-card-header">Publish Date</h2>
-                            <input  name="pubdate" defaultValue={data.pubdate} required />
+                            <input  name="pubdate" defaultValue={data.pubdate} placeholder="YYYY-MM-DD" required />
                             <h2 className="create-card-header">Universe Date</h2>
-                            <input  name="unidate" defaultValue={data.unidate} required />
+                            <input  name="unidate" defaultValue={data.unidate} placeholder="YYYY BBY/ABY" required />
                             <h2 className="create-card-header">Creator</h2>
-                            <input  name="creator" defaultValue={data.creator} required />
+                            <input  name="creator" defaultValue={data.creator} placeholder="Creator" required />
                             <br></br>
                             <h2 className="create-card-header">Media Type</h2>
                             <select name="mediatype" id="mediatype" required>
                                 {data.mediatype === "movie" ? <option value="movie" selected>Movie</option> : <option value="movie">Movie</option>}
-                                {data.mediatype === "television" ? <option value="television" selected>Television</option> : <option value="Television">Television</option>}
+                                {data.mediatype === "television" ? <option value="television" selected>Television</option> : <option value="television">Television</option>}
                                 {data.mediatype === "book" ? <option value="book" selected>Book</option> : <option value="book">Book</option>}
                                 {data.mediatype === "comic" ? <option value="comic" selected>Comic</option> : <option value="comic">Comic</option>}
                             </select>
                             <br></br>
                             <h2 id="create-card-desc">Description</h2>
-                            <textarea id="create-card-form-description" name="description" rows="5" cols="50" maxLength="250" defaultValue={data.description} required />
+                            <textarea id="create-card-form-description" name="description" rows="5" cols="50" maxLength="250" defaultValue={data.description} placeholder="250 chararacters max" required />
                         </div>
                         <button type="submit" id="create-card-submit">Submit</button>
                     </form>

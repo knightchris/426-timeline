@@ -3,6 +3,7 @@ import AdminTimeline from '../AdminTimeline.js'
 import axios from 'axios'
 import {store} from "react-notifications-component"
 import '../../css/AdminTimeline.css'
+require('dotenv').config();
 
 class AdminTimelinePage extends React.Component {
   
@@ -15,7 +16,7 @@ class AdminTimelinePage extends React.Component {
    async handleRatingsUpdate() {
     const result = await axios({
       method: 'get',
-      url: 'http://localhost:3000/updateratings',
+      url: `${process.env.REACT_APP_REQUEST_SERVER}/updateratings`,
       withCredentials: true,
      }); 
      if (result.data === "You are not logged in") {

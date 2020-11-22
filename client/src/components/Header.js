@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Login from './auth/Login.js'
 import axios from 'axios';
 import {store} from "react-notifications-component"
+require('dotenv').config();
 
 class Header extends React.Component {
 
@@ -22,7 +23,7 @@ class Header extends React.Component {
     async handleLogoutClick() {
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/logout',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/logout`,
             withCredentials: true,
            }); 
         store.addNotification({

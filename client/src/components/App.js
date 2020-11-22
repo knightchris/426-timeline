@@ -7,12 +7,12 @@ import axios from 'axios';
 import ProtectedRoute from './auth/ProtectedRoute.js'
 import '../css/App.css'
 
-
-
 // Notifications (https://www.npmjs.com/package/react-notifications-component)
 import ReactNotification from 'react-notifications-component'
 import "animate.css"
 import 'react-notifications-component/dist/theme.css'
+
+require('dotenv').config();
 
 
 export default class App extends React.Component {
@@ -34,7 +34,7 @@ export default class App extends React.Component {
   async checkLoginStatus() {
     let result = await axios({
       method: 'get',
-      url: 'http://localhost:3000/checklogin',
+      url: `${process.env.REACT_APP_REQUEST_SERVER}/checklogin`,
       withCredentials: true,
      }); 
      if (result.data.username !== undefined && this.state.loggedInStatus === "NOT_LOGGED_IN") {
