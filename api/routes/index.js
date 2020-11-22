@@ -163,11 +163,12 @@ router.post('/createcard', async function(req, res) {
     let approved = false;
 
     let dateregex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
+    let unidateregex = /^(\d{1,4})\s(ABY|BBY)$/
     let validMediaTypes = ['book', 'comic', 'movie', 'television'];
     
     if (!mediatype || !title || !description || !pubdate 
         || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1 || !dateregex.test(pubdate) 
-        ) {
+        || !unidateregex.test(unidate)) {
       return res.status(200).send("Problem with request parameters")
     }
     
@@ -258,11 +259,12 @@ router.post('/editcard', async function(req, res) {
     let approved = false;
 
     let dateregex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
+    let unidateregex = /^(\d{1,4})\s(ABY|BBY)$/
     let validMediaTypes = ['book', 'comic', 'movie', 'television'];
     
     if (!mediatype || !title || !description || !pubdate 
         || !unidate || !creator || validMediaTypes.indexOf(mediatype) == -1 || !dateregex.test(pubdate) 
-        ) {
+        || !unidateregex.test(unidate)) {
       return res.status(200).send("Problem with request parameters")
     }
     
