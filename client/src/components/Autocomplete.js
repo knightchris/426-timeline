@@ -100,7 +100,7 @@ export class Autocomplete extends Component {
 
   onClick = (e) => {
     const searchId = e.currentTarget.getAttribute("data-mediaid");
-    let userInputObject = this.props.options.filter(t => t.mediaid === searchId)[0];
+    let userInputObject = this.props.options.filter(t => t.mediaid == searchId)[0];
 
     let searchText = e.currentTarget.innerText;
     this.setState({
