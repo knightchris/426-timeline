@@ -28,9 +28,7 @@ function Sidebar(props) {
   
   let sortClasses = `sidenav-button sort`;
   async function handleSortClick(event) {
-    if (props.parentTL.state.sort) {
-      props.parentTL.setState({
-        sort: false
+    /*if (props.parentTL.state.sort) {
       });
       document.querySelector(".sort").style.backgroundColor = "#cecccc";
     } else {
@@ -38,7 +36,7 @@ function Sidebar(props) {
         sort: true
       });
       document.querySelector(".sort").style.backgroundColor = "rgb(218, 190, 36)";
-    }
+    }*/
   }
 
   const [isOpen, setIsOpen] = useState(false);
