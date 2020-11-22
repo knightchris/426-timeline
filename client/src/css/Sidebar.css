@@ -100,3 +100,34 @@
  
 }
 
+#sort-dropdown-label {
+  position: relative;
+  bottom: 35px;
+  color: white;
+  font-size: .6em;
+}
+
+#dropdown {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  align-content: center;
+  bottom: 80px;
+  font-size: .4em;
+}
+
+.sort-option {
+  font-size: .2em;
+}
+
+#sort-go {
+  position: relative;
+  bottom: 100px;
+}
+
+#sort-go:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
