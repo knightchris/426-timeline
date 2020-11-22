@@ -25,7 +25,7 @@ function TimelineModal (props) {
     async function alertNotLoggedIn() {
         store.addNotification({
           title: "You are not logged in",
-          message: "Login to suggest a new card!",
+          message: "Login to suggest a card edit!",
           type: "danger",
           container: "top-center",
           insert: "top",
