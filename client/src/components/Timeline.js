@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../css/Timeline.css';
 import Sidebar from './Sidebar.js'
 import TimelineItem from './TimelineItem.js'
+require('dotenv').config();
 
 class Timeline extends React.Component {
     // let {cards, sortBy, filterBy} = props
@@ -20,7 +21,7 @@ class Timeline extends React.Component {
     async componentDidMount() {
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/mediacards',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/mediacards`,
             withCredentials: true,
             data: {
                 "approved": true

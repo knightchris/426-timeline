@@ -1,8 +1,10 @@
+
 import React from 'react';
 import axios from 'axios';
 import '../../css/Header.css';
 
 import {store} from "react-notifications-component"
+require('dotenv').config();
 
 
 export default class Login extends React.Component {
@@ -30,7 +32,7 @@ export default class Login extends React.Component {
         event.preventDefault();
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/login',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/login`,
             withCredentials: true,
             data: {
               username: this.state.username,
@@ -76,7 +78,7 @@ export default class Login extends React.Component {
         event.preventDefault();
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/createuser',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/createuser`,
             withCredentials: true,
             data: {
               username: this.state.username,

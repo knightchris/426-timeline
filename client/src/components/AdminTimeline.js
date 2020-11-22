@@ -3,6 +3,7 @@ import axios from 'axios'
 import '../css/Timeline.css';
 import AdminTimelineItem from './AdminTimelineItem.js'
 import {store} from "react-notifications-component"
+require('dotenv').config();
 
 class AdminTimeline extends React.Component {
     // let {cards, sortBy, filterBy} = props
@@ -24,7 +25,7 @@ class AdminTimeline extends React.Component {
     async handleApproveNewCard(mediaid) {
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/approvenewcard',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/approvenewcard`,
             withCredentials: true,
             data: {
               "mediaid": mediaid,
@@ -115,7 +116,7 @@ class AdminTimeline extends React.Component {
     async handleApproveEditCard(mediaid, username) {
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/approveeditcard',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/approveeditcard`,
             withCredentials: true,
             data: {
               "username": username,
@@ -207,7 +208,7 @@ class AdminTimeline extends React.Component {
     async handleDenyCard(mediaid) {
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/deletecard',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/deletecard`,
             withCredentials: true,
             data: {
               "mediaid": mediaid,
@@ -283,7 +284,7 @@ class AdminTimeline extends React.Component {
     async componentDidMount() {
         const result = await axios({
             method: 'post',
-            url: 'http://localhost:3000/mediacards',
+            url: `${process.env.REACT_APP_REQUEST_SERVER}/mediacards`,
             withCredentials: true,
             data: {
                 "approved": false
@@ -295,7 +296,7 @@ class AdminTimeline extends React.Component {
         for(let card of this.state.cards) {
             const result = await axios({
                 method: 'post',
-                url: 'http://localhost:3000/findcard',
+                url: `${process.env.REACT_APP_REQUEST_SERVER}/findcard`,
                 withCredentials: true,
                 data: {
                     "mediaid": card.proposededitmediaid
