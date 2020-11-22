@@ -2,7 +2,6 @@ import '../css/Sidebar.css';
 import Autocomplete from './Autocomplete';
 import CreateOrEditModal from './CreateOrEditModal.js'
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
 import {store} from "react-notifications-component";
 import Timeline from './Timeline.js';
 
