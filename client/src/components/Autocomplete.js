@@ -8,8 +8,7 @@ export class Autocomplete extends Component {
 
   constructor(props){
     super(props);
-    //this.handleClick = this.handleClick.bind(this);
-    
+    this.onChange = this.onChange.bind(this); 
   }
 
   static propTypes = {
@@ -76,19 +75,27 @@ export class Autocomplete extends Component {
   }
 
   onChange = async(e) => {
-    
-    
-    let searchText = e.currentTarget.value;
+
+    let searchText = e.target.value;
     const filteredOptions = this.props.options.filter(
       (option) =>
         option.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1
     );
+    if(!searchText) {
+      this.setState({
+        activeOption: 0,
+        filteredOptions,
+        showOptions: false,
+        searchText: searchText
+      });
+      return;
+    }
     this.setState({
-      activeOption: 0,
-      filteredOptions,
-      showOptions: true,
-      userInputObject: filteredOptions[0],
-      searchText: searchText
+    activeOption: 0,
+    filteredOptions,
+    showOptions: true,
+    userInputObject: filteredOptions[0],
+    searchText: searchText
     });
   };
 
@@ -96,7 +103,6 @@ export class Autocomplete extends Component {
   onClick = (e) => {
     const searchId = e.currentTarget.getAttribute("data-mediaid");
     let userInputObject = this.props.options.filter(t => t.mediaid == searchId)[0];
-    console.log(userInputObject);
 
     let searchText = e.currentTarget.innerText;
     this.setState({
@@ -136,32 +142,9 @@ export class Autocomplete extends Component {
     }
   };
 
-
-  debounce = (func, wait, immediate) => {
-    let timeout;
-    return function() {
-        let context = this, args = arguments;
-        let later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        let callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
-  }
-
-  // handleChange = (e) => {
-  //   debounce(onChange(e), 1000);
-  // }
-
-
-
    handleClick = async(e) => {
     document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
   }
-    
 
 }
 
