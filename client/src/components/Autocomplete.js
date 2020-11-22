@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Autocomplete.css';
 import axios from 'axios'
+//import debounce from 'lodash.debounce'
 
 export class Autocomplete extends Component {
 
   constructor(props){
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
+    
   }
 
   static propTypes = {
@@ -17,7 +19,8 @@ export class Autocomplete extends Component {
     activeOption: 0,
     filteredOptions: [],
     showOptions: false,
-    userInput: ''
+    userInputObject: {},
+    searchText: ""
   };
 
   render() {
@@ -26,21 +29,21 @@ export class Autocomplete extends Component {
       onClick,
       onKeyDown,
 
-      state: { activeOption, filteredOptions, showOptions, userInput }
+      state: { activeOption, filteredOptions, showOptions, userInputObject, searchText }
     } = this;
     let optionList;
-    if (showOptions && userInput) {
+    if (showOptions && userInputObject) {
       if (filteredOptions.length) {
         optionList = (
           <ul className="options">
-            {filteredOptions.map((optionName, index) => {
+            {filteredOptions.map((option, index) => {
               let className;
               if (index === activeOption) {
                 className = 'option-item';
               }
               return (
-                <li className={className} key={optionName} onClick={onClick}>
-                  {optionName}
+                <li data-mediaid={option.mediaid} className={className} key={option.mediaid} onClick={onClick}>
+                  {option.title}
                 </li>
               );
             })}
@@ -64,7 +67,7 @@ export class Autocomplete extends Component {
             className="search-box"
             onChange={onChange}
             onKeyDown={onKeyDown}
-            value={userInput}
+            value={searchText}
           />
         </div>
         {optionList}
@@ -73,59 +76,63 @@ export class Autocomplete extends Component {
   }
 
   onChange = async(e) => {
-    //console.log('it is changing');
-
-    let { options } = this.props;
-    // options = await this.getCardTitles();
-    //console.log(options);
     
-    //console.log(e.currentTarget.value);
-
-    const userInput = e.currentTarget.value;
     
-
-    const filteredOptions = options.filter(
-      (optionName) =>
-        optionName.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+    let searchText = e.currentTarget.value;
+    const filteredOptions = this.props.options.filter(
+      (option) =>
+        option.title.toLowerCase().indexOf(searchText.toLowerCase()) > -1
     );
-
     this.setState({
       activeOption: 0,
       filteredOptions,
       showOptions: true,
-      userInput: e.currentTarget.value
+      userInputObject: filteredOptions[0],
+      searchText: searchText
     });
   };
 
 
   onClick = (e) => {
+    const searchId = e.currentTarget.getAttribute("data-mediaid");
+    let userInputObject = this.props.options.filter(t => t.mediaid == searchId)[0];
+    console.log(userInputObject);
+
+    let searchText = e.currentTarget.innerText;
     this.setState({
       activeOption: 0,
       filteredOptions: [],
       showOptions: false,
-      userInput: e.currentTarget.innerText
+      userInputObject: userInputObject,
+      searchText: searchText
     });
   };
   onKeyDown = (e) => {
+    
     const { activeOption, filteredOptions } = this.state;
-
     if (e.keyCode === 13) {
       this.setState({
         activeOption: 0,
         showOptions: false,
-        userInput: filteredOptions[activeOption]
+        userInputObject: filteredOptions[activeOption],
+        searchText: filteredOptions[activeOption].title
       });
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
         return;
       }
-      this.setState({ activeOption: activeOption - 1 });
+      this.setState({ 
+        activeOption: activeOption - 1, 
+        userInputObject: filteredOptions[activeOption - 1] 
+      });
     } else if (e.keyCode === 40) {
       if (activeOption === filteredOptions.length - 1) {
-        console.log(activeOption);
         return;
       }
-      this.setState({ activeOption: activeOption + 1 });
+      this.setState({ 
+        activeOption: activeOption + 1, 
+        userInputObject: filteredOptions[activeOption + 1] 
+       });
     }
   };
 
@@ -152,42 +159,9 @@ export class Autocomplete extends Component {
 
 
    handleClick = async(e) => {
-    e.preventDefault();
-    const result = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/mediacards',
-        withCredentials: true,
-        data: {
-          "approved": true
-        }
-       }); 
-      // console.log(this.state.userInput); 
-      // console.log(result.data); 
-      for(let i = 0; i < result.data.length; i++) {
-        if(result.data[i].title === this.state.userInput) {
-          document.getElementById(result.data[i].mediaid).scrollIntoView();
-      }
-      }
-      
-    //const timelineitem = <TimelineItem key={card.mediaid} data={card}></TimelineItem>;
+    document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
   }
-
-  getCardTitles = async(e) => {
-    //e.preventDefault();
-    const result = await axios({
-        method: 'post',
-        url: 'http://localhost:3000/mediacards',
-        withCredentials: true,
-        data: {
-          "approved": true
-        }
-    });
-    let titlearr = [];
-    titlearr = result.data.map(tup => tup.title);
-    //console.log(titlearr);
-    return titlearr;
-  }
-
+    
 
 }
 

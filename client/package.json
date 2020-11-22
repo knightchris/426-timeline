@@ -13,6 +13,7 @@
     "event-emitter": "^0.3.5",
     "jquery": "^3.5.1",
     "react": "^17.0.1",
+    "react-debounce-input": "^3.2.3",
     "react-dom": "^17.0.1",
     "react-element-replace": "^0.3.2",
     "react-notifications-component": "^3.0.2",
