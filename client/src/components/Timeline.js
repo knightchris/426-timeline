@@ -11,7 +11,8 @@ class Timeline extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            cards: []
+            cards: [],
+            sort: false
         };
     }
 
@@ -31,24 +32,35 @@ class Timeline extends React.Component {
         });
     }
 
-
     render() {
-        const { error, isLoaded, cards } = this.state;
-        
+        const { error, isLoaded, cards, sort } = this.state;
+        const timelineItems = cards.map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
         if (error) {
             return <div className="timeline">Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div className="timeline">Loading...</div>;
         } else {
-            const timelineItems = cards.map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
-            return (
-            <div className="timeline">
-                <Sidebar titles={cards.map(card => card.title)} loggedInStatus={this.props.loggedInStatus}></Sidebar>
-                <div className="timeline-content">
-                {timelineItems}
+            if(!sort) {
+                return (
+                <div className="timeline">
+                    <Sidebar titles={cards.map(card => card.title)} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
+                    <div className="timeline-content">
+                    {timelineItems}
+                    </div>
                 </div>
-            </div>
-            );
+                );
+            } else {
+                let sortedArray = [...cards];
+                sortedArray = sortedArray.sort(function(a, b) {return new Date(a.unidate) - new Date(b.unidate)}).map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
+                return (
+                    <div className="timeline">
+                        <Sidebar titles={cards.map(card => card.title)} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
+                        <div className="timeline-content">
+                        {sortedArray}
+                        </div>
+                    </div>
+                    );
+            }
         }
     }
 

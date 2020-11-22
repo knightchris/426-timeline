@@ -2,7 +2,10 @@ import '../css/Sidebar.css';
 import Autocomplete from './Autocomplete';
 import CreateOrEditModal from './CreateOrEditModal.js'
 import React, {useState, useEffect} from 'react';
-import {store} from "react-notifications-component"
+import ReactDOM from 'react-dom';
+import {store} from "react-notifications-component";
+import Timeline from './Timeline.js';
+import {$, jQuery} from 'jquery';
 
 function Sidebar(props) {
 
@@ -23,6 +26,21 @@ function Sidebar(props) {
   })
   }
   
+  let sortClasses = `sidenav-button sort`;
+  async function handleSortClick(event) {
+    if (props.parentTL.state.sort) {
+      props.parentTL.setState({
+        sort: false
+      });
+      document.querySelector(".sort").style.backgroundColor = "#cecccc";
+    } else {
+      props.parentTL.setState({
+        sort: true
+      });
+      document.querySelector(".sort").style.backgroundColor = "rgb(218, 190, 36)";
+    }
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedin, setIsLoggedin] = useState(props.loggedInStatus);
 
@@ -51,7 +69,7 @@ function Sidebar(props) {
             options={props.titles}
           /> 
             <button className="sidenav-button">Filter</button>
-            <button className="sidenav-button">Sort</button>
+            <button className={sortClasses} onClick={handleSortClick}>Sort</button>
         </div>
       </div>
     );
