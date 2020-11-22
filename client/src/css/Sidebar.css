@@ -102,6 +102,7 @@
 #sort-dropdown-label {
   position: relative;
   bottom: 35px;
+  right: 20px;
   color: white;
   font-size: .6em;
 }
@@ -121,7 +122,8 @@
 
 #sort-go {
   position: relative;
-  bottom: 100px;
+  bottom:35px;
+  right: 70px;
 }
 
 #sort-go:hover {
