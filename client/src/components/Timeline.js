@@ -16,7 +16,7 @@ class Timeline extends React.Component {
         };
     }
 
-
+    
     async componentDidMount() {
         const result = await axios({
             method: 'post',
