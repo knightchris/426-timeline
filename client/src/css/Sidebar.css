@@ -64,16 +64,17 @@
 }
 
 .sidenav {
-  width: 130px;
+  width: 14%;
   height: 100%;
   position: fixed;
   z-index: 1;
-  top: 13%;
-  left: 90%;
+  top: 9%;
+  left: .5em;
   background: transparent;
-  overflow-x: hidden;
-  padding: 8px 0;
   transition-duration: 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
 }
 
 .sidenav-button {
@@ -86,7 +87,6 @@
   border: none;
   width: 120px;
   text-align: center;
-  left: 5px;
   position: relative;
   transition-duration: 0.4s;
   background-color: transparent; 
