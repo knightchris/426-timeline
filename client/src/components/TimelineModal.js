@@ -49,6 +49,7 @@ function TimelineModal (props) {
 
     
     if(!(isDisplay)) {
+        let mediatext = (props.data.mediatype === "television") ? "tv show" : props.data.mediatype;
             return (
                 <div className="timelineItem" id={props.data.mediaid}>   
                     <div className="content">
@@ -59,7 +60,7 @@ function TimelineModal (props) {
                         }
                         <h1 className="card-header">{props.data.title}</h1> 
                         {Rating(props)}
-                    <div className="mediadiv">A {props.data.mediatype} by {props.data.creator}</div>  
+                    <div className="mediadiv">A {mediatext} by {props.data.creator}</div>  
                         <div className="unidiv">Universe date: {props.data.unidate}</div>
                         <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
                         <p className="unidiv">{props.data.description}</p>
