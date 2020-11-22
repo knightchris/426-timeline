@@ -7,7 +7,9 @@ import CreateOrEditModal from "./CreateOrEditModal.js"
 
 function Rating(props) {
     if (props.data.mediatype === "movie" || props.data.mediatype === "television") {
-        return <div className="mediadiv">IMDB Rating: {props.data.rating}</div>
+        if (props.data.rating != null) {
+            return <div className="mediadiv">IMDB Rating: {props.data.rating}</div>  
+        }
     }
 }
 
