@@ -142,7 +142,7 @@ export class Autocomplete extends Component {
   };
 
    handleClick = async(e) => {
-    if (this.state.userInputObject != null) {
+    if (this.state.userInputObject?.mediaid != null ) {
       document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
     }
   }
