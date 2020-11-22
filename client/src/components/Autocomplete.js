@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../css/Autocomplete.css';
-import axios from 'axios'
-//import debounce from 'lodash.debounce'
 
 export class Autocomplete extends Component {
 
@@ -59,7 +57,6 @@ export class Autocomplete extends Component {
     return (
       <React.Fragment>
         <div className="search">
-        <input type="submit" value="Find Item" className="search-button" onClick={this.handleClick}/>
           <input
             placeholder="Title name..."
             type="text"
@@ -68,6 +65,7 @@ export class Autocomplete extends Component {
             onKeyDown={onKeyDown}
             value={searchText}
           />
+          <input type="submit" value="Find Item" className="search-button" onClick={this.handleClick}/>
         </div>
         {optionList}
       </React.Fragment>
@@ -84,7 +82,7 @@ export class Autocomplete extends Component {
     if(!searchText) {
       this.setState({
         activeOption: 0,
-        filteredOptions,
+        filteredOptions: [],
         showOptions: false,
         searchText: searchText
       });
@@ -102,6 +100,7 @@ export class Autocomplete extends Component {
 
   onClick = (e) => {
     const searchId = e.currentTarget.getAttribute("data-mediaid");
+    // eslint-disable-next-line
     let userInputObject = this.props.options.filter(t => t.mediaid == searchId)[0];
 
     let searchText = e.currentTarget.innerText;
@@ -121,7 +120,7 @@ export class Autocomplete extends Component {
         activeOption: 0,
         showOptions: false,
         userInputObject: filteredOptions[activeOption],
-        searchText: filteredOptions[activeOption].title
+        searchText: filteredOptions[activeOption]?.title
       });
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
@@ -143,7 +142,9 @@ export class Autocomplete extends Component {
   };
 
    handleClick = async(e) => {
-    document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
+    if (this.state.userInputObject != null) {
+      document.getElementById(this.state.userInputObject.mediaid).scrollIntoView();
+    }
   }
 
 }
