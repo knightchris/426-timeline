@@ -2,6 +2,7 @@ import React from 'react';
 import AdminTimeline from '../AdminTimeline.js'
 import axios from 'axios'
 import {store} from "react-notifications-component"
+import '../../css/AdminTimeline.css'
 
 class AdminTimelinePage extends React.Component {
   
@@ -68,10 +69,11 @@ class AdminTimelinePage extends React.Component {
   render () {
     return (
       <div className="AdminTimeline">
-          <h1>Admin page</h1>
-          <button className="Sidebar-button" onClick={this.handleRatingsUpdate}>Update IMDB Ratings</button>
+          <br></br>
+          <h1 className="admintimeline-title">Admin Timeline</h1>
+          <button className="admintimeline-button" onClick={this.handleRatingsUpdate}>Update IMDB Ratings</button>
           <AdminTimeline />
-      </div>
+      </div> 
     );
   }
   

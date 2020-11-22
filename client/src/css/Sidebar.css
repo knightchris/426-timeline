@@ -43,8 +43,10 @@
 
 .Sidebar-button {
     margin-left: 10px;
-    margin-right: 10px;  
-    border: none;
+    margin-right: 10px;
+    background-color:transparent; 
+    border: 2.5px solid gold;
+    color: white;
     padding: 14px 30px;
     text-align: center;
     text-decoration: none;
@@ -52,9 +54,6 @@
     font-size: 16px;
     transition-duration: 0.4s;
     cursor: pointer;
-    background-color: transparent; 
-    color: white;
-    border: 2px solid gold;
 }
 
 

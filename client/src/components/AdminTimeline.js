@@ -319,7 +319,6 @@ class AdminTimeline extends React.Component {
         } else if (!isLoaded) {
             return <div className="timeline">Loading...</div>;
         } else {
-            /* const adminTimelineItems = cards.map(card => <AdminTimelineItem key={card.mediaid} data={card}></AdminTimelineItem>); */
             let adminTimelineItems = [];
             for (let i = 0; i < this.state.cards.length; i++) {
                 adminTimelineItems.push(<AdminTimelineItem key={this.state.cards[i].mediaid} 
