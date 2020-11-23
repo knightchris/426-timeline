@@ -44,12 +44,12 @@
   transform: translate(-50%,-50%);
   position: absolute;
   top: 50%;
-  left: 100%;
+  left: 99.9%;
 }
 
 .timelineItem:nth-child(odd) .circle {
     top: 50%;
-    left: 0%;
+    left: -0.1%;
 }
 
 @media only screen and (max-width: 767px) {
@@ -72,5 +72,13 @@
        max-width: 95% !important;
        width: 100%;
        margin: 2em;
+    }
+
+    .timelineItem .circle {
+        display:none;
+    }
+
+    .timelineItem:nth-child(odd) .circle {
+        display:none;
     }
 }

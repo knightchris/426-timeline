@@ -67,6 +67,7 @@ function TimelineModal (props) {
                     <p>Contributed by: {props.data.contributors.join(', ')}</p>
                         <CreateOrEditModal data={props.data} open={isOpen} onClose={() => setIsOpen(false)} />
                     </div>
+                    <span className="circle" />  
                 </div>
             );
     } else {
