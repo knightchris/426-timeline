@@ -12,6 +12,9 @@ function Rating(props) {
 
 
 function appendOriginalIfIsEditRequest(props) {
+    
+    let mediatext = (props.data.mediatype === "television") ? "tv show" : props.data.mediatype;
+    
     if (props.originalcard !== undefined && props.originalcard !== "Media with given mediaid not found") {
         return (<>
             <br></br>
@@ -19,7 +22,7 @@ function appendOriginalIfIsEditRequest(props) {
                 <h3>Original Card</h3>
                 <h1 className="card-header">{props.originalcard.title}</h1>
                 {Rating(props)}
-                <div className="mediadiv">A {props.originalcard.mediatype} by {props.originalcard.creator}</div>  
+                <div className="mediadiv">A <span className='cap'>{mediatext}</span> by {props.originalcard.creator}</div>  
                     <div className="unidiv">Universe date: {props.originalcard.unidate.substring(0,1) == '0' ? '0': props.originalcard.unidate}</div>
                     <div className="unidiv">Released: {props.originalcard.pubdate.substring(0,10)}</div>
                     <p className="unidiv">{props.originalcard.description}</p>
@@ -31,6 +34,8 @@ function appendOriginalIfIsEditRequest(props) {
 
 function AdminTimelineItem (props) {
    
+    let mediatext = (props.data.mediatype === "television") ? "tv show" : props.data.mediatype;
+
     return (
         <div className="timelineItem" id={props.data.mediaid}>   
             <div className="content">
@@ -41,7 +46,7 @@ function AdminTimelineItem (props) {
                 <i className="glyphicon glyphicon-remove" onClick={() => props.handleDenyCard(props.data.mediaid)}></i>
                 <h1 className="card-header">{props.data.title}</h1>
                 {Rating(props)}
-                <div className="mediadiv">A {props.data.mediatype} by {props.data.creator}</div>  
+                <div className="mediadiv">A <span className='cap'>{mediatext}</span> by {props.data.creator}</div>  
                     <div className="unidiv">Universe date: {props.data.unidate.substring(0,1) == '0' ? '0': props.data.unidate}</div>
                     <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
                     <p className="unidiv">{props.data.description}</p>
