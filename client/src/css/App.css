@@ -98,3 +98,8 @@ body {
 
 	
 }
+
+
+.cap {
+	text-transform: capitalize;
+}
