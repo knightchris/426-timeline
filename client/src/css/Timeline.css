@@ -30,3 +30,27 @@
     justify-content: flex-start;
 
 } 
+
+
+@media only screen and (max-width: 767px) {
+    .timeline-content::after {
+        display:none;
+    }
+    .timelineItem {
+        width: 100%;
+        align-self: center;
+        justify-content: center;
+        padding: 0;
+    }
+    .timelineItem:nth-child(odd) {
+        align-self: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .timelineItem .content {
+       max-width: 95% !important;
+       width: 100%;
+       margin: 2em;
+    }
+}
