@@ -79,11 +79,9 @@ function Sidebar(props) {
          <Autocomplete
             options={props.cards}
           /> 
-            {/* <button className="sidenav-button">Filter</button> */}
-            <div>
-              <label for="dropdown" id="sort-dropdown-label">Sort by:</label>
-              <br></br>
+            <div className="custom-select">
               <select name="dropdown" id="dropdown">
+                <option className="sort-option">Sort by:</option>
                 <option className="sort-option" value="Published Date, Ascending">Published Date, Ascending</option>
                 <option className="sort-option" value="Published Date, Descending">Published Date, Descending</option>
                 <option className="sort-option" value="Universe Date, Ascending">Universe Date, Ascending</option>
