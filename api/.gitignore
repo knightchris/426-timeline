@@ -4,4 +4,4 @@ node_modules
 
 
 ## Keep in gitignore unless pushing to heroku
-/public
+#/public
