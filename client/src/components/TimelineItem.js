@@ -24,7 +24,7 @@ class TimelineItem extends React.Component {
                     <div className="content" onClick={this.handleClick}>
                         <h1 className="card-header">{this.props.data.title}</h1>   
                         <div className="mediadiv">Media Type: {this.props.data.mediatype}</div>         
-                        <div className="unidiv">Universe date: {this.props.data.unidate}</div>
+                        <div className="unidiv">Universe date: {this.props.data.unidate.substring(0,1) == '0' ? '0' : this.props.data.unidate}</div>
                         <div className="unidiv">Released: {this.props.data.pubdate.substring(0,10)}</div>      
                     </div>   
                 </div>

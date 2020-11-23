@@ -49,9 +49,8 @@ class Timeline extends React.Component {
     sort(cards, sort) {
         let sorted = cards
         if (sort[0] === 'pubdate') sorted = cards.sort((a,b) => new Date(a.pubdate) - new Date(b.pubdate));
-        if(sort[0] === 'unidate') {
-            sorted = cards.sort((a,b) => this.uniYearConvert(a)-this.uniYearConvert(b));
-        }
+        if(sort[0] === 'unidate') sorted = cards.sort((a,b) => this.uniYearConvert(a)-this.uniYearConvert(b));
+        
 
         if (sort[1] === 'dsc') sorted = sorted.reverse();
 
