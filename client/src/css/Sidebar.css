@@ -104,6 +104,10 @@
   display: inline-block;
 }
 
+#dropdownbtn {
+  border-radius: 10px;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -119,7 +123,7 @@
   display: block;
   background-color: black;
   position: relative;
-  left: -17px;
+  left: -10px;
   bottom: 8px;
 }
 
@@ -133,6 +137,9 @@ li {
   border: 2.5px solid gold;
   background-color: black;
   color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-height: 50px;
 }
 
 li:hover {
