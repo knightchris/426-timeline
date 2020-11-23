@@ -124,16 +124,6 @@
   display: none;
 }
 
-
-.sort-option {
-  font-size: 2em;
-}
-
-.select-items {
-  font-size: 2em;
-  color: dodgerblue;
-}
-
 #sort-go {
   position: relative;
   bottom: 11px;
