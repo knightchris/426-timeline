@@ -79,13 +79,9 @@ function Sidebar(props) {
          <Autocomplete
             options={props.cards}
           /> 
-            <button className="sidenav-button">Filter</button>
-            {sort 
-            ? 
-            <div>
-              <label for="dropdown" id="sort-dropdown-label">Sort by:</label>
-              <br></br>
+            <div className="custom-select">
               <select name="dropdown" id="dropdown">
+                <option className="sort-option">Sort by:</option>
                 <option className="sort-option" value="Published Date, Ascending">Published Date, Ascending</option>
                 <option className="sort-option" value="Published Date, Descending">Published Date, Descending</option>
                 <option className="sort-option" value="Universe Date, Ascending">Universe Date, Ascending</option>
@@ -95,8 +91,6 @@ function Sidebar(props) {
                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
               </svg>
             </div>
-            : <button className={sortClasses} onClick={handleSortClick}>Sort</button>
-            }
         </div>
       </div>
     );

@@ -20,7 +20,7 @@ function appendOriginalIfIsEditRequest(props) {
                 <h1 className="card-header">{props.originalcard.title}</h1>
                 {Rating(props)}
                 <div className="mediadiv">A {props.originalcard.mediatype} by {props.originalcard.creator}</div>  
-                    <div className="unidiv">Universe date: {props.originalcard.unidate}</div>
+                    <div className="unidiv">Universe date: {props.originalcard.unidate.substring(0,1) == '0' ? '0': props.originalcard.unidate}</div>
                     <div className="unidiv">Released: {props.originalcard.pubdate.substring(0,10)}</div>
                     <p className="unidiv">{props.originalcard.description}</p>
             </div>
@@ -42,7 +42,7 @@ function AdminTimelineItem (props) {
                 <h1 className="card-header">{props.data.title}</h1>
                 {Rating(props)}
                 <div className="mediadiv">A {props.data.mediatype} by {props.data.creator}</div>  
-                    <div className="unidiv">Universe date: {props.data.unidate}</div>
+                    <div className="unidiv">Universe date: {props.data.unidate.substring(0,1) == '0' ? '0': props.data.unidate}</div>
                     <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
                     <p className="unidiv">{props.data.description}</p>
                 <p>Contributed by: {props.data.contributors.join(', ')}</p>
