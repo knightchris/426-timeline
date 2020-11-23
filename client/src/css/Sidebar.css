@@ -117,6 +117,8 @@
   padding: 12px 16px;
   z-index: 1;
   font-size: .45em;
+  list-style-type: none;
+  background-color: black;
 }
 
 #dropdown:hover .dropdown-content {
@@ -127,12 +129,7 @@
   bottom: 8px;
 }
 
-ul {
-  list-style-type: none;
-  background-color: black;
-}
-
-li {
+.sort-option {
   font-family: "ITC Serif Gothic", Lato;
   border: 2.5px solid gold;
   background-color: black;
@@ -142,7 +139,7 @@ li {
   max-height: 50px;
 }
 
-li:hover {
+.sort-option:hover {
   cursor: pointer;
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
