@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   font-size: 38px;
-  color: black;
+  color:  rgb(223, 201, 80);
   position: relative;
   z-index: 300;
   transform-origin: 50% 100%;
@@ -24,7 +24,7 @@
 
 .title {
     color: black;
-    text-shadow: -2.5px 0 gold, 0 2.5px gold, 2.5px 0 gold, 0 -2.5px gold;
+    text-shadow: -2.5px 0 rgb(223, 201, 80), 0 2.5px rgb(223, 201, 80), 2.5px 0 rgb(223, 201, 80), 0 -2.5px rgb(223, 201, 80);
     font-family: 'Star Jedi', arial;
     font-size: 2em;
 }
@@ -45,7 +45,7 @@
     margin-left: 10px;
     margin-right: 10px;
     background-color:transparent; 
-    border: 2.5px solid gold;
+    border: 2.5px solid rgb(223, 201, 80);
     color: white;
     padding: 14px 30px;
     text-align: center;
@@ -58,7 +58,7 @@
 
 
 .Sidebar-button:hover {
-    background-color: gold; 
+    background-color: rgb(223, 201, 80); 
     color: black; 
 }
 
@@ -66,7 +66,7 @@
   width: 14%;
   height: 100%;
   position: fixed;
-  z-index: 1;
+  z-index: 900;
   top: 14%;
   left: .5em;
   background: transparent;
@@ -90,11 +90,11 @@
   transition-duration: 0.4s;
   background-color: transparent; 
   color: white;
-  border: 2.5px solid gold;
+  border: 2.5px solid rgb(223, 201, 80);
 }
 
 .sidenav-button:hover {
-  background-color: gold;; 
+  background-color: rgb(223, 201, 80); 
   color: black; 
  
 }
@@ -131,7 +131,7 @@
 
 .sort-option {
   font-family: "ITC Serif Gothic", Lato;
-  border: 2.5px solid gold;
+  border: 2.5px solid rgb(223, 201, 80);
   background-color: black;
   color: white;
   border-radius: 10px;
@@ -143,7 +143,13 @@
   cursor: pointer;
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
-  background-color: gold;
+  background-color: rgb(223, 201, 80);
   color: black;
+}
+
+@media only screen and (max-width: 767px) {
+  .sidenav {
+    display: none;
+  }
 }
 

@@ -28,7 +28,7 @@ nav {
     padding: 10px 10px 10px 10px;
     display: flex;
     align-items: center;
-    color: gold;
+    color: rgb(223, 201, 80);
 }
 
 #nav-right-contributions {
@@ -37,7 +37,7 @@ nav {
     padding: 10px 10px 10px 10px;
     display: flex;
     align-items: center;
-    color: gold;
+    color: rgb(223, 201, 80);
 }
 
 .nav-links {
@@ -51,7 +51,7 @@ nav {
 
 
 .username {
-    border: 2.5px solid gold;
+    border: 2.5px solid rgb(223, 201, 80);
     border-radius: 10px;
     color: white !important;
     background-color: transparent;
@@ -60,7 +60,7 @@ nav {
 }
 
 .username:focus {
-    border: 7px solid gold;
+    border: 7px solid rgb(223, 201, 80);
 }
 
 .username::placeholder {
@@ -69,7 +69,7 @@ nav {
 
 
 .password {
-    border: 2.5px solid gold;
+    border: 2.5px solid rgb(223, 201, 80);
     border-radius: 10px;
     background-color: transparent;
     color: white !important;
@@ -78,7 +78,7 @@ nav {
 }
 
 .password:focus {
-    border: 7px solid gold;
+    border: 7px solid rgb(223, 201, 80);
 }
 
 .password::placeholder {
@@ -115,7 +115,7 @@ nav {
 }
 
 .timeline-link {
-    color: gold;
+    color: rgb(223, 201, 80);
     font-size: 14px;
     /* position: absolute;
     top: 12%;
@@ -132,7 +132,7 @@ nav {
     margin-left: 10px;
     margin-right: 10px;
     background-color: transparent; 
-    border: 2.5px solid gold;
+    border: 2.5px solid rgb(223, 201, 80);
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -147,6 +147,6 @@ nav {
 }
 
 .header-link:hover {
-    background-color:  gold; 
+    background-color:  rgb(223, 201, 80); 
     color: black; 
 }

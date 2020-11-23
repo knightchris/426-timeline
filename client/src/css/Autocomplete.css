@@ -13,19 +13,19 @@
     border: none;
     transition-duration: 0.4s;
     transform: none;
-    border: 2px solid gold; 
+    border: 2px solid rgb(223, 201, 80); 
   }
   /* .search:hover {
     background-color: transparent; 
     color: black; 
-    border: 2.5px solid gold;
+    border: 2.5px solid rgb(223, 201, 80);
   } */
 
   .search-box {
       background-color: transparent;
       color: white;
       padding: .25em;
-      border: 2px solid gold; 
+      border: 2px solid rgb(223, 201, 80); 
       border-radius: 10px;
       width: 240px;
       height: 30px;
@@ -42,12 +42,12 @@
     margin-top: .5em;
     background-color: transparent; 
     color: white;
-    border: 2px solid gold; 
+    border: 2px solid rgb(223, 201, 80); 
 
   }
 
   .search-button:hover {
-      background-color: gold; 
+      background-color: rgb(223, 201, 80); 
       color: black; 
 
   }
@@ -68,7 +68,9 @@
   .option-item {
     width: 100%;
     font-size: 12.5px;
-    color: gold;
+    color: rgb(223, 201, 80);
+    font-weight: 650;
+    text-shadow: .08em .08em .1em black;
   }
 
   .option-item:hover {
