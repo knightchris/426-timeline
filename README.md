@@ -17,14 +17,14 @@ Look within each folder to find the [client readme](./client/README.md) and the 
 - Install PostgreSQL locally on your machine
 - PGadmin tool provides a GUI, may be useful 
 - Setup instance of database using dump (forthcoming) 
-    - For now, can just set up your own database and add a Users table as the code only touches "SELECT * FROM Users;"
-        - For help refer to doc which should have been added when downloading PG (probably in C:/Program%20Files/PostgreSQL/13/doc/postgresql/html/tutorial-createdb.html if windows)
-- Create .env file in api subdir with DATABASE_URL_DEV=postgresql://postgres:<pg-admin-pass>@localhost:5432/<local-db-name>
+    - For now, can just set up your own database and add a Users table as the code only touches `"SELECT * FROM Users;"`
+        - For help refer to doc which should have been added when downloading PG (probably in `C:/Program%20Files/PostgreSQL/13/doc/postgresql/html/tutorial-createdb.html` if windows)
+- Create .env file in api subdir with `DATABASE_URL_DEV=postgresql://postgres:<pg-admin-pass>@localhost:5432/<local-db-name>`
     - This tells PG where your local database is running
-    - If using PGadmin tool the <pg-admin-pass> will be configured when first running it
-- Add SESSION_SECRET=<your-session-secret> to api/.env for express-session
-- add REACT_APP_REQUEST_SERVER=http://localhost:3000 to client/.env
-- ADD OMDB_API_KEY=<your-key-here> to api/.env for imdb rating pulls 
+    - If using PGadmin tool the `<pg-admin-pass>` will be configured when first running it
+- Add `SESSION_SECRET=<your-session-secret>` to api/.env for express-session
+- add `REACT_APP_REQUEST_SERVER=http://localhost:3000` to `client/.env`
+- ADD `OMDB_API_KEY=<your-key-here>` to `api/.env` for imdb rating pulls 
 
 ### Local Development
 
@@ -51,60 +51,6 @@ Look within each folder to find the [client readme](./client/README.md) and the 
 
 - View schema: https://docs.google.com/spreadsheets/d/1AXj4h4XO7tni1glgYUH2RVzvZ0oYRZoVc4NtZAP6S2w/edit?usp=sharing
 
-#### Sample SQL
-
-// Duplicate columns occur due to bad schema design (should still function correctly)
-
-mediaid of Media table and id of MediaAuthor table are automatically generated and are ignored in insert statements
-
-
-// Insert a user into Users and select all rows from Users
-
-INSERT INTO Users values ('Chris', 'pass', true, 0);
-SELECT * FROM Users;
-
-
-// Insert a movie into Media and select all rows from Media.
-
-INSERT INTO Media (mediatype, title, description, pubdate, unidate, approved, creator, rating)
-values ('movie', 'SW: Third Movie', 'A really good one', '2020-02-21', '3653 BBY', true, 'Disney', 9.7);
-SELECT * FROM Media;
-
-
-// Insert a row into MediaAuthor and select all rows
-
-INSERT INTO MediaAuthor (mediaid, username) values (1, 'Chris');
-SELECT * FROM MediaAuthor;
-
-
-// Join 2 
-
-SELECT * 
-FROM MediaAuthor MA, Users U
-WHERE U.username=MA.username;
-
-
-// Join all (Output gives all media cards contributed to and by whom[one user can contribute to multiple cards])
-
-SELECT *
-FROM MediaAuthor MA, Users U, Media M
-WHERE U.username=MA.username AND MA.mediaid=M.mediaid;
-
-
-// Join all (Give the media cards a specific user contributed too)
-
-
-SELECT *
-FROM MediaAuthor MA, Users U, Media M
-WHERE U.username=MA.username AND MA.mediaid=M.mediaid AND U.username='Chris';
-
-
-// Update password in users (finnicky with double quotes)
-
-UPDATE Users
-SET password='pass'
-WHERE username='John';
-
 
 ### Media Card resource
  - The main RESTful resource that the frontend manipulates is the Media Card. Media Card objects have properties:
@@ -115,8 +61,8 @@ WHERE username='John';
 | mediatype           | string   | "movie"                          | Specifies the media card type, must be: ["movie", "book", "comic", "television"]                             |
 | title               | string   | "Star Wars:  Return of the Jedi" | The title of the media                                                                                       |
 | description         | string   | "This movie was  the best one"   | A description of the media                                                                                   |
-| pubdate             | date     | "2020-02-21T05:00:00.000Z"       | Date the media was published                                                                                 |
-| unidate             | date     | "3653 BBY"                       | Date the media occurred within the  star wars universe                                                       |
+| pubdate             | string     | "2020-02-21"       | Date the media was published                                                                                 |
+| unidate             | string     | "3653 BBY"                       | Date the events of media occured in the universe. Can either be BBY or ABY. 0 ABY = 0 BBY.                                                       |
 | approved            | boolean  | true                             | Whether or not the media card  has been approved by an admin                                                 |
 | creator             | string   | "Lucasfilm Ltd."                 | Producer of the media                                                                                        |
 | rating              | float    | 9.7                              | Rating of the media by IMDB- only used by media type ["movie", "television"] null for type ["comic", "book"] |
@@ -157,7 +103,7 @@ WHERE username='John';
         "mediatype": "movie",
         "title": "SW: Third Movie",
         "description": "A really good one",
-        "pubdate": "2020-02-21T05:00:00.000Z",
+        "pubdate": "2020-02-21",
         "unidate": "3653 BBY",
         "approved": true,
         "creator": "Disney",
@@ -173,7 +119,7 @@ WHERE username='John';
         "mediatype": "movie",
         "title": "SW: Second Movie",
         "description": "A really bad one",
-        "pubdate": "2020-02-25T05:00:00.000Z",
+        "pubdate": "2020-02-25",
         "unidate": "3653 BBY",
         "approved": true,
         "creator": "Disney",
@@ -215,7 +161,7 @@ WHERE username='John';
     "mediatype": "book",
     "title": "Star Wars Book",
     "description": "A million pages long, don't read",
-    "pubdate": "2020-02-21T05:00:00.000Z",
+    "pubdate": "2020-02-21",
     "unidate": "3653 BBY",
     "approved": true,
     "creator": "Some author",
@@ -267,7 +213,7 @@ WHERE username='John';
     "mediatype": "book",
     "title": "Star Wars Book",
     "description": "Greatest book of all time",
-    "pubdate": "2020-02-21T05:00:00.000Z",
+    "pubdate": "2020-02-21",
     "unidate": "3653 BBY",
     "approved": false,
     "creator": "Some book author",
