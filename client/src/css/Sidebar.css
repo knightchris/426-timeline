@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   font-size: 38px;
-  color: black;
+  color:  rgb(223, 201, 80);
   position: relative;
   z-index: 300;
   transform-origin: 50% 100%;
@@ -24,7 +24,7 @@
 
 .title {
     color: black;
-    text-shadow: -2.5px 0 rgb(223, 201, 80), 0 2.5px rgb(223, 201, 80), 2.5px 0 rgb(223, 201, 80) 0 -2.5px rgb(223, 201, 80);
+    text-shadow: -2.5px 0 rgb(223, 201, 80), 0 2.5px rgb(223, 201, 80), 2.5px 0 rgb(223, 201, 80), 0 -2.5px rgb(223, 201, 80);
     font-family: 'Star Jedi', arial;
     font-size: 2em;
 }
