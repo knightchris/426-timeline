@@ -30,3 +30,16 @@
     justify-content: flex-start;
 
 } 
+
+.timelineItem .circle {
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 100%;
+}
+
+.timelineItem:nth-child(odd) .circle {
+    top: 50%;
+    left: 0%;
+}

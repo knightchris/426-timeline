@@ -40,3 +40,12 @@
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
 }
+
+.circle {
+    background-color: black;
+    border: 3px solid white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    z-index: 999;
+}
