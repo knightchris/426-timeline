@@ -3,7 +3,6 @@ import Autocomplete from './Autocomplete';
 import CreateOrEditModal from './CreateOrEditModal.js'
 import React, {useState, useEffect} from 'react';
 import {store} from "react-notifications-component";
-import Timeline from './Timeline.js';
 
 function Sidebar(props) {
 
@@ -35,16 +34,19 @@ function Sidebar(props) {
   }
 
   async function handleSort(event) {
+    
     let choice = document.querySelector("#dropdown").value;
+    let sort= [];
     if (choice == "Published Date, Ascending") {
-      props.parentTL.state.sort = ['pubdate', 'asc'];
+      sort = ['pubdate', 'asc'];
     } else if (choice == "Published Date, Descending") {
-      props.parentTL.state.sort = ['pubdate', 'dsc'];
+      sort = ['pubdate', 'dsc'];
     } else if (choice == "Universe Date, Ascending") {
-      props.parentTL.state.sort = ['unidate', 'asc'];
+      sort = ['unidate', 'asc'];
     } else {
-      props.parentTL.state.sort = ['pubdate', 'dsc'];
+      sort = ['unidate', 'dsc'];
     }
+    props.updateSort(sort)
   }
 
   let renderSortButton = function() {

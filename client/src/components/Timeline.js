@@ -13,8 +13,10 @@ class Timeline extends React.Component {
             error: null,
             isLoaded: false,
             cards: [],
-            sort: ['pubdate', 'dsc']
+            sort: ['unidate', 'dsc']
         };
+        this.updateSort = this.updateSort.bind(this);
+        this.uniYearConvert = this.uniYearConvert.bind(this)
     }
 
     
@@ -33,17 +35,54 @@ class Timeline extends React.Component {
         });
     }
 
+    updateSort(choice) {
+        this.setState({
+            sort: choice
+        });
+    }
+
+    uniYearConvert(card) {
+        let [num, suffix] = card.unidate.split(' ');
+        return (suffix.toLowerCase() == 'bby') ? (-num) : (num);
+    }
+
+    sort(cards, sort) {
+        let sorted = cards
+        if (sort[0] === 'pubdate') {
+            sorted = cards.sort((a,b) => new Date(a.pubdate) - new Date(b.pubdate))
+        }
+        if(sort[0] === 'unidate') {
+
+            // for (let i=0; i<sorted.length; i++) {
+            //     if (sorted[i].unidate.split(' ')[0] === 0) {
+
+            //     }
+            // }
+
+            sorted = cards.sort((a,b) => this.uniYearConvert(a)-this.uniYearConvert(b));
+            
+        }
+
+        if (sort[1] === 'dsc') sorted = sorted.reverse();
+
+        return sorted
+    }
+
     render() {
         const { error, isLoaded, cards, sort } = this.state;
-        const timelineItems = cards.map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
+
         if (error) {
             return <div className="timeline">Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div className="timeline">Loading...</div>;
         } else {
+
+            let sorted = this.sort(cards, sort);
+            const timelineItems = sorted.map(card => <TimelineItem loggedInStatus={this.props.loggedInStatus} key={card.mediaid} data={card}></TimelineItem>);
+
                 return (
                 <div className="timeline">
-                    <Sidebar cards={cards} loggedInStatus={this.props.loggedInStatus} parentTL={this}></Sidebar>
+                    <Sidebar cards={cards} loggedInStatus={this.props.loggedInStatus} updateSort={this.updateSort}></Sidebar>
                     <div className="timeline-content">
                     {timelineItems}
                     </div>
