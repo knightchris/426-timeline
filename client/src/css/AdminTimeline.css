@@ -4,7 +4,7 @@
     z-index: 300;
     transform-origin: 50% 100%;
     transform: perspective(300px) rotateX(20deg);
-    text-shadow: -2.5px 0 gold, 0 2.5px gold, 2.5px 0 gold, 0 -2.5px gold;
+    text-shadow: -2.5px 0 rgb(223, 201, 80), 0 2.5px rgb(223, 201, 80), 2.5px 0 rgb(223, 201, 80), 0 -2.5px rgb(223, 201, 80);
     font-family: 'Star Jedi', arial;
     font-size: 62px;
 }
@@ -13,7 +13,7 @@
     margin-left: 10px;
     margin-right: 10px;
     background-color:transparent; 
-    border: 2.5px solid gold;
+    border: 2.5px solid rgb(223, 201, 80);
     color: white;
     padding: 14px 30px;
     text-align: center;
@@ -27,6 +27,6 @@
 }
 
 .admintimeline-button:hover {
-    background-color: gold; 
+    background-color: rgb(223, 201, 80); 
     color: black; 
 }
