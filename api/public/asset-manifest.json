@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.9ecb0258.chunk.css",
-    "main.js": "/static/js/main.0aec4917.chunk.js",
-    "main.js.map": "/static/js/main.0aec4917.chunk.js.map",
+    "main.js": "/static/js/main.aaab62ff.chunk.js",
+    "main.js.map": "/static/js/main.aaab62ff.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.aeaf6fc9.js",
     "runtime-main.js.map": "/static/js/runtime-main.aeaf6fc9.js.map",
     "static/css/2.63de76ba.chunk.css": "/static/css/2.63de76ba.chunk.css",
-    "static/js/2.d9ac6de1.chunk.js": "/static/js/2.d9ac6de1.chunk.js",
-    "static/js/2.d9ac6de1.chunk.js.map": "/static/js/2.d9ac6de1.chunk.js.map",
+    "static/js/2.67d366f4.chunk.js": "/static/js/2.67d366f4.chunk.js",
+    "static/js/2.67d366f4.chunk.js.map": "/static/js/2.67d366f4.chunk.js.map",
     "static/js/3.179858ce.chunk.js": "/static/js/3.179858ce.chunk.js",
     "static/js/3.179858ce.chunk.js.map": "/static/js/3.179858ce.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.63de76ba.chunk.css.map": "/static/css/2.63de76ba.chunk.css.map",
     "static/css/main.9ecb0258.chunk.css.map": "/static/css/main.9ecb0258.chunk.css.map",
-    "static/js/2.d9ac6de1.chunk.js.LICENSE.txt": "/static/js/2.d9ac6de1.chunk.js.LICENSE.txt",
+    "static/js/2.67d366f4.chunk.js.LICENSE.txt": "/static/js/2.67d366f4.chunk.js.LICENSE.txt",
     "static/media/lightsabers667x575.6ab07ebb.png": "/static/media/lightsabers667x575.6ab07ebb.png",
     "static/media/App.css": "/static/media/midground.15b73cfd.png",
     "static/media/index.css": "/static/media/star-jedi_108a0c1f596b5c0a80628b4566a9f336.73fb6d94.ttf"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.aeaf6fc9.js",
     "static/css/2.63de76ba.chunk.css",
-    "static/js/2.d9ac6de1.chunk.js",
+    "static/js/2.67d366f4.chunk.js",
     "static/css/main.9ecb0258.chunk.css",
-    "static/js/main.0aec4917.chunk.js"
+    "static/js/main.aaab62ff.chunk.js"
   ]
 }
