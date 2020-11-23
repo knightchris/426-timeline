@@ -35,6 +35,10 @@
     font-size: 2em;
 }
 
+.medialabel {
+    color: rgb(223, 201, 80);
+}
+
 .timelineItem .content:hover {
     cursor: pointer;
     -webkit-transform: scale(1.05);

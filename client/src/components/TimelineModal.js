@@ -8,7 +8,7 @@ import CreateOrEditModal from "./CreateOrEditModal.js"
 function Rating(props) {
     if (props.data.mediatype === "movie" || props.data.mediatype === "television") {
         if (props.data.rating != null) {
-            return <div className="mediadiv">IMDB Rating: {props.data.rating}</div>  
+            return <div className="mediadiv"><span className="medialabel">IMDB Rating:</span> {props.data.rating}</div>  
         }
     }
 }
@@ -58,11 +58,11 @@ function TimelineModal (props) {
                         ? <i className="glyphicon glyphicon-edit"  onClick={() => setIsOpen(true)}></i>
                         : <i className="glyphicon glyphicon-edit" onClick={alertNotLoggedIn}></i>
                         }
-                        <h1 className="card-header">{props.data.title}</h1> 
+                        <h1 className="card-header">{props.data.title}</h1>
+                        <div className="mediadiv"><span className="medialabel"><span className='cap'>{mediatext}</span> by:</span> {props.data.creator}</div>
                         {Rating(props)}
-                    <div className="mediadiv">A <span className='cap'>{mediatext}</span> by {props.data.creator}</div>  
-                        <div className="unidiv">Universe date: {props.data.unidate.substring(0,1) == '0' ? '0': props.data.unidate}</div>
-                        <div className="unidiv">Released: {props.data.pubdate.substring(0,10)}</div>
+                        <div className="unidiv"><span className="medialabel">Universe date:</span> {props.data.unidate.substring(0,1) == '0' ? '0': props.data.unidate}</div>
+                        <div className="unidiv"><span className="medialabel">Released:</span> {props.data.pubdate.substring(0,10)}</div>
                         <p className="unidiv">{props.data.description}</p>
                     <p>Contributed by: {props.data.contributors.join(', ')}</p>
                         <CreateOrEditModal data={props.data} open={isOpen} onClose={() => setIsOpen(false)} />
