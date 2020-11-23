@@ -13,7 +13,7 @@ export class Autocomplete extends Component {
     options: PropTypes.instanceOf(Array).isRequired
   };
   state = {
-    activeOption: 0,
+    activeOption: null,
     filteredOptions: [],
     showOptions: false,
     userInputObject: {},
@@ -81,7 +81,7 @@ export class Autocomplete extends Component {
     );
     if(!searchText) {
       this.setState({
-        activeOption: 0,
+        activeOption: null,
         filteredOptions: [],
         showOptions: false,
         searchText: searchText
@@ -105,23 +105,25 @@ export class Autocomplete extends Component {
 
     let searchText = e.currentTarget.innerText;
     this.setState({
-      activeOption: 0,
+      activeOption: null,
       filteredOptions: [],
       showOptions: false,
       userInputObject: userInputObject,
       searchText: searchText
     });
   };
+  
   onKeyDown = (e) => {
     
     const { activeOption, filteredOptions } = this.state;
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && activeOption !== null) {
       this.setState({
-        activeOption: 0,
+        activeOption: null,
         showOptions: false,
         userInputObject: filteredOptions[activeOption],
         searchText: filteredOptions[activeOption]?.title
       });
+      this.handleClick();
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
         return;
