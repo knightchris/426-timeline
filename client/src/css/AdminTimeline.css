@@ -6,7 +6,7 @@
     transform: perspective(300px) rotateX(20deg);
     text-shadow: -2.5px 0 gold, 0 2.5px gold, 2.5px 0 gold, 0 -2.5px gold;
     font-family: 'Star Jedi', arial;
-    font-size: 76px;
+    font-size: 62px;
 }
 
 .admintimeline-button{

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import './fonts/star-jedi_108a0c1f596b5c0a80628b4566a9f336.ttf'
 
 ReactDOM.render(
   <React.StrictMode>
